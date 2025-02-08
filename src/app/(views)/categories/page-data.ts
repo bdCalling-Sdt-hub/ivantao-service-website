@@ -1,8 +1,15 @@
-export const category = {
-  image: "/images/categories/household.jfif",
-  title: "Household",
-  description: "Discover new & order for get service",
-};
+export const categoryPageDatas = [
+  {
+    image: "/images/categories/household.jfif",
+    title: "Household",
+    description: "Discover new & order for get service",
+  },
+  {
+    image: "/images/categories/laundry.jfif",
+    title: "Cleaning",
+    description: "Discover new & order for get service",
+  },
+];
 export const categorySelection = [
   {
     title: "Laundry",
