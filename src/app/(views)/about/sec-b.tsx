@@ -50,7 +50,7 @@ export default function SectionB() {
         className="bg-cover rounded-3xl"
         style={{ backgroundImage: `url('/images/about/plans.png')` }}
       >
-        <div className="h-full w-full backdrop-blur-sm p-8 py-[74px] rounded-3xl">
+        <div className="h-full w-full backdrop-blur-sm hover:backdrop-blur-none transition-all p-8 py-[74px] rounded-3xl">
           <Title level={2} className="!text-background">
             Our plan makes you feel more comfortable in ecommerce business
           </Title>
