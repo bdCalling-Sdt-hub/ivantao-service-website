@@ -1,12 +1,15 @@
 "use client";
+
 import {
   BellOutlined,
   MessageOutlined,
   TranslationOutlined,
+  MenuOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Search from "../ui/search";
 import Button from "antd/es/button";
 import { Avatar } from "antd";
@@ -22,6 +25,9 @@ interface NavbarProps {
 
 export default function Navbar({ user }: NavbarProps) {
   const path = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
   const navLinks = [
     { title: "Home", key: "/" },
     { title: "Service", key: "/service" },
@@ -29,24 +35,52 @@ export default function Navbar({ user }: NavbarProps) {
     { title: "Contact Us", key: "/contact" },
   ];
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <nav className="h-[94px] w-dvw px-[7%] flex flex-row justify-between items-center">
-      <Image
-        src="/logo.png"
-        height={144}
-        width={144}
-        className="h-[94px] w-[94px]"
-        alt="logo"
-      />
-      <div className="flex flex-row justify-between flex-1 items-center">
-        <ul className="flex flex-row justify-start items-center space-x-8 px-[10%] text-lg">
+    <nav className="h-auto lg:h-[94px] w-full px-4 lg:px-[7%] flex flex-col lg:flex-row justify-between items-center">
+      <div className="flex justify-between items-center w-full lg:w-auto py-4 lg:py-0">
+        <Image
+          src="/logo.png"
+          height={94}
+          width={94}
+          className="h-[60px] w-[60px] lg:h-[94px] lg:w-[94px]"
+          alt="logo"
+        />
+        {isMobile && (
+          <button onClick={toggleMenu} className="text-2xl">
+            {isMenuOpen ? <CloseOutlined /> : <MenuOutlined />}
+          </button>
+        )}
+      </div>
+      <div
+        className={`${
+          isMobile && !isMenuOpen ? "hidden" : "flex"
+        } flex-col lg:flex-row justify-between flex-1 items-center w-full lg:w-auto`}
+      >
+        <ul className="flex flex-col lg:flex-row justify-start items-center space-y-4 lg:space-y-0 lg:space-x-8 py-4 lg:py-0 text-lg w-full lg:w-auto pl-12">
           {navLinks?.map((item) => (
-            <li key={item.key} className="cursor-pointer">
+            <li
+              key={item.key}
+              className="cursor-pointer w-full lg:w-auto text-center"
+            >
               <Link
                 href={item.key}
                 className={`${
                   item.key === path ? "font-bold" : "hover:underline"
-                }`}
+                } block py-2 lg:py-0`}
+                onClick={() => isMobile && setIsMenuOpen(false)}
               >
                 {item.title}
               </Link>
@@ -54,15 +88,17 @@ export default function Navbar({ user }: NavbarProps) {
           ))}
         </ul>
 
-        <Search />
-        <div className="flex flex-row text-2xl space-x-4 text-[#BBA782]">
-          <span className="bg-[#BBA782] w-[38px] h-[38px] rounded-lg flex flex-row justify-center items-center text-background">
-            <TranslationOutlined />
-          </span>
-          <MessageOutlined />
-          <BellOutlined />
-          {user ? (
-            <div className="">
+        <div className="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4 py-4 lg:py-0 w-full lg:w-auto">
+          <Search />
+          <div className="flex flex-row text-2xl space-x-4 text-[#BBA782]">
+            <span className="bg-[#BBA782] w-[38px] h-[38px] rounded-lg flex flex-row justify-center items-center text-background">
+              <TranslationOutlined />
+            </span>
+            <MessageOutlined />
+            <BellOutlined />
+          </div>
+          {user && (
+            <div className="mt-4 lg:mt-0">
               <Button
                 className="font-semibold bg-[#BBA782] text-background"
                 size="large"
@@ -70,8 +106,6 @@ export default function Navbar({ user }: NavbarProps) {
                 <Avatar /> {user.name}
               </Button>
             </div>
-          ) : (
-            ""
           )}
         </div>
       </div>
