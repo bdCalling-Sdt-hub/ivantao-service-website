@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // If using icons
-import { faSearch } from "@fortawesome/free-solid-svg-icons"; // Example icon
 
 interface ImageItem {
   src: string;
@@ -50,7 +48,8 @@ const MyComponent: React.FC = () => {
       width: 400, // Example width
       height: 250, // Example height
       overlayIcon: ({ className }) => (
-        <FontAwesomeIcon icon={faSearch} className={className} />
+        // <FontAwesomeIcon icon={faSearch} className={className} />
+        <div className=""></div>
       ),
       overlayText: "View Details",
     },
