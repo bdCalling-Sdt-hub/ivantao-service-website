@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "antd";
 import Title from "antd/es/typography/Title";
 import { CircleArrowOutUpRight } from "lucide-react";
@@ -17,7 +18,11 @@ export default function BlurSection() {
         <Title className="!text-background !mt-0 !text-4xl sm:!text-6xl">
           TAWUN
         </Title>
-        <Button className="text-lg px-12 !py-6 text-[#88744F]" size="large">
+        <Button
+          href="/service/categories"
+          className="text-lg px-12 !py-6 text-[#88744F]"
+          size="large"
+        >
           Browse all{" "}
           <span>
             <CircleArrowOutUpRight className="h-4 w-4" />

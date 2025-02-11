@@ -32,6 +32,7 @@ export default function HowItWorks() {
             gravida. Fermentum sit duis posuere semper.
           </p>
           <Button
+            href="/how-it-works"
             size="large"
             className="px-8 py-6 text-lg font-semibold !border-2 border-[#88744F] text-[#88744F]"
           >
@@ -56,6 +57,30 @@ export default function HowItWorks() {
             Your browser does not support the video.
           </video>
         </div>
+      </div>
+      <div className="py-12 w-full bg-background px-[7%]">
+        <Title>Payment security</Title>
+        <div className="flex flex-row justify-center">
+          <Image
+            src="/images/payment-security.jfif"
+            alt="thumbnail"
+            width={600}
+            height={400}
+            objectFit="cover"
+            className="h-auto w-full max-w-[460px]"
+          />
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur. Nulla mattis consequat tempus
+          tellus neque. Facilisi tellus diam adipiscing gravida quisque sapien
+          tempus egestas. Integer sed faucibus cursus integer platea
+          scelerisque. Sed eget in maecenas non. Enim consectetur blandit
+          faucibus amet ut arcu rutrum aenean facilisis. Suspendisse pharetra
+          tincidunt tincidunt enim eget lectus fringilla dui. Netus lectus
+          feugiat dolor lobortis mattis convallis. Orci malesuada amet volutpat
+          nisl sagittis. Tincidunt suspendisse eu nunc at dignissim imperdiet a
+          odio tellus.
+        </p>
       </div>
       <div className="px-6 md:px-[12%] py-12">
         {/* First Section */}

@@ -3,9 +3,10 @@ import { Segmented } from "antd";
 import React, { useState } from "react";
 import AccDet from "./acc-det";
 import ChangePass from "./change-pass";
+import TransactionHistory from "./history";
 
 export default function InPages() {
-  const pageTabs = ["Account Details", "Change Password", "Dashboard"];
+  const pageTabs = ["Account Details", "Change Password", "Order history"];
   const [activeTab, setActiveTab] = useState(pageTabs[0]); // Initialize with the first tab
 
   const handleTabChange = (value: React.SetStateAction<string>) => {
@@ -29,12 +30,7 @@ export default function InPages() {
         {/* Conditionally render content based on the active tab */}
         {activeTab === "Account Details" && <AccDet />}
         {activeTab === "Change Password" && <ChangePass />}
-        {activeTab === "Dashboard" && (
-          <div>
-            <h2>Dashboard</h2>
-            {/* Dashboard content here */}
-          </div>
-        )}
+        {activeTab === "Order history" && <TransactionHistory />}
       </div>
     </>
   );

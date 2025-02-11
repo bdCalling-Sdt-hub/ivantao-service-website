@@ -1,7 +1,8 @@
+"use client";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Modal } from "antd";
 import Title from "antd/es/typography/Title";
-import React from "react";
+import React, { useState } from "react";
 
 export default function Exp() {
   const exps = [
@@ -20,6 +21,19 @@ export default function Exp() {
       endDate: "June 2023",
     },
   ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className="py-12">
       <Title level={4}>Experience & Qualifications</Title>
@@ -60,11 +74,21 @@ export default function Exp() {
       </div>
       <div className="">
         <Button
+          onClick={showModal}
           className="bg-[#E9DABB] font-bold px-12 py-6 hover:!bg-[#b6a88c] hover:!text-background !border-none"
           size="large"
         >
           Add more
         </Button>
+
+        <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+          <div className="p-6">
+            {" "}
+            <Title level={4} className="text-center">
+              Add your experience
+            </Title>
+          </div>
+        </Modal>
       </div>
     </div>
   );

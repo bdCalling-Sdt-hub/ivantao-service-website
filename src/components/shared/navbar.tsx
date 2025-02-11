@@ -88,25 +88,28 @@ export default function Navbar({ user }: NavbarProps) {
           ))}
         </ul>
 
-        <div className="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4 py-4 lg:py-0 w-full lg:w-auto">
+        <div className="flex flex-col h-full px-0 md:px-0 lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4 py-4 lg:py-0 w-full lg:w-auto">
           <Search />
-          <div className="flex flex-row text-2xl space-x-4 text-[#BBA782]">
-            <span className="bg-[#BBA782] w-[38px] h-[38px] rounded-lg flex flex-row justify-center items-center text-background">
-              <TranslationOutlined />
-            </span>
-            <MessageOutlined />
-            <BellOutlined />
-          </div>
-          {user && (
-            <div className="mt-4 lg:mt-0">
-              <Button
-                className="font-semibold bg-[#BBA782] text-background"
-                size="large"
-              >
-                <Avatar /> {user.name}
-              </Button>
+          <div className="flex flex-row justify-between md:justify-end space-x-4 w-full items-center">
+            <div className="flex flex-row items-center justify-start text-2xl space-x-4 text-[#BBA782]">
+              <span className="bg-[#BBA782] w-[38px] h-[38px] rounded-lg flex flex-row justify-center items-center text-background">
+                <TranslationOutlined />
+              </span>
+              <MessageOutlined />
+              <BellOutlined />
             </div>
-          )}
+            {user && (
+              <div className="mt-4 lg:mt-0">
+                <Button
+                  className="font-semibold bg-[#BBA782] hover:!bg-[#928263] border-none !text-background"
+                  size="large"
+                  href="/my-account"
+                >
+                  <Avatar /> {user.name}
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>

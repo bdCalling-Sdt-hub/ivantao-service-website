@@ -12,12 +12,14 @@ export default function HeaderClient() {
           className="w-full md:w-1/2 py-6 bg-[#88744F] hover:!bg-[#726244] font-semibold"
           size="large"
           type="primary"
+          href="/register?type=provider"
         >
           Become a service provider
         </Button>
         <Button
           className="w-full md:w-1/2 py-6 hover:!text-[#88744F] hover:!border-[#88744F] font-semibold"
           size="large"
+          href="/register?type=user"
         >
           Become a Tawun member
         </Button>

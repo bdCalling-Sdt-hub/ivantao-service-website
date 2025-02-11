@@ -81,6 +81,7 @@ export default function SectionB() {
             <Button
               className="bg-[#D5C19C] !border-none hover:!bg-[#a8987b] text-base md:text-lg py-4 md:py-6 px-8 md:px-16"
               size="large"
+              href="/service/categories"
             >
               Our Categtories
             </Button>

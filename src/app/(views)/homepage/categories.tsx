@@ -11,6 +11,7 @@ import {
   ToolOutlined,
   SmileOutlined,
 } from "@ant-design/icons";
+import Link from "next/link";
 
 interface Category {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -108,21 +109,22 @@ export default function Categories() {
           <div className="overflow-x-auto w-full py-4 sm:py-8">
             <div className="flex space-x-4 pb-4">
               {services.map((item, index) => (
-                <div
-                  key={index}
-                  className="p-4 shadow-sm flex flex-col justify-between items-center font-semibold gap-4 rounded-lg w-[120px] sm:w-[240px] md:w-[280px] h-[180px] sm:h-[280px] hover:shadow-lg transition-shadow cursor-pointer flex-shrink-0"
-                  style={{ backgroundColor: item.color }}
-                >
-                  <div className="w-full text-sm text-center sm:text-left sm:text-xl text-background">
-                    {item.title}
+                <Link key={index} href={`/service/categories`}>
+                  <div
+                    className="p-4 shadow-sm flex flex-col justify-between items-center font-semibold gap-4 rounded-lg w-[120px] sm:w-[240px] md:w-[280px] h-[180px] sm:h-[280px] hover:shadow-lg transition-shadow cursor-pointer flex-shrink-0"
+                    style={{ backgroundColor: item.color }}
+                  >
+                    <div className="w-full text-sm text-center sm:text-left sm:text-xl text-background">
+                      {item.title}
+                    </div>
+                    <div className="bg-[#CADBD9] w-full h-[70px] sm:h-[200px] flex flex-col justify-center items-center rounded-xl">
+                      <div
+                        className="bg-cover bg-left-top w-[50px] h-[50px] sm:w-[160px] sm:h-[160px]"
+                        style={{ backgroundImage: `url('${item.image}')` }}
+                      ></div>
+                    </div>
                   </div>
-                  <div className="bg-[#CADBD9] w-full h-[70px] sm:h-[200px] flex flex-col justify-center items-center rounded-xl">
-                    <div
-                      className="bg-cover bg-left-top w-[50px] h-[50px] sm:w-[160px] sm:h-[160px]"
-                      style={{ backgroundImage: `url('${item.image}')` }}
-                    ></div>
-                  </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

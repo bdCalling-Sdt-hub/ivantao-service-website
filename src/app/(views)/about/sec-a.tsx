@@ -49,6 +49,7 @@ export default function SectionA() {
         <Button
           className="bg-[#D5C19C] hover:!bg-[#a8987b] text-base md:text-lg py-4 md:py-6 px-8 md:px-16 w-full md:w-auto" // Adjusted padding, text size, and width
           size="large"
+          href="/service/categories"
         >
           Our Categtories
         </Button>
