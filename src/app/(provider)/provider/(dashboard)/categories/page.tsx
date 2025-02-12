@@ -12,7 +12,10 @@ import {
   ToolOutlined,
   SmileOutlined,
 } from "@ant-design/icons";
-import { Button } from "antd";
+import AddCat from "./add-cat";
+import { Button, Dropdown, MenuProps } from "antd";
+import { EllipsisVertical, Trash2Icon } from "lucide-react";
+import EditCat from "./edit-cat";
 
 export default function Page() {
   interface Category {
@@ -32,6 +35,25 @@ export default function Page() {
     { Icon: BookOutlined, title: "Education" },
   ];
   const iconStyle = { fontSize: "36px" };
+
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: <EditCat />,
+    },
+    {
+      key: "2",
+      label: (
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          className="space-x-2 flex flex-row justify-center items-center font-semibold"
+        >
+          <span>Delete</span> <Trash2Icon size={16} />
+        </a>
+      ),
+    },
+  ];
   return (
     <>
       <div className="flex flex-col h-screen w-full px-8 py-6 overflow-y-auto">
@@ -63,22 +85,24 @@ export default function Page() {
           <div className="w-full grid grid-cols-4 gap-4">
             {Array.from({ length: 10 }).map((_, index) => (
               <div key={index}>
-                <div className="h-[200px] w-full rounded-xl shadow-md bg-background"></div>
+                <div className="h-[200px] w-full rounded-xl shadow-md bg-background relative">
+                  <div className="absolute top-3 right-3">
+                    <Dropdown
+                      menu={{ items }}
+                      placement="bottomRight"
+                      trigger={["click"]}
+                    >
+                      <Button variant="outlined" shape="circle">
+                        <EllipsisVertical />
+                      </Button>
+                    </Dropdown>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
-        <div className="w-full grid grid-cols-4 gap-4">
-          <Button
-            type="primary"
-            htmlType="submit"
-            size="large"
-            className="mt-8 py-8 text-lg px-8 bg-[#C5AD81] text-backgroundfont-bold hover:!bg-[#C4A77D]"
-            variant="filled"
-          >
-            + Add Item
-          </Button>
-        </div>
+        <AddCat />
       </div>
     </>
   );
