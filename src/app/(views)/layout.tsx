@@ -1,4 +1,3 @@
-import "@ant-design/v5-patch-for-react-19";
 import Footer from "@/components/shared/footer";
 import Navbar from "@/components/shared/navbar";
 

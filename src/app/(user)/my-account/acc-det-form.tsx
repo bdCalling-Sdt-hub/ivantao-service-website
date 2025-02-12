@@ -1,6 +1,8 @@
 import React from "react";
 import type { FormProps } from "antd";
 import { Form, Input } from "antd";
+import Services from "./services";
+import WorkingHrs from "./working-hrs";
 
 type FieldType = {
   name?: string;
@@ -62,9 +64,13 @@ export default function AccDetForm() {
           placeholder="lorem ipsum dolor sit......"
         />
       </Form.Item>
-      <div className="grid grid-cols-2 gap-6">
-        <div className="rounded-xl p-6 bg-background h-[400px]"></div>
-        <div className="rounded-xl p-6 bg-background h-[400px]"></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="rounded-xl p-6 bg-background h-[400px]">
+          <Services />
+        </div>
+        <div className="rounded-xl p-6 bg-background h-[400px]">
+          <WorkingHrs />
+        </div>
       </div>
     </Form>
   );

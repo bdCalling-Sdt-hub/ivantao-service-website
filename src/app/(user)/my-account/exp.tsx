@@ -1,8 +1,11 @@
 "use client";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Modal } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import Title from "antd/es/typography/Title";
-import React, { useState } from "react";
+import React from "react";
+
+import AddExpMod from "./addExpMod";
+import EditExpMod from "./edit-exp-mod";
 
 export default function Exp() {
   const exps = [
@@ -21,19 +24,7 @@ export default function Exp() {
       endDate: "June 2023",
     },
   ];
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
   return (
     <div className="py-12">
       <Title level={4}>Experience & Qualifications</Title>
@@ -49,18 +40,12 @@ export default function Exp() {
                 <p>({item.employmentType})</p>
               </div>
               <div className="space-x-2 flex flex-row justify-start items-start">
-                <p className="font-semibold">bdCalling IT LTD</p>{" "}
+                <p className="font-semibold">bdCalling IT LTD</p>
                 <p className="text-gray-400">Dec 2020 - June 2023</p>
               </div>
             </div>
             <div className="flex flex-row justify-end items-center gap-4">
-              <Button
-                shape="round"
-                size="large"
-                className="h-12 w-12 text-green-600"
-              >
-                <EditOutlined />
-              </Button>
+              <EditExpMod />
               <Button
                 shape="round"
                 size="large"
@@ -73,22 +58,7 @@ export default function Exp() {
         ))}
       </div>
       <div className="">
-        <Button
-          onClick={showModal}
-          className="bg-[#E9DABB] font-bold px-12 py-6 hover:!bg-[#b6a88c] hover:!text-background !border-none"
-          size="large"
-        >
-          Add more
-        </Button>
-
-        <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-          <div className="p-6">
-            {" "}
-            <Title level={4} className="text-center">
-              Add your experience
-            </Title>
-          </div>
-        </Modal>
+        <AddExpMod />
       </div>
     </div>
   );
