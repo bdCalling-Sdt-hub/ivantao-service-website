@@ -4,20 +4,26 @@ import { Button, Form, FormProps } from "antd";
 
 import Input from "antd/es/input";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type FieldType = {
   email?: string;
   password?: string;
 };
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
 
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
 export default function LoginForm({ user }: { user: string }) {
+  const navig = useRouter();
+  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+    console.log("Success:", values);
+    navig.push("/");
+  };
+
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
+  };
   return (
     <Form
       name="login"
@@ -69,7 +75,10 @@ export default function LoginForm({ user }: { user: string }) {
 
         <div className="text-center font-semibold text-base pt-8">
           New user?{" "}
-          <Link className="text-[#DAC7A0] underline" href={`/register/${user}`}>
+          <Link
+            className="text-[#DAC7A0] underline"
+            href={`/register?type=${user}`}
+          >
             Register
           </Link>
         </div>

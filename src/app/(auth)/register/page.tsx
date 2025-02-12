@@ -3,8 +3,10 @@ import Title from "antd/es/typography/Title";
 import React from "react";
 import RegisterForm from "./register-form";
 import { redirect, useSearchParams } from "next/navigation";
+import { Suspense } from "react"; // Import Suspense
 
-export default function Page() {
+function RegisterContent() {
+  // Separate component
   const searchParams = useSearchParams();
   const user = searchParams.get("type");
 
@@ -25,8 +27,16 @@ export default function Page() {
       </main>
     );
   } else if (!user) {
-    return redirect("/register?type=user");
+    return redirect(`/register?type=${user}`);
   } else {
-    redirect("/");
+    return redirect("/");
   }
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <RegisterContent />
+    </Suspense>
+  );
 }

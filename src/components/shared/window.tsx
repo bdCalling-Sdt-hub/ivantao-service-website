@@ -1,5 +1,6 @@
 import React from "react";
 import Title from "antd/es/typography/Title";
+import Link from "next/link";
 
 interface Cat {
   image: string;
@@ -34,20 +35,22 @@ export default function Window({ cat, catSel }: WindowProps) {
             <div className="h-[250px] w-full">
               <div className="flex flex-row justify-around gap-3">
                 {categorySelection.map((item) => (
-                  <div
+                  <Link
+                    href="/service/categories/categories/cleaning"
                     key={item.title}
-                    className="w-[200px] h-[200px] hover:shadow-lg rounded-lg transition-shadow duration-500 cursor-pointer"
                   >
-                    <div className="w-full h-full flex flex-col justify-start items-center">
-                      <div
-                        className="h-[100px] w-[100px] bg-cover bg-center rounded-full"
-                        style={{ backgroundImage: `url(${item.image})` }}
-                      ></div>
-                      <p className="text-center font-semibold text-2xl break-words max-w-full pt-4">
-                        {item.title}
-                      </p>
+                    <div className="w-[200px] h-[200px] hover:shadow-lg rounded-lg transition-shadow duration-500 cursor-pointer">
+                      <div className="w-full h-full flex flex-col justify-start items-center">
+                        <div
+                          className="h-[100px] w-[100px] bg-cover bg-center rounded-full"
+                          style={{ backgroundImage: `url(${item.image})` }}
+                        ></div>
+                        <p className="text-center font-semibold text-2xl break-words max-w-full pt-4">
+                          {item.title}
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

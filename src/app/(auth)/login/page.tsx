@@ -2,7 +2,9 @@
 import Title from "antd/es/typography/Title";
 import LoginForm from "./login-form";
 import { redirect, useSearchParams } from "next/navigation";
-export default function Page() {
+import { Suspense } from "react";
+
+function LoginContent() {
   const searchParams = useSearchParams();
   const user = searchParams.get("type");
 
@@ -18,13 +20,21 @@ export default function Page() {
               Log in by registered email & password
             </p>
           </div>
-          {user ? <LoginForm user={user} /> : ""}
+          <LoginForm user={user} />
         </div>
       </main>
     );
   } else if (!user) {
-    return redirect("/login?type=user");
+    return redirect(`/login?type=${user}`);
   } else {
     return redirect("/");
   }
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <LoginContent />
+    </Suspense>
+  );
 }

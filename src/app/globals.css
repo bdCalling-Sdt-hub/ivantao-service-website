@@ -90,6 +90,19 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
 .ant-layout-sider-children {
   height: 100%;
+}
+.ant-menu-submenu-title {
+  font-size: 1rem;
+  color: #b0b0b0 !important;
+}
+.ant-menu-item {
+  font-size: 1rem;
+  color: #b0b0b0 !important;
+}
+.ant-menu-item-selected {
+  background-color: #fff9ee !important;
+  color: #d5c19c !important;
 }

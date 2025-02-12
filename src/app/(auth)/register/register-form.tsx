@@ -4,6 +4,7 @@ import { Button, Form, FormProps } from "antd";
 
 import Input from "antd/es/input";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type FieldType = {
@@ -12,14 +13,18 @@ type FieldType = {
   service?: string;
   password?: string;
 };
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
 export default function RegisterForm({ user }: { user: string }) {
+  const navig = useRouter();
+  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+    console.log("Success:", values);
+    navig.push("/");
+  };
+
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
+  };
   return (
     <Form
       name="login"
@@ -79,7 +84,7 @@ export default function RegisterForm({ user }: { user: string }) {
       </Form.Item>
       <div className="text-center font-semibold text-base pt-8">
         Have an account?{" "}
-        <Link className="text-[#DAC7A0] underline" href={`/login/${user}`}>
+        <Link className="text-[#DAC7A0] underline" href={`/login?type=${user}`}>
           Login
         </Link>
       </div>
