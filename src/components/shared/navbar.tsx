@@ -49,7 +49,7 @@ export default function Navbar({ user }: NavbarProps) {
   };
 
   return (
-    <nav className="sticky top-0 left-0 h-[94px] w-full px-4 lg:px-[7%] flex flex-col lg:flex-row justify-between items-center">
+    <nav className="sticky top-0 left-0 h-[94px] w-full px-4 lg:px-[7%] flex flex-col lg:flex-row justify-between items-center bg-[#FBF9F5] z-20">
       <div className="flex justify-between items-center w-full lg:w-auto py-4 lg:py-0">
         <Image
           src="/logo.png"

@@ -75,7 +75,7 @@ export default function Page() {
         </div>
         <div className="pt-8 pb-4">
           <Title level={3}>Sub Categories</Title>
-          <div className="w-full grid grid-cols-4 gap-4">
+          <div className="w-full grid grid-cols-4 gap-4 divide-y-2">
             {Array.from({ length: 10 }).map((_, index) => (
               <div key={index}>
                 <div className="h-[200px] w-full rounded-xl shadow-md bg-background relative">
