@@ -72,17 +72,17 @@ export default function LoginForm({ user }: { user: string }) {
         >
           Log in
         </Button>
-
-        <div className="text-center font-semibold text-base pt-8">
-          New user?{" "}
-          <Link
-            className="text-[#DAC7A0] underline"
-            href={`/register?type=${user}`}
-          >
-            Register
-          </Link>
-        </div>
       </Form.Item>
+
+      <div className="text-center font-semibold text-base pt-8">
+        New user?{" "}
+        <Link
+          className="text-[#DAC7A0] underline"
+          href={`/register?type=${user}`}
+        >
+          Register
+        </Link>
+      </div>
     </Form>
   );
 }

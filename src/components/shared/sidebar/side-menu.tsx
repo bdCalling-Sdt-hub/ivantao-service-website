@@ -11,19 +11,29 @@ import {
 } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import { KeyRoundIcon } from "lucide-react";
-import { useRouter } from "next/navigation"; // For navigation in Next.js
-import React, { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import React, { useState, useEffect } from "react";
 
 export default function SideMenu() {
   const router = useRouter();
-  const [current, setCurrent] = useState("dashboard");
+  const pathname = usePathname();
+  const [current, setCurrent] = useState("dashboard"); // Default selection
+
+  useEffect(() => {
+    // Extract the key from the pathname (e.g., /provider/dashboard -> dashboard)
+    const pathParts = pathname.split("/");
+    const extractedKey = pathParts[pathParts.length - 1] || "dashboard"; // Default to dashboard if no key
+
+    setCurrent(extractedKey);
+  }, [pathname]);
 
   const onClick: MenuProps["onClick"] = (e) => {
     setCurrent(e.key);
-    router.push(`/provider/${e.key}`); // Navigates to the corresponding route
+    router.push(`/provider/${e.key}`);
   };
 
   const items: MenuProps["items"] = [
+    // ... (Your existing menu items)
     {
       label: "Dashboard",
       key: "dashboard",
@@ -56,7 +66,7 @@ export default function SideMenu() {
     },
     {
       label: "Go back to your website",
-      key: "back",
+      key: "",
       icon: <ArrowLeftOutlined />,
     },
     {
@@ -76,7 +86,7 @@ export default function SideMenu() {
   return (
     <Menu
       onClick={onClick}
-      selectedKeys={[current]}
+      selectedKeys={[current]} // Use selectedKeys for initial and dynamic selection
       mode="inline"
       items={items}
       className="w-full mt-4"

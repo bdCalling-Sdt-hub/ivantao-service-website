@@ -16,6 +16,7 @@ import AddCat from "./add-cat";
 import { Button, Dropdown, MenuProps } from "antd";
 import { EllipsisVertical, Trash2Icon } from "lucide-react";
 import EditCat from "./edit-cat";
+import DelCat from "./del-cat";
 
 export default function Page() {
   interface Category {
@@ -43,20 +44,12 @@ export default function Page() {
     },
     {
       key: "2",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          className="space-x-2 flex flex-row justify-center items-center font-semibold"
-        >
-          <span>Delete</span> <Trash2Icon size={16} />
-        </a>
-      ),
+      label: <DelCat />,
     },
   ];
   return (
     <>
-      <div className="flex flex-col h-screen w-full px-8 py-6 overflow-y-auto">
+      <main className="flex flex-col h-screen w-full px-8 py-6 overflow-y-auto">
         <DashTitle>
           <Title level={3} className="flex items-center text-2xl">
             Manage categories
@@ -103,7 +96,7 @@ export default function Page() {
           </div>
         </div>
         <AddCat />
-      </div>
+      </main>
     </>
   );
 }

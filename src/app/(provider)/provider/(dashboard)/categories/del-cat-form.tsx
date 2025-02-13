@@ -18,10 +18,13 @@ const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 
-export default function EditCatForm() {
+export default function DelCatForm() {
   return (
     <>
       <div className="p-6 px-[7%]">
+        <Title level={4} className="text-center">
+          Add new category
+        </Title>
         <div className="">
           <Form
             name="basic"

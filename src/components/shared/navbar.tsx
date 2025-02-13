@@ -49,7 +49,7 @@ export default function Navbar({ user }: NavbarProps) {
   };
 
   return (
-    <nav className="h-auto lg:h-[94px] w-full px-4 lg:px-[7%] flex flex-col lg:flex-row justify-between items-center">
+    <nav className="sticky top-0 left-0 h-[94px] w-full px-4 lg:px-[7%] flex flex-col lg:flex-row justify-between items-center">
       <div className="flex justify-between items-center w-full lg:w-auto py-4 lg:py-0">
         <Image
           src="/logo.png"
@@ -95,7 +95,9 @@ export default function Navbar({ user }: NavbarProps) {
               <span className="bg-[#BBA782] w-[38px] h-[38px] rounded-lg flex flex-row justify-center items-center text-background">
                 <TranslationOutlined />
               </span>
-              <MessageOutlined />
+              <Link href="/chat">
+                <MessageOutlined className="hover:text-[#695f4d] transition-colors" />
+              </Link>
               <BellOutlined />
             </div>
             {user && (

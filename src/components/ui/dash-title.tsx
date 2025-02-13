@@ -9,7 +9,7 @@ export default function DashTitle({
   return (
     <div className="flex flex-row justify-between items-start w-full mb-4">
       <div>{children}</div>
-      <Button type="text" shape="circle">
+      <Button type="text" shape="circle" href="/provider/notification">
         <BellIcon size={24} />
       </Button>
     </div>

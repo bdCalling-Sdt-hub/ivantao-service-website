@@ -106,3 +106,10 @@ body {
   background-color: #fff9ee !important;
   color: #d5c19c !important;
 }
+
+.prov-tab .ant-tabs-ink-bar {
+  background-color: #b7a481;
+}
+.prov-tab .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #b7a481 !important;
+}
