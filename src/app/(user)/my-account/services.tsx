@@ -1,5 +1,5 @@
-import { Button } from "antd";
 import React from "react";
+import AddService from "./add-service";
 
 export default function Services() {
   const services = ["Cleaning", "Cooking", "Baby Sitting", "Pet Service"];
@@ -13,9 +13,7 @@ export default function Services() {
           {item}
         </div>
       ))}
-      <Button className="col-span-2 font-semibold" size="large" type="primary">
-        + Add new
-      </Button>
+      <AddService />
     </div>
   );
 }

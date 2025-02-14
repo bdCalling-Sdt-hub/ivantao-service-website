@@ -13,14 +13,13 @@ export default function ProductData() {
         className="w-full rounded-2xl"
         alt="thumbnail"
       />
-      <div className="flex flex-row justify-between items-center">
-        <div className="flex flex-row items-center py-6">
-          <Avatar size="large" className="h-16 w-16 mr-4" />{" "}
-          {/* Adjusted Avatar size and added margin */}
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="w-full flex flex-row items-center py-6">
+          <Avatar size="large" className="h-16 w-16 mr-4" />
           <div className="flex flex-col">
-            <Title level={5} className="mb-1">
+            <Title level={5} className="!mb-0">
               Md. Hasan
-            </Title>{" "}
+            </Title>
             {/* Added margin to Title */}
             <div className="flex flex-row items-center gap-3">
               {/* Used Array.from to dynamically render stars for easier modification */}
@@ -33,7 +32,7 @@ export default function ProductData() {
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="w-full md:w-auto flex flex-row justify-end">
           <Button className="bg-[#DAC7A0] font-bold hover:!bg-[#aa9a79] hover:!text-background !border-none">
             Send message
           </Button>

@@ -7,7 +7,7 @@ import SecB from "./sec-b";
 export default function Page() {
   return (
     <main className="py-12 ">
-      <div className="w-full h-[80dvh] px-[7%]">
+      <div className="w-full h-[40dvh] md:h-[80dvh] px-2 md:px-[7%]">
         <video
           width="100%"
           height="auto"
@@ -26,7 +26,7 @@ export default function Page() {
         </video>
       </div>
       <div className="py-12">
-        <div className="bg-[#BBA782] py-8 text-lg font-semibold text-background text-center">
+        <div className="bg-[#BBA782] py-8 text-sm md:text-lg font-semibold text-background text-center">
           Long term sustained, Double-digit growth <RiseOutlined />
         </div>
         <div className="py-8 flex flex-row justify-center items-center">

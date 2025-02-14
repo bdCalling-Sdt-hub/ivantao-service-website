@@ -24,17 +24,17 @@ export default function Reviews() {
       {reviews.map((item, index) => (
         <div
           className="p-6 bg-background shadow-md rounded-xl w-full"
-          key={item.name + index}
+          key={index}
         >
-          <div className="flex flex-row justify-start gap-6 pt-0">
-            <div className="flex flex-row justify-start items-center gap-2">
+          <div className="flex flex-col md:flex-row justify-between gap-6 pt-0">
+            <div className="flex flex-col md:flex-row justify-start items-center gap-2">
               <Avatar size="large" />
-              <Title className="!m-0" level={4}>
+              <Title className="!m-0 !text-lg" level={4}>
                 {item.name}
               </Title>
             </div>
-            <div className="flex flex-row justify-start items-center gap-2 text-lg">
-              <StarIcon className="h-6 w-6" fill="" />
+            <div className="flex flex-row justify-end md:justify-start items-center gap-2 text-sm md:text-lg">
+              <StarIcon className="h-4 w-4 md:h-6 md:w-6" fill="" />
               <span>{item.rating}</span>
             </div>
           </div>

@@ -26,15 +26,15 @@ export default function UserProfile({
       <Button
         icon={<LogoutOutlined />}
         onClick={onLogout}
-        className="absolute left-8 top-8 flex items-center gap-2 bg-red-500 text-white hover:bg-red-600 border-none"
+        className="absolute left-3 md:left-8 top-3 md:top-8 flex items-center gap-2 bg-red-500 text-white hover:bg-red-600 border-none"
       >
         Logout
       </Button>
 
       {/* Balance Display */}
-      <div className="absolute right-0 top-0 text-right p-8 flex flex-col justify-center items-center px-[74px] bg-[#FBF9F5] rounded-bl-xl">
-        <div className="text-lg font-medium mb-1">Balance</div>
-        <div className="text-xl font-bold border-2 border-black rounded-lg px-6 py-2">
+      <div className="absolute right-0 top-0 text-right  p-2 md:p-8 flex flex-col justify-center items-center md:px-[74px] bg-[#FBF9F5] rounded-bl-xl">
+        <div className="text-sm md:text-lg font-medium mb-1">Balance</div>
+        <div className="text-base md:text-xl font-bold border md:border-2 border-black rounded-lg px-2 md:px-6 py-1 md:py-2">
           ${balance.toFixed(2)}
         </div>
       </div>
@@ -54,8 +54,10 @@ export default function UserProfile({
           />
         </div>
 
-        <h1 className="text-2xl font-bold mt-4 mb-2">{name}</h1>
-        <p className="text-gray-500">{email}</p>
+        <h1 className="text-lg md:text-xl lg:text-2xl font-bold mt-4 mb-2">
+          {name}
+        </h1>
+        <p className="text-gray-500 text-xs md:text-sm lg:text-base">{email}</p>
       </div>
     </div>
   );

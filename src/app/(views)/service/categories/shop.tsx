@@ -55,15 +55,18 @@ export default function Shop() {
       <div className="px-[7%]">
         <div className="flex flex-row justify-between items-center">
           <div>
-            <Title level={2}>Just for you</Title>
+            <Title level={2} className="!text-lg md:!text-3xl !m-0">
+              Just for you
+            </Title>
           </div>
           <div>
             <Dropdown menu={{ items }} trigger={["click"]}>
               <Button
                 size="large"
-                className="text-lg !outline-2 outline-black font-bold"
+                className="text-xs sm:text-sm md:text-lg !outline-2 outline-black font-bold"
               >
-                Sort by <ArrowUpDown />
+                Sort by{" "}
+                <ArrowUpDown className="h-3 w-3 sm:h-4 sm:w-4 md:w-6 md:h-6" />
               </Button>
             </Dropdown>
           </div>

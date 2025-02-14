@@ -26,7 +26,7 @@ export default function SecB() {
     "Weekly Summary",
   ];
   return (
-    <section className="px-[7%] grid grid-cols-2 gap-6 py-16">
+    <section className="px-[7%] grid grid-cols-1 md:grid-cols-2 gap-6 py-16">
       <div className="">
         <Title>
           Let’s Talk About{" "}
@@ -49,9 +49,9 @@ export default function SecB() {
           ))}
         </div>
       </div>
-      <div className="w-[70%]">
+      <div className="w--full md:w-[70%]">
         <Title level={3}>Get latest email by subscribe our newsletter</Title>
-        <div className="w-full py-12 grid grid-cols-2">
+        <div className="w-full py-12 grid grid-col-1 md:grid-cols-2">
           {checkboxes.map((item) => (
             <Checkbox key={item.trim().toLocaleLowerCase()} className="text-xl">
               {item}

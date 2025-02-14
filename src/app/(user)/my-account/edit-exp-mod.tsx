@@ -20,10 +20,10 @@ export default function EditExpMod() {
   return (
     <>
       <Button
-        shape="round"
+        shape="circle"
         onClick={showModal}
-        size="large"
-        className="h-12 w-12 text-green-600"
+        // size="large"
+        className="h-8 w-8 md:h-12 md:w-12 text-green-600"
       >
         <EditOutlined />
       </Button>

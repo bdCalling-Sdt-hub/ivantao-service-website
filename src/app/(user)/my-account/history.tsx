@@ -83,11 +83,11 @@ const TransactionCard = ({
   <Card className="mb-4 w-full hover:shadow-md transition-shadow">
     <div className="flex justify-between items-start">
       <div className="space-y-1">
-        <Text className="text-base font-medium text-gray-800">
+        <Text className="text-sm md:text-base font-medium text-gray-800">
           {transaction.title}
         </Text>
         <div>
-          <Text className="text-sm text-gray-600">
+          <Text className="text-xs md:text-sm text-gray-600">
             Provider name: {transaction.providerName}
           </Text>
         </div>

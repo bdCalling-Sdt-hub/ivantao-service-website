@@ -21,7 +21,7 @@ export default function AddExpMod() {
     <>
       <Button
         onClick={showModal}
-        className="bg-[#E9DABB] font-bold px-12 py-6 hover:!bg-[#b6a88c] hover:!text-background !border-none"
+        className="bg-[#E9DABB] text-sm md:text-lg font-bold px-6 md:px-12 py-3 md:py-6 hover:!bg-[#b6a88c] hover:!text-background !border-none"
         size="large"
       >
         Add more

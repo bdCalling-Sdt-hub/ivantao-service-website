@@ -32,7 +32,7 @@ export default function Page() {
   return (
     <main className="px-[7%] py-12">
       <BackText text="Order info" />
-      <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="h-min rounded-xl bg-background p-4 shadow-md">
           <Image
             src="/images/service/1.jfif"
@@ -51,12 +51,12 @@ export default function Page() {
             <div className="flex flex-row justify-start items-center gap-2 text-lg">
               <StarIcon className="h-6 w-6" fill="" />
               <span>
-                {orderData.rating}({orderData.ratingAmm})
+                {orderData.rating} ({orderData.ratingAmm})
               </span>
             </div>
           </div>
-          <p className="w-full text-sm">{orderData.desc}</p>
-          <div className="py-8 font-bold text-xl">From ${orderData.price} </div>
+          <p className="w-full text-xs md:text-sm">{orderData.desc}</p>
+          <div className="py-8 font-bold text-xl">From ${orderData.price}</div>
         </div>
         <div className="space-y-6">
           <div className="p-6 bg-background shadow-md rounded-xl">

@@ -49,8 +49,8 @@ export default function Navbar({ user }: NavbarProps) {
   };
 
   return (
-    <nav className="sticky top-0 left-0 h-[94px] w-full px-4 lg:px-[7%] flex flex-col lg:flex-row justify-between items-center bg-[#FBF9F5] z-20">
-      <div className="flex justify-between items-center w-full lg:w-auto py-4 lg:py-0">
+    <nav className="sticky top-0 left-0 h-[94px] w-full lg:px-[7%] flex flex-col lg:flex-row justify-between items-center bg-[#FBF9F5] z-20">
+      <div className="flex px-4 md:px-0 justify-between items-center w-full lg:w-auto py-4 lg:py-0">
         <Image
           src="/logo.png"
           height={94}
@@ -67,7 +67,7 @@ export default function Navbar({ user }: NavbarProps) {
       <div
         className={`${
           isMobile && !isMenuOpen ? "hidden" : "flex"
-        } flex-col lg:flex-row justify-between flex-1 items-center w-full lg:w-auto`}
+        } flex-col lg:flex-row justify-between flex-1 items-center w-full lg:w-auto bg-[#FBF9F5]`}
       >
         <ul className="flex flex-col lg:flex-row justify-start items-center space-y-4 lg:space-y-0 lg:space-x-8 py-4 lg:py-0 text-sm md:text-lg w-full lg:w-auto pl-0 md:pl-12">
           {navLinks?.map((item) => (
@@ -90,7 +90,7 @@ export default function Navbar({ user }: NavbarProps) {
 
         <div className="flex flex-col h-full px-0 md:px-0 gap-8 lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4 py-4 lg:py-0 w-full lg:w-auto">
           <Search />
-          <div className="flex flex-row justify-between md:justify-end space-x-4 w-min items-center">
+          <div className="flex flex-row justify-between md:justify-end space-x-4 w-full px-4 md:px-0 md:w-min items-center">
             <div className="flex flex-row items-center justify-start text-2xl space-x-4 text-[#BBA782]">
               <span className="bg-[#BBA782] w-[38px] h-[38px] rounded-lg flex flex-row justify-center items-center text-background">
                 <TranslationOutlined />
@@ -101,7 +101,7 @@ export default function Navbar({ user }: NavbarProps) {
               <BellOutlined />
             </div>
             {user && (
-              <div className="mt-4 lg:mt-0">
+              <div className="">
                 <Button
                   className="font-semibold bg-[#BBA782] hover:!bg-[#928263] border-none !text-background"
                   size="large"

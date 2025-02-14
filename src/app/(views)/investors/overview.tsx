@@ -33,11 +33,11 @@ export default function Overview() {
     },
   ];
   return (
-    <section className="bg-[#BBA782] py-8 text-background p-12 text-center mt-8">
+    <section className="bg-[#BBA782] py-8 text-background px-0 md:px-12 text-center mt-8">
       <Title level={3} className="!text-background text-center !mb-8">
         Tawun Overview
       </Title>
-      <p className="text-lg font-light px-[10%]">
+      <p className="text-sm md:text-lg font-light px-2 md:px-[10%]">
         Lorem ipsum dolor sit amet consectetur. Platea est aliquet eu tortor eu.
         Leo urna eros arcu cursus in scelerisque dictumst faucibus. At facilisi
         mauris ut commodo quis. Id in a integer fringilla lacinia dignissim
@@ -46,7 +46,7 @@ export default function Overview() {
         Tristique massa malesuada tortor semper viverra. Tristique donec id
         nulla elementum fringilla cursus orci.
       </p>
-      <div className="grid grid-cols-4 gap-12 px-[10%] pt-12">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-12 px-[10%] pt-12">
         {data.map((item) => (
           <div
             className="flex flex-row justify-start items-center p-4 bg-[#FFF9EE] gap-6 rounded-2xl"
@@ -56,10 +56,10 @@ export default function Overview() {
               {item.icon}
             </div>
             <div className="flex-1 flex flex-col justify-center items-start">
-              <Title level={5} className="!m-0">
+              <Title level={5} className="!m-0 !text-sm md:!text-lg">
                 {item.title}
               </Title>
-              <Title level={3} className="!m-0">
+              <Title level={3} className="!m-0 !text-xl md:!text-3xl">
                 {item.para}
               </Title>
             </div>

@@ -3,6 +3,7 @@ import type { FormProps } from "antd";
 import { Form, Input } from "antd";
 import Services from "./services";
 import WorkingHrs from "./working-hrs";
+import Title from "antd/es/typography/Title";
 
 type FieldType = {
   name?: string;
@@ -65,11 +66,17 @@ export default function AccDetForm() {
         />
       </Form.Item>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="rounded-xl p-6 bg-background h-[400px]">
-          <Services />
+        <div className="">
+          <Title level={4}>Services</Title>
+          <div className="rounded-xl p-6 bg-background h-[400px]">
+            <Services />
+          </div>
         </div>
-        <div className="rounded-xl p-6 bg-background h-[400px]">
-          <WorkingHrs />
+        <div className="">
+          <Title level={4}>Working Hours</Title>
+          <div className="rounded-xl p-6 bg-background h-[400px]">
+            <WorkingHrs />
+          </div>
         </div>
       </div>
     </Form>

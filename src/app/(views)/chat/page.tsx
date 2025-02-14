@@ -1,6 +1,8 @@
 import Search from "@/components/ui/search";
 import React from "react";
 import User from "./user";
+import { Avatar } from "antd";
+import Title from "antd/es/typography/Title";
 
 export default function Page() {
   return (
@@ -16,7 +18,21 @@ export default function Page() {
         </div>
       </div>
       <div className="col-span-6 h-full bg-background rounded-xl">
-        <div className="">lol</div>
+        <div className="">
+          <div className="w-full flex flex-row justify-start items-start gap-2 p-4">
+            <div className="">
+              <Avatar size="large" />
+            </div>
+            <div className="flex flex-col justify-start items-start">
+              <Title level={5} className="!m-0">
+                Bill Kuphal
+              </Title>
+              <p className="text-ellipsis line-clamp-1 text-sm text-gray-400">
+                Online for 10 mins
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );

@@ -1,17 +1,13 @@
 import React from "react";
 import BreadcrumbReady from "@/components/ui/breadcrumReady";
-import {
-  CaretLeftOutlined,
-  CaretRightOutlined,
-  HomeFilled,
-} from "@ant-design/icons";
+import { HomeFilled } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
 
-import Recommends from "./recommends";
 import { Button } from "antd";
 import { StarIcon } from "lucide-react";
 import Reviews from "./reviews";
 import ProductData from "./product_data";
+import RecommendParent from "./recommend-parent";
 
 export default async function Page({
   params,
@@ -37,31 +33,18 @@ export default async function Page({
   ];
 
   return (
-    <main className="py-12 px-[7%]">
+    <main className="py-0 md:py-12 px-4 md:px-[7%]">
       <BreadcrumbReady breads={breads} />
-      <div className="grid grid-cols-12 gap-8 mb-12">
-        <div className="col-span-7 w-full">
-          <ProductData />
-          <div className="w-full flex flex-row justify-between items-center ">
-            <Title className="!m-0" level={3}>
-              Recommended for you
-            </Title>
-            <div className="flex flex-row justify-end items-center gap-2">
-              <Button className="rounded-full h-9 w-9 border-2 border-[#D5C19C]">
-                <CaretLeftOutlined />
-              </Button>
-              <Button className="rounded-full h-9 w-9 bg-[#D5C19C]">
-                <CaretRightOutlined />
-              </Button>
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+        <div className="md:col-span-7 w-full grid grid-cols-1">
+          <div className="order-2 md:order-1 pb-12 w-full col-span-1">
+            <ProductData />
           </div>
-          <div className="rounded-xl p-8 bg-background mt-6">
-            <div className="grid grid-cols-2 gap-6">
-              <Recommends />
-            </div>
+          <div className="order-1 md:order-2 w-full pb-8 md:pb-0">
+            <RecommendParent />
           </div>
         </div>
-        <div className="col-span-4 w-full">
+        <div className="md:col-span-4 w-full">
           <div className="p-6 bg-background rounded-xl">
             <Title level={3}>Share cleaning service as pro.</Title>
             <p className="font-semibold text-gray-500">66 order in queue</p>
@@ -72,7 +55,7 @@ export default async function Page({
               odio dignissim malesuada est egestas congue arcu.
             </p>
             <p className="text-cl font-bold">$5200.00</p>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
               <Button
                 className="w-full bg-[#DAC7A0] hover:bg-[#DAC7A0] hover:text-background font-bold"
                 size="large"
@@ -86,7 +69,10 @@ export default async function Page({
                 Purchase virtual
               </Button>
               <Button
-                className="col-span-2 w-full hover:text-background font-bold"
+                href={`/service/categories/${(await params).category}/${
+                  (await params).product
+                }/${"payment"}`}
+                className="col-span-1 md:col-span-2 w-full hover:text-background font-bold"
                 size="large"
                 variant="outlined"
               >

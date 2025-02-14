@@ -64,7 +64,7 @@ export default function Opportunities() {
           {opportunities.map((item, i) => (
             <div className="pt-12" key={i}>
               <div className="h-[120px] flex justify-center items-center">
-                <div className="asbolute left-0bg-[#FBF9F5] p-1">
+                <div className="asbolute left-0 bg-[#FBF9F5] p-1">
                   <div className=" bg-[#88744F] px-2 md:px-4 py-2 rounded-full font-bold text-background text-xs md:text-base">
                     {item.role}
                   </div>
@@ -74,11 +74,14 @@ export default function Opportunities() {
               <div className="space-y-6">
                 {item.opens.map((item, i) => (
                   <div
-                    className="py-6 px-8 flex flex-row justify-between items-center font-semibold rounded-xl bg-background"
+                    className="py-6 px-8 flex flex-col gap-6 md:gap-0 md:flex-row justify-between items-center font-semibold rounded-xl bg-background"
                     key={item.role + i}
                   >
                     <div className="">
-                      <Title level={5} className="!m-0 !text-sm md:!text-base">
+                      <Title
+                        level={5}
+                        className="!m-0 !text-2xl md:!text-base text-center"
+                      >
                         {item.role}
                       </Title>
                     </div>
