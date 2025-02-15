@@ -65,7 +65,7 @@ function Data({
       <div className="w-2/12 flex justify-center items-center">{date}</div>
       <div className="w-2/12 flex justify-center items-center gap-2 text-sm">
         <ViewModal />
-        <DeletePopover />
+        <DeletePopover message={"Are you sure delete this service?"} />
       </div>
     </div>
   );
