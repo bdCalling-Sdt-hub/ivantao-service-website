@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Button, Popover } from "antd";
 import Title from "antd/es/typography/Title";
 
-export default function DeletePopover() {
+export default function DeletePopover({ message }: { message: string }) {
   const [open, setOpen] = useState(false);
 
   const hide = () => {
@@ -30,9 +30,9 @@ export default function DeletePopover() {
       }
       title={
         <div className="w-[400px] p-2">
-          <Title level={5}>
-            <InfoCircleFilled className="text-orange-400" /> Are you sure delete
-            this service?
+          <Title level={5} className="">
+            <InfoCircleFilled className="text-orange-400 pr-2" />
+            {message}
           </Title>
         </div>
       }

@@ -14,7 +14,7 @@ import {
 } from "@ant-design/icons";
 import AddCat from "./add-cat";
 import { Button, Dropdown, MenuProps } from "antd";
-import { EllipsisVertical, Trash2Icon } from "lucide-react";
+import { EllipsisVertical } from "lucide-react";
 import EditCat from "./edit-cat";
 import DelCat from "./del-cat";
 

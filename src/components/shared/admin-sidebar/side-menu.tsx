@@ -67,7 +67,7 @@ export default function SideMenu() {
     },
     {
       label: "Community", // Changed to match the image
-      key: "community",
+      key: "forum",
       icon: <MessageOutlined />, // You might want a more specific icon
     },
     {
@@ -87,12 +87,12 @@ export default function SideMenu() {
         },
         {
           label: "About us",
-          key: "about-us",
+          key: "about",
           icon: <InfoCircleOutlined />,
         },
         {
           label: "How it works",
-          key: "how-it-works",
+          key: "howitworks",
           icon: <QuestionCircleOutlined />,
         },
         {
