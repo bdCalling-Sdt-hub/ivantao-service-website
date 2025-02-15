@@ -60,8 +60,8 @@ export default function SideMenu() {
       icon: <ShoppingCartOutlined />,
     },
     {
-      label: "Chats",
-      key: "chats",
+      label: "Chat",
+      key: "chat",
       icon: <MessageOutlined />,
     },
     {

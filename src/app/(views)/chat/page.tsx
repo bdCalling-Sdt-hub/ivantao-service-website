@@ -1,8 +1,12 @@
 import Search from "@/components/ui/search";
 import React from "react";
 import User from "./user";
-import { Avatar } from "antd";
+import { Avatar, Button, Input } from "antd";
 import Title from "antd/es/typography/Title";
+import { PlusCircleOutlined, SmileOutlined } from "@ant-design/icons";
+import { SendHorizonal } from "lucide-react";
+import SentMe from "../../../components/ui/sent-me";
+import SentYou from "../../../components/ui/send-you";
 
 export default function Page() {
   return (
@@ -17,8 +21,8 @@ export default function Page() {
           ))}
         </div>
       </div>
-      <div className="col-span-6 h-full bg-background rounded-xl">
-        <div className="">
+      <div className="col-span-6 h-full bg-background rounded-xl flex flex-col justify-between items-start">
+        <div className="w-full">
           <div className="w-full flex flex-row justify-start items-start gap-2 p-4">
             <div className="">
               <Avatar size="large" />
@@ -32,6 +36,51 @@ export default function Page() {
               </p>
             </div>
           </div>
+        </div>
+        {/* MEssage section starts */}
+        <div
+          className="flex-grow max-h-[68dvh] flex flex-col justify-end items-stretch overflow-y-scroll w-full"
+          id="messages"
+        >
+          <SentMe
+            message="Who was that philosopher you
+shared with me recently?"
+          />
+          <SentYou message="Roland Barthes" seen />
+          <SentMe message="That's him!" />
+          <SentYou
+            message="“Ultimately in order to see a
+photograph well, it is best to
+look away or close your eyes.”"
+          />
+        </div>
+        {/* Message section ends */}
+        <div className="w-full p-4 flex flex-row justify-between gap-4">
+          <Button
+            size="large"
+            shape="circle"
+            className="!border-none !shadow-none"
+          >
+            <PlusCircleOutlined size={18} className="text-2xl text-gray-400" />
+          </Button>
+          <Input
+            className="!rounded-full px-3"
+            placeholder="Type your message"
+            suffix={
+              <SmileOutlined
+                size={18}
+                className="text-2xl text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+              />
+            }
+          />
+          <Button
+            size="large"
+            shape="circle"
+            type="primary"
+            className="!border-none !shadow-none !bg-gray-300 hover:!bg-gray-400 flex justify-center items-center"
+          >
+            <SendHorizonal fill="#fff" size={18} className="text-2xl" />
+          </Button>
         </div>
       </div>
     </main>

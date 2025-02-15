@@ -8,7 +8,7 @@ import Title from "antd/es/typography/Title";
 export default function Page() {
   return (
     <div className="flex flex-col h-screen w-full px-8 py-6">
-      <DashTitle>
+      <DashTitle admin>
         <Title level={3} className="flex items-center text-2xl">
           Hello, Elena <Hand className="ml-2" size={20} />
         </Title>

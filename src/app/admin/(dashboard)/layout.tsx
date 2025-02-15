@@ -1,4 +1,4 @@
-import SidebarContent from "@/components/shared/provider-sidebar/sidebar-content";
+import SidebarContent from "@/components/shared/admin-sidebar/sidebar-content";
 import { Layout } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
@@ -18,11 +18,13 @@ export default function RootLayout({
     <Layout style={{ minHeight: "100dvh", overflow: "hidden" }}>
       <Sider
         width="20%"
-        className="bg-background h-dvh rounded-tr-3xl fixed left-0 top-0 overflow-auto "
+        className="bg-background h-dvh rounded-tr-3xl fixed left-0 top-0 overflow-auto"
       >
         <SidebarContent />
       </Sider>
-      <Content style={contentStyle}>{children}</Content>
+      <Content style={contentStyle} className="bg-[#FBF9F5]">
+        {children}
+      </Content>
     </Layout>
   );
 }
