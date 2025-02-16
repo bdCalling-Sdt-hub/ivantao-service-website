@@ -1,19 +1,42 @@
+"use client";
 import Search from "@/components/ui/search";
-import React from "react";
+import React, { useState } from "react";
 import User from "./user";
 import { Avatar, Button, Input } from "antd";
 import Title from "antd/es/typography/Title";
 import { PlusCircleOutlined, SmileOutlined } from "@ant-design/icons";
-import { SendHorizonal } from "lucide-react";
+import { MessageCircle, SendHorizonal } from "lucide-react";
 import SentMe from "../../../components/ui/sent-me";
 import SentYou from "../../../components/ui/send-you";
-
+import Draggable from "react-draggable";
 export default function Page() {
+  const [people, setPeople] = useState<boolean>(true);
   return (
-    <main className="h-[calc(100dvh-94px)] w-full p-6 grid grid-cols-9 gap-8 px-[7%]">
-      <div className="col-span-3 h-full bg-background rounded-xl overflow-y-auto relative">
-        <div className="p-6 sticky top-0 left-0 bg-background w-full z-10">
-          <Search />
+    <main className="md:h-[calc(100dvh-94px)] w-full p-3 md:p-6 grid grid-cols-1 md:grid-cols-9 gap-8 md:px-[7%]">
+      <div
+        className={`${
+          people ? "hidden" : "fixed"
+        } top-1/2 -translate-y-1/2 right-4 z-50`}
+      >
+        <Draggable>
+          <Button
+            shape="circle"
+            className="!p-2 h-12 w-12 text-blue-400 !border-blue-400"
+            onClick={() => {
+              setPeople(true);
+            }}
+          >
+            <MessageCircle />
+          </Button>
+        </Draggable>
+      </div>
+      <div
+        className={`${
+          people ? "block" : "hidden"
+        } col-span-1 md:col-span-3 h-full bg-background rounded-xl overflow-y-auto z-40 top-0 left-0 fixed md:relative`}
+      >
+        <div className={`p-6 sticky  top-0 left-0 bg-background w-full z-10`}>
+          <Search func={setPeople} />
         </div>
         <div className="py-4 divide-y">
           {Array.from({ length: 4 }).map((item, i) => (
