@@ -27,12 +27,12 @@ import {
 export default function TextEditorToolbar({ short }: { short?: boolean }) {
   return (
     <div
-      className={`mx-auto h-[64px] ${
+      className={`mx-auto py-4 md:py-0 md:h-[64px] ${
         short ? "" : "border-b"
-      } border-gray-200 flex justify-center items-center px-4 gap-2 bg-white`}
+      } border-gray-200 flex justify-center items-center px-4 gap-2 bg-white flex-wrap`}
     >
       {/* Undo/Redo/Print Group */}
-      <div className="flex gap-1 border-r border-gray-200 pr-2">
+      <div className="flex gap-1 border-r border-gray-200 pr-2 flex-wrap">
         <Button
           type="text"
           className="flex items-center justify-center"
@@ -54,7 +54,7 @@ export default function TextEditorToolbar({ short }: { short?: boolean }) {
       <div
         className={`${
           short ? "hidden" : "flex"
-        } gap-1 border-r border-gray-200 pr-2`}
+        } gap-1 border-r border-gray-200 pr-2 flex-wrap`}
       >
         <Button
           type="text"
@@ -69,7 +69,7 @@ export default function TextEditorToolbar({ short }: { short?: boolean }) {
       <div
         className={`${
           short ? "hidden" : "flex"
-        }  gap-1 border-r border-gray-200 pr-2`}
+        } gap-1 border-r border-gray-200 pr-2 flex-wrap`}
       >
         <Button
           type="text"
@@ -87,7 +87,7 @@ export default function TextEditorToolbar({ short }: { short?: boolean }) {
       </div>
 
       {/* Text Formatting */}
-      <div className="flex gap-1 border-r border-gray-200 pr-2">
+      <div className="flex gap-1 border-r border-gray-200 pr-2 flex-wrap">
         <Button
           type="text"
           className="flex items-center justify-center"
@@ -111,7 +111,7 @@ export default function TextEditorToolbar({ short }: { short?: boolean }) {
       </div>
 
       {/* Text Color */}
-      <div className="flex gap-1 border-r border-gray-200 pr-2">
+      <div className="flex gap-1 border-r border-gray-200 pr-2 flex-wrap">
         <Button type="text" className="flex items-center justify-center gap-1">
           <div className="w-4 h-4 bg-blue-500 rounded" />
           <ChevronDown className="w-4 h-4" />
@@ -119,7 +119,7 @@ export default function TextEditorToolbar({ short }: { short?: boolean }) {
       </div>
 
       {/* Alignment */}
-      <div className="flex gap-1 border-r border-gray-200 pr-2">
+      <div className="flex gap-1 border-r border-gray-200 pr-2 flex-wrap">
         <Button
           type="text"
           className="flex items-center justify-center"
@@ -141,7 +141,7 @@ export default function TextEditorToolbar({ short }: { short?: boolean }) {
       <div
         className={`${
           short ? "hidden" : "flex"
-        }  gap-1 border-r border-gray-200 pr-2`}
+        } gap-1 border-r border-gray-200 pr-2 flex-wrap`}
       >
         <Button
           type="text"
@@ -156,7 +156,7 @@ export default function TextEditorToolbar({ short }: { short?: boolean }) {
       </div>
 
       {/* Lists */}
-      <div className="flex gap-1 border-r border-gray-200 pr-2">
+      <div className="flex gap-1 border-r border-gray-200 pr-2 flex-wrap">
         <Button
           type="text"
           className="flex items-center justify-center"
@@ -170,7 +170,7 @@ export default function TextEditorToolbar({ short }: { short?: boolean }) {
       </div>
 
       {/* Indentation */}
-      <div className="flex gap-1 border-r border-gray-200 pr-2">
+      <div className="flex gap-1 border-r border-gray-200 pr-2 flex-wrap">
         <Button
           type="text"
           className="flex items-center justify-center"
@@ -184,7 +184,7 @@ export default function TextEditorToolbar({ short }: { short?: boolean }) {
       </div>
 
       {/* Clear Formatting */}
-      <div className="flex gap-1">
+      <div className="flex gap-1 flex-wrap">
         <Button
           type="text"
           className="flex items-center justify-center"

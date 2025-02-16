@@ -23,7 +23,7 @@ export default function Page() {
               suffix={
                 <Search className="text-xl text-gray-400 hover:text-gray-500 cursor-pointer transition-colors" />
               }
-              className="w-1/3 !border-none"
+              className="md:w-1/3 !border-none"
               size="large"
               placeholder="Search service"
             />
@@ -31,7 +31,7 @@ export default function Page() {
           <Title level={3} className="py-4">
             Service categories
           </Title>
-          <div className="w-full grid grid-cols-4 gap-4">
+          <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
             {Array.from({ length: 6 }).map((_, index) => (
               <div key={index}>
                 <div className="h-[200px] w-full rounded-xl shadow-md bg-background relative p-2">

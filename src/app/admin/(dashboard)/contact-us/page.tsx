@@ -12,7 +12,7 @@ import {
 } from "@ant-design/icons";
 export default function Page() {
   return (
-    <div className="flex flex-col h-screen w-full px-8 py-6 overflow-y-auto">
+    <div className="flex flex-col min-h-screen w-full px-8 py-6 overflow-y-auto">
       <DashTitle admin>
         <Title level={3} className="flex items-center text-2xl">
           Contact Us

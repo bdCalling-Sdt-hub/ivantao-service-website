@@ -14,11 +14,11 @@ interface UserProfileProps {
 }
 
 export default function ProviderProfile({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onLogout = () => console.log("logout clicked"),
   onEditProfile = () => console.log("edit clicked"),
   name,
   email,
-  balance,
   avatarUrl,
 }: UserProfileProps) {
   return (
@@ -42,8 +42,9 @@ export default function ProviderProfile({
         <p className="text-gray-500">{email}</p>
       </div>
       <div className="fixed bottom-6 right-6">
-        <Button className="px-8 py-6 bg-red-500 hover:!bg-red-600 text-background hover:!text-background !border-none">
-          <LogOutIcon /> Logout
+        <Button className="px-3 py-2 md:px-8 md:py-6 !text-sm bg-red-500 hover:!bg-red-600 text-background hover:!text-background !border-none">
+          <LogOutIcon className="size-5 md:size-6" />
+          <span className="hidden md:block">Logout</span>
         </Button>
       </div>
     </div>

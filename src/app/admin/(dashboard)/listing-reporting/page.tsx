@@ -26,7 +26,7 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full px-8 py-6">
+    <div className="flex flex-col min-h-screen md:h-screen w-full px-8 py-6">
       <DashTitle admin>
         <Title level={3} className="flex items-center text-2xl">
           Listing Reportings
@@ -41,7 +41,7 @@ export default function Page() {
           suffix={
             <Search className="text-xl text-gray-400 hover:text-gray-500 cursor-pointer transition-colors" />
           }
-          className="w-1/3 !border-none"
+          className="w-1/2 md:w-1/3 !border-none"
           size="large"
           placeholder="Search service"
         />

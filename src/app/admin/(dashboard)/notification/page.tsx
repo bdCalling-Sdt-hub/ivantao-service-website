@@ -5,8 +5,8 @@ import OrderNotification from "./order-notification";
 
 export default function Page() {
   return (
-    <main className="flex flex-col h-screen w-full px-8 py-6">
-      <DashTitle admin>
+    <main className="flex flex-col min-h-screen w-full px-8 py-6">
+      <DashTitle>
         <Title level={3} className="flex items-center text-2xl">
           Notification
         </Title>
@@ -15,7 +15,7 @@ export default function Page() {
           maintain business insights
         </p>
       </DashTitle>
-      <div className="flex-grow w-full overflow-y-auto space-y-2">
+      <div className="flex-grow w-full space-y-2">
         {Array.from({ length: 10 }).map((it, i) => (
           <OrderNotification key={i} />
         ))}
