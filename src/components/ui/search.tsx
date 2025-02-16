@@ -22,12 +22,12 @@ export default function Search({
         </div>
       </div>
       {func ? (
-        <div className="flex md:hidden ml-8">
+        <div className="flex md:hidden ml-8 flex-shrink-0">
           <Button
             shape="circle"
-            onClick={() => {
-              func(false);
-            }}
+            className="z-50"
+            onClick={() => func(false)}
+            onTouchStart={(e) => e.stopPropagation()}
           >
             <CloseOutlined />
           </Button>
