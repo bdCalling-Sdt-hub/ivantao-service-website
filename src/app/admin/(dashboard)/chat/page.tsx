@@ -1,30 +1,54 @@
+"use client";
 import Search from "@/components/ui/search";
-import React from "react";
+import React, { useState } from "react";
 import User from "./user";
 import { Avatar, Button, Input } from "antd";
 import Title from "antd/es/typography/Title";
 import { PlusCircleOutlined, SmileOutlined } from "@ant-design/icons";
-import { SendHorizonal } from "lucide-react";
+import { MessageCircle, SendHorizonal } from "lucide-react";
 import SentMe from "@/components/ui/sent-me";
 import SentYou from "@/components/ui/send-you";
 import DashTitle from "@/components/ui/dash-title";
+import Draggable from "react-draggable";
 
 export default function Page() {
+  const [people, setPeople] = useState<boolean>(true);
   return (
     <main className="h-full w-full py-6 px-6 flex flex-col justify-start items-start">
-      <DashTitle admin>
+      <div
+        className={`${
+          people ? "hidden" : "fixed"
+        } top-1/2 -translate-y-1/2 right-4 z-50`}
+      >
+        <Draggable>
+          <Button
+            shape="circle"
+            className="!p-2 h-12 w-12 text-blue-400 !border-blue-400"
+            onClick={() => {
+              setPeople(true);
+            }}
+          >
+            <MessageCircle />
+          </Button>
+        </Draggable>
+      </div>
+      <DashTitle>
         <Title level={3} className="flex items-center text-2xl">
-          Contact with Providers
+          Contact with customer
         </Title>
         <p className="text-gray-400">
           Admin with access to this workspace can promote or demote user
           maintain business insights
         </p>
       </DashTitle>
-      <div className="h-auto w-full p-6 grid grid-cols-9 gap-8 flex-grow">
-        <div className="col-span-3 h-full bg-background rounded-xl overflow-y-auto relative">
+      <div className="h-auto w-full p-6 grid md:grid-cols-9 gap-8 flex-grow">
+        <div
+          className={`${
+            people ? "block" : "hidden"
+          } col-span-1 md:col-span-3 h-full bg-background rounded-xl overflow-y-auto z-40 top-0 left-0 fixed md:relative`}
+        >
           <div className="p-6 sticky top-0 left-0 bg-background w-full z-10">
-            <Search />
+            <Search func={setPeople} />
           </div>
           <div className="py-4 divide-y">
             {Array.from({ length: 4 }).map((item, i) => (
