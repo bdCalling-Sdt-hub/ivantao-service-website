@@ -1,6 +1,6 @@
 import Link from "next/link";
 import DeletePopover from "./delete-popover";
-import ViewUser from "./view-user";
+import EditCareer from "./editCareer";
 
 export interface ListingItem {
   title?: string;
@@ -57,7 +57,7 @@ function Data({ title, category, start, end, applicants, link }: ListingItem) {
         </Link>
       </div>
       <div className="w-2/12 flex justify-center items-center gap-1 text-sm">
-        <ViewUser />
+        <EditCareer />
         <DeletePopover message={`Are you sure delete this circular?`} />
       </div>
     </div>

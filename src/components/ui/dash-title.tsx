@@ -9,7 +9,7 @@ export default function DashTitle({
   admin?: boolean;
 }>) {
   return (
-    <div className="flex flex-row justify-between items-start w-full mb-4">
+    <div className="pt-12 md:pt-0 flex flex-row justify-between items-start w-full mb-4">
       <div>{children}</div>
       <Button
         type="text"

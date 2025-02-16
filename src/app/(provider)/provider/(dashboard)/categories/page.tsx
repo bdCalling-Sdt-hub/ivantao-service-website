@@ -49,7 +49,7 @@ export default function Page() {
   ];
   return (
     <>
-      <main className="flex flex-col h-screen w-full px-8 py-6 overflow-y-auto">
+      <main className="flex flex-col md:h-screen w-full px-8 py-6 overflow-y-auto">
         <DashTitle>
           <Title level={3} className="flex items-center text-2xl">
             Manage categories
@@ -75,7 +75,7 @@ export default function Page() {
         </div>
         <div className="pt-8 pb-4">
           <Title level={3}>Sub Categories</Title>
-          <div className="w-full grid grid-cols-4 gap-4 divide-y-2">
+          <div className="w-full grid md:grid-cols-4 gap-4">
             {Array.from({ length: 10 }).map((_, index) => (
               <div key={index}>
                 <div className="h-[200px] w-full rounded-xl shadow-md bg-background relative">

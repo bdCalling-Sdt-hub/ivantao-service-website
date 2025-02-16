@@ -23,17 +23,19 @@ const TaskCard: React.FC<TaskCardProps> = ({
   price = 550.0,
 }) => {
   return (
-    <div className="w-full bg-white rounded-xl shadow-sm">
-      <div className="flex flex-row justify-between divide-gray-100">
+    <div className="w-full bg-white rounded-xl shadow-sm p-4 md:p-6">
+      <div className="flex flex-col md:flex-row md:justify-between ">
         {/* Title Section */}
-        <div className="px-6 py-4 min-w-[200px]">
-          <h3 className="text-lg font-medium text-gray-900">{title}</h3>
-          <p className="text-base text-gray-900">{providerName}</p>
-          <p className="text-sm text-gray-500">{location}</p>
+        <div className="px-4 py-2 md:py-4 min-w-[200px] text-center md:text-left">
+          <h3 className="text-base md:text-lg font-medium text-gray-900">
+            {title}
+          </h3>
+          <p className="text-sm md:text-base text-gray-900">{providerName}</p>
+          <p className="text-xs md:text-sm text-gray-500">{location}</p>
         </div>
 
         {/* Date/Time Section */}
-        <div className="px-6 py-4 min-w-[180px] flex flex-col justify-center items-center">
+        <div className="px-4 py-2 md:py-4 min-w-[180px] flex flex-col justify-center items-center">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-gray-600">
               <CalendarIcon className="h-4 w-4 text-gray-400" />
@@ -46,8 +48,8 @@ const TaskCard: React.FC<TaskCardProps> = ({
           </div>
         </div>
 
-        {/* Complete Section */}
-        <div className="px-6 py-4 flex justify-center items-center">
+        {/* Status Section */}
+        <div className="px-4 py-2 md:py-4 flex justify-center items-center">
           <span
             className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${
               status === "Completed"
@@ -63,13 +65,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
           </span>
         </div>
 
-        {/* Status/Price Section */}
-        <div className="px-6 py-4 flex flex-col justify-center items-center">
-          <div className="space-y-2">
-            <p className="text-lg font-semibold text-green-700">
-              ${typeof price === "number" ? price.toFixed(2) : price}
-            </p>
-          </div>
+        {/* Price Section */}
+        <div className="px-4 py-2 md:py-4 flex flex-col justify-center items-center">
+          <p className="text-lg font-semibold text-green-700">
+            ${typeof price === "number" ? price.toFixed(2) : price}
+          </p>
         </div>
       </div>
     </div>

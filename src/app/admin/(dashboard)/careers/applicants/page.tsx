@@ -1,15 +1,35 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import DashTitle from "@/components/ui/dash-title";
 import Title from "antd/es/typography/Title";
-import { Input, Select, Table } from "antd";
-import { Search } from "lucide-react";
+import { Button, Form, Input, Modal, Select, Table, TableProps } from "antd";
+import { Paperclip, Search } from "lucide-react";
 
 export default function Page() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const handleChange = (value: string) => {
     console.log(`selected ${value}`);
   };
-  const columns = [
+  interface DataType {
+    key: number;
+    srno: number;
+    name: string;
+    email: string;
+    action: string;
+  }
+  const columns: TableProps<DataType>["columns"] = [
     {
       title: "Sr. no",
       dataIndex: "srno", // Assuming you'll have a serial number in your data
@@ -28,6 +48,81 @@ export default function Page() {
     {
       title: "Action",
       key: "action", // No dataIndex needed for action buttons/links
+      render: (_, record) => (
+        <>
+          <Button
+            onClick={showModal}
+            type="link"
+            variant="link"
+            className="text-orange-500 underline"
+          >
+            {record.action}
+          </Button>
+          <Modal
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            footer={null}
+          >
+            <div className="py-6 flex flex-col justify-start items-center ">
+              <Title level={4} className="!m-0 pt-2">
+                Applicants details
+              </Title>
+
+              <Form layout="vertical" requiredMark={false} className="w-4/5">
+                <Form.Item label="Aplicant name">
+                  <Input size="large" value="Md. Abid Hasan" readOnly />
+                </Form.Item>
+
+                <Form.Item label="Email">
+                  <Input size="large" value="example@gmail.com" readOnly />
+                </Form.Item>
+
+                <Form.Item label="Cover Letter">
+                  <Input.TextArea
+                    className="text-xs"
+                    size="large"
+                    value="Lorem ipsum dolor sit amet consectetur. Ultrices mi morbi pulvinar at in pretium orci ipsum id. Sed nunc varius lobortis morbi tortor egestas. A mauris in pellentesque commodo quis tincidunt aenean. Aliquet commodo amet morbi massa nullam sed non laoreet tempor. Sit sapien a risus laoreet blandit nullam lectus sem sem. Tortor ut quis in dui tempus diam eros at. Purus euismod pretium eu pharetra vitae tortor amet id mauris. Ut sit lectus in nullam non arcu velit lectus. Senectus amet dui aenean aliquam facilisis ut."
+                    rows={10}
+                    readOnly
+                  />
+                </Form.Item>
+                <Form.Item label="Resume/CV">
+                  <div className="flex flex-row justify-start items-center py-2 px-2 border rounded-lg cursor-pointer">
+                    <Paperclip size={16} className="mr-2" />
+                    <span className="text-blue-500 hover:text-blue-700">
+                      abid cv.pdf
+                    </span>
+                  </div>
+                </Form.Item>
+              </Form>
+            </div>
+          </Modal>
+        </>
+      ),
+    },
+  ];
+  const data = [
+    {
+      key: 1,
+      srno: 1,
+      name: "Md.Abid Hasan",
+      email: "example@gmail.com",
+      action: "See applicant",
+    },
+    {
+      key: 2,
+      srno: 2,
+      name: "Md.Abid Hasan",
+      email: "example@gmail.com",
+      action: "See applicant",
+    },
+    {
+      key: 3,
+      srno: 3,
+      name: "Md.Abid Hasan",
+      email: "example@gmail.com",
+      action: "See applicant",
     },
   ];
   return (
@@ -63,7 +158,7 @@ export default function Page() {
         />
       </div>
       <div className="flex-grow w-full overflow-y-auto">
-        <Table columns={columns} />
+        <Table columns={columns} dataSource={data} />
       </div>
     </main>
   );

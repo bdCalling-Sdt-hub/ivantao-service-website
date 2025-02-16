@@ -18,7 +18,7 @@ export default function AddCat() {
   };
   return (
     <>
-      <div className="w-full grid grid-cols-4 gap-4">
+      <div className="w-full grid md:grid-cols-4 gap-4">
         <Button
           onClick={showModal}
           type="primary"

@@ -24,9 +24,13 @@ import {
   IndentIncrease,
 } from "lucide-react";
 
-export default function TextEditorToolbar() {
+export default function TextEditorToolbar({ short }: { short?: boolean }) {
   return (
-    <div className="mx-auto h-[64px] border-b border-gray-200 flex justify-center items-center px-4 gap-2 bg-white">
+    <div
+      className={`mx-auto h-[64px] ${
+        short ? "" : "border-b"
+      } border-gray-200 flex justify-center items-center px-4 gap-2 bg-white`}
+    >
       {/* Undo/Redo/Print Group */}
       <div className="flex gap-1 border-r border-gray-200 pr-2">
         <Button
@@ -47,7 +51,11 @@ export default function TextEditorToolbar() {
       </div>
 
       {/* Font Controls */}
-      <div className="flex gap-1 border-r border-gray-200 pr-2">
+      <div
+        className={`${
+          short ? "hidden" : "flex"
+        } gap-1 border-r border-gray-200 pr-2`}
+      >
         <Button
           type="text"
           className="flex items-center justify-center gap-1 min-w-[80px]"
@@ -58,7 +66,11 @@ export default function TextEditorToolbar() {
       </div>
 
       {/* Font Size Controls */}
-      <div className="flex gap-1 border-r border-gray-200 pr-2">
+      <div
+        className={`${
+          short ? "hidden" : "flex"
+        }  gap-1 border-r border-gray-200 pr-2`}
+      >
         <Button
           type="text"
           className="flex items-center justify-center"
@@ -126,7 +138,11 @@ export default function TextEditorToolbar() {
       </div>
 
       {/* Link & Image */}
-      <div className="flex gap-1 border-r border-gray-200 pr-2">
+      <div
+        className={`${
+          short ? "hidden" : "flex"
+        }  gap-1 border-r border-gray-200 pr-2`}
+      >
         <Button
           type="text"
           className="flex items-center justify-center"

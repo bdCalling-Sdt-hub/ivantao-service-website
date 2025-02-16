@@ -53,7 +53,7 @@ export default function SectionB() {
       </div>
       <div
         className="bg-cover rounded-3xl relative" // Added relative for absolute positioning
-        style={{ backgroundImage: `url('/images/about/plans.png')` }}
+        style={{ backgroundImage: `url('/images/about/plans.webp')` }}
       >
         <div className="h-full w-full backdrop-blur-sm hover:backdrop-blur-none transition-all p-4 md:p-8 py-[40px] md:py-[74px] rounded-3xl flex flex-col justify-between">
           {" "}

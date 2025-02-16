@@ -7,6 +7,7 @@ import { HistoryOutlined } from "@ant-design/icons";
 import { DollarSignIcon } from "lucide-react";
 import PaymentForm from "@/components/ui/payment-form";
 export default function Page() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Category {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Icon: React.ComponentType<any>;
@@ -15,7 +16,7 @@ export default function Page() {
 
   return (
     <>
-      <main className="flex flex-col h-screen w-full px-8 py-6 overflow-y-auto">
+      <main className="flex flex-col md:h-screen w-full px-2 md:px-8 py-6 overflow-y-auto">
         <DashTitle>
           <Title level={3} className="flex items-center text-2xl">
             Withdraw
@@ -36,8 +37,8 @@ export default function Page() {
             </Button>
           </div>
         </div>
-        <div className="grid grid-cols-8 pr-12 gap-12">
-          <div className="col-span-3 h-32 space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-8 md:pr-12 md:gap-12">
+          <div className="col-span-3 mt-6 md:mt-0 md:h-32 space-y-6">
             <div className="bg-background rounded-xl flex flex-col justify-center items-center gap-3 p-6">
               <div className="h-16 w-16 rounded-full bg-[#FBBC04] flex justify-center items-center">
                 <DollarSignIcon size={28} className="text-background" />
@@ -69,7 +70,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="col-span-5">
+          <div className="col-span-5 mt-8 md:mt-0">
             <Title level={3} className="text-center">
               Withdraw your money with{" "}
               <span className="font-black">Stripe</span>

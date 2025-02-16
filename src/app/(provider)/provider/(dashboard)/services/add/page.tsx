@@ -6,7 +6,7 @@ import AddForm from "./add-form";
 
 export default function Page() {
   return (
-    <div className="flex flex-col h-screen w-full px-8 py-6 overflow-y-auto">
+    <div className="flex flex-col md:h-screen w-full px-8 py-6 overflow-y-auto">
       <DashTitle>
         <Title level={3} className="flex items-center text-2xl">
           Add your product for service

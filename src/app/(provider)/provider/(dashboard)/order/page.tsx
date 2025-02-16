@@ -32,7 +32,7 @@ export default function Page() {
     },
   ];
   return (
-    <main className="flex flex-col h-screen w-full px-8 py-6 overflow-y-auto">
+    <main className="flex flex-col md:h-screen w-full px-4 md:px-8 py-6 overflow-y-auto">
       <DashTitle>
         <Title level={3} className="flex items-center text-2xl">
           List of your order

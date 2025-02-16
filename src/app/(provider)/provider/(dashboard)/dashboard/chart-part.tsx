@@ -1,6 +1,13 @@
 "use client";
 
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+} from "recharts";
 
 import {
   ChartConfig,
@@ -28,54 +35,54 @@ const chartConfig = {
 
 export function ChartPart() {
   return (
-    <ChartContainer className="h-full w-full" config={chartConfig}>
-      <AreaChart
-        accessibilityLayer
-        data={chartData}
-        margin={{
-          left: 12,
-          right: 12,
-          top: 20,
-          bottom: 20,
-        }}
-      >
-        <defs>
-          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#1EE9B6" stopOpacity={0.4} />
-            <stop offset="100%" stopColor="#ab47bc" stopOpacity={0.4} />
-          </linearGradient>
-        </defs>
+    <ResponsiveContainer width="100%" height="100%">
+      <ChartContainer className="h-full w-full" config={chartConfig}>
+        <AreaChart
+          accessibilityLayer
+          data={chartData}
+          margin={{
+            left: 12,
+            right: 12,
+            top: 20,
+            bottom: 20,
+          }}
+        >
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#1EE9B6" stopOpacity={0.4} />
+              <stop offset="100%" stopColor="#ab47bc" stopOpacity={0.4} />
+            </linearGradient>
+          </defs>
 
-        <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="3 3" />
 
-        {/* X-Axis Fix */}
-        <XAxis
-          dataKey="day"
-          tickLine={false}
-          axisLine={{ stroke: "#ddd" }}
-          tickMargin={8}
-        />
+          <XAxis
+            dataKey="day"
+            tickLine={false}
+            axisLine={{ stroke: "#ddd" }}
+            tickMargin={8}
+          />
 
-        {/* Y-Axis Added */}
-        <YAxis
-          tickLine={false}
-          axisLine={{ stroke: "#ddd" }}
-          tickFormatter={(value) => `$${value / 1000}k`}
-        />
+          <YAxis
+            tickLine={false}
+            axisLine={{ stroke: "#ddd" }}
+            tickFormatter={(value) => `$${value / 1000}k`}
+          />
 
-        <ChartTooltip
-          cursor={false}
-          content={<ChartTooltipContent indicator="line" />}
-        />
+          <ChartTooltip
+            cursor={false}
+            content={<ChartTooltipContent indicator="line" />}
+          />
 
-        <Area
-          dataKey="revenue"
-          type="linear"
-          fill="url(#gradient)"
-          stroke="url(#gradient)"
-          strokeWidth={2}
-        />
-      </AreaChart>
-    </ChartContainer>
+          <Area
+            dataKey="revenue"
+            type="linear"
+            fill="url(#gradient)"
+            stroke="url(#gradient)"
+            strokeWidth={2}
+          />
+        </AreaChart>
+      </ChartContainer>
+    </ResponsiveContainer>
   );
 }
