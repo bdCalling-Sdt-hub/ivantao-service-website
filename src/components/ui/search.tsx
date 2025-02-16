@@ -8,7 +8,7 @@ import React from "react";
 export default function Search({
   func,
 }: {
-  func: React.Dispatch<React.SetStateAction<boolean>>;
+  func?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <div className="flex flex-row justify-between items-center">
@@ -21,16 +21,20 @@ export default function Search({
           <SearchIcon />
         </div>
       </div>
-      <div className="flex md:hidden ml-8">
-        <Button
-          shape="circle"
-          onClick={() => {
-            func(false);
-          }}
-        >
-          <CloseOutlined />
-        </Button>
-      </div>
+      {func ? (
+        <div className="flex md:hidden ml-8">
+          <Button
+            shape="circle"
+            onClick={() => {
+              func(false);
+            }}
+          >
+            <CloseOutlined />
+          </Button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
