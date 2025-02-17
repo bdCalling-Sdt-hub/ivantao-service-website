@@ -82,7 +82,7 @@ export default function SideMenu() {
       children: [
         {
           label: "Change password",
-          key: "change-password",
+          key: "change-pass",
           icon: <KeyOutlined />,
         },
         {
