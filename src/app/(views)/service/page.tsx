@@ -25,12 +25,13 @@ export default function Page() {
                 <Title level={4} className="pb-2">
                   {item.title}
                 </Title>
-                <p className="text-sm">{item.description}</p>
+                {/* <p className="text-sm">{item.description}</p> */}
               </div>
             </div>
           </Link>
         ))}
       </div>
+      <div className=""></div>
     </main>
   );
 }

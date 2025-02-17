@@ -25,9 +25,9 @@ export default function Header() {
           <Image
             src="/images/header-image.png"
             alt="Header Image"
-            layout="fill"
-            objectFit="contain"
-            className="rounded-lg"
+            height={1500}
+            width={1000}
+            className="rounded-lg object-contain"
           />
           <div className="rounded-lg py-3 px-4 sm:py-4 sm:px-6 shadow-lg shadow-[#6161614f] w-auto absolute left-4 bottom-4 sm:left-6 sm:bottom-6 md:left-8 md:bottom-8 bg-[#FBF9F5] flex flex-row justify-between items-center space-x-4">
             <div>

@@ -1,9 +1,11 @@
 "use client";
 import Title from "antd/es/typography/Title";
 import type { FormProps } from "antd";
-import { Button, Form, Input } from "antd";
+import { Form, Input } from "antd";
 
 import React from "react";
+import { CreditCard, IdCard } from "lucide-react";
+import CongModal from "./cong-modal";
 
 type FieldType = {
   card_num?: string;
@@ -41,7 +43,20 @@ export default function PaymentForm() {
               { required: true, message: "Please Input Your Card Number" },
             ]}
           >
-            <Input size="large" placeholder="123 456 798" />
+            <Input
+              size="large"
+              placeholder="123 456 798"
+              type="number"
+              suffix={[
+                <div
+                  key={123}
+                  className="space-x-1 flex flex-row justify-center items-center"
+                >
+                  <IdCard />
+                  <CreditCard />
+                </div>,
+              ]}
+            />
           </Form.Item>
 
           <div className="grid grid-cols-2 gap-6">
@@ -67,14 +82,7 @@ export default function PaymentForm() {
 
           <div className="">
             <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="w-full bg-[#D5C19C] px-8 py-6"
-                size="large"
-              >
-                Confirm Payment
-              </Button>
+              <CongModal />
             </Form.Item>
           </div>
         </Form>

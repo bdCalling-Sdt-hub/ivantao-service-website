@@ -4,6 +4,7 @@ import { categoryPageDatas, categorySelection } from "../page-data";
 import { redirect } from "next/navigation";
 import { ArrowLeftOutlined, HomeFilled } from "@ant-design/icons";
 import { Breadcrumb, Button } from "antd";
+import Shop from "../shop";
 
 interface Categories {
   image: string;
@@ -57,6 +58,12 @@ export default async function Page({
         />
       </div>
       <Window cat={category} catSel={categorySelection} />
+      <Shop />
+      <div className="px-[7%] flex flex-row justify-center items-center">
+        <Button className="w-1/3 py-6 border-[#D5C19C] font-bold" size="large">
+          Load more
+        </Button>
+      </div>
     </main>
   );
 }

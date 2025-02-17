@@ -8,6 +8,7 @@ import { StarIcon } from "lucide-react";
 import Reviews from "./reviews";
 import ProductData from "./product_data";
 import RecommendParent from "./recommend-parent";
+import BuyModal from "./buyModal";
 
 export default async function Page({
   params,
@@ -68,16 +69,7 @@ export default async function Page({
               >
                 Purchase virtual
               </Button>
-              <Button
-                href={`/service/categories/${(await params).category}/${
-                  (await params).product
-                }/${"payment"}`}
-                className="col-span-1 md:col-span-2 w-full hover:text-background font-bold"
-                size="large"
-                variant="outlined"
-              >
-                Make an offer
-              </Button>
+              <BuyModal />
             </div>
           </div>
           <div className="w-full flex flex-row justify-between items-center py-6">

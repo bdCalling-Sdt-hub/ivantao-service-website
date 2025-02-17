@@ -66,8 +66,7 @@ export default function HowItWorks() {
             alt="thumbnail"
             width={600}
             height={400}
-            objectFit="cover"
-            className="h-auto w-full max-w-[460px]"
+            className="h-auto w-full max-w-[460px] object-cover"
           />
         </div>
         <p>
@@ -105,8 +104,7 @@ export default function HowItWorks() {
               alt="thumbnail"
               width={500}
               height={300}
-              objectFit="cover"
-              className="h-auto w-full max-w-[360px]"
+              className="h-auto w-full max-w-[360px] object-cover"
             />
           </div>
         </div>
@@ -119,8 +117,7 @@ export default function HowItWorks() {
               alt="thumbnail"
               width={500}
               height={300}
-              objectFit="cover"
-              className="h-auto w-full max-w-[360px]"
+              className="h-auto w-full max-w-[360px] object-cover"
             />
           </div>
           <div className="md:col-span-5 flex flex-col justify-center items-start order-1 md:order-none">

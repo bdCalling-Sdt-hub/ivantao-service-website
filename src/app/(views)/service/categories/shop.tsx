@@ -3,16 +3,14 @@ import React from "react";
 import { Button, Dropdown, MenuProps } from "antd";
 import Title from "antd/es/typography/Title";
 import { ArrowUpDown } from "lucide-react";
+import { products } from "../serviceData";
+import ProductCard from "@/components/ui/product-card";
 
 export default function Shop() {
   const items: MenuProps["items"] = [
     {
       label: (
-        <a
-          href="https://www.antgroup.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="#" target="_blank" rel="noopener noreferrer">
           Price
         </a>
       ),
@@ -23,11 +21,7 @@ export default function Shop() {
     },
     {
       label: (
-        <a
-          href="https://www.aliyun.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="#" target="_blank" rel="noopener noreferrer">
           Date Posted
         </a>
       ),
@@ -36,13 +30,10 @@ export default function Shop() {
     {
       type: "divider",
     },
+
     {
       label: (
-        <a
-          href="https://www.aliyun.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="#" target="_blank" rel="noopener noreferrer">
           Newest
         </a>
       ),
@@ -71,6 +62,11 @@ export default function Shop() {
             </Dropdown>
           </div>
         </div>
+      </div>
+      <div className="px-[7%] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 py-12 gap-6">
+        {products.map((item, i) => (
+          <ProductCard key={i} product={item} />
+        ))}
       </div>
     </section>
   );

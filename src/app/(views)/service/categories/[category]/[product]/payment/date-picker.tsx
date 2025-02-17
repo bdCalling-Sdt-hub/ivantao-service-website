@@ -25,7 +25,7 @@ const DatePicker = () => {
                   {" "}
                   {/* Center content */}
                   <CalendarIcon className="h-4 w-4" />
-                  <span>Date</span>
+                  <span>Select Date</span>
                 </div>
               ),
               value: "Date",
@@ -36,7 +36,7 @@ const DatePicker = () => {
                   {" "}
                   {/* Center content */}
                   <Clock className="h-4 w-4" />
-                  <span>Time</span>
+                  <span>Select Time</span>
                 </div>
               ),
               value: "Time",
@@ -44,7 +44,7 @@ const DatePicker = () => {
           ]}
           value={activeTab}
           onChange={(val) => setActiveTab(val)} // No need for "as string" with useState
-          className="w-full mb-4 bg-[rgb(203,186,159)] p-1" // Add flex for even distribution
+          className="w-full mb-4 bg-[rgb(203,186,159)] p-1 payement-tabs" // Add flex for even distribution
         />
       </div>
 

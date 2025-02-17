@@ -7,7 +7,7 @@ import { StarIcon } from "lucide-react";
 export default function Recommends() {
   const recommends = [
     {
-      imageSrc: "/images/service/1.jfif",
+      imageSrc: "/images/service/1.webp",
       title: "Sophia Bennett",
       rating: 4.9,
       reviewCount: 225,
@@ -16,34 +16,7 @@ export default function Recommends() {
       price: 52.0,
     },
     {
-      imageSrc: "/images/service/1.jfif",
-      title: "Sophia Bennett",
-      rating: 4.9,
-      reviewCount: 225,
-      description:
-        "Lorem ipsum dolor sit amet consectetur. Dictum cras facilisi nunc facilisis. Eleifend vel sed donec felis libero. In imperdiet pellentesque at urna velit in massa potenti. Id eleifend nulla odio dignissim malesuada est egestas congue arcu.",
-      price: 52.0,
-    },
-    {
-      imageSrc: "/images/service/1.jfif",
-      title: "Sophia Bennett",
-      rating: 4.9,
-      reviewCount: 225,
-      description:
-        "Lorem ipsum dolor sit amet consectetur. Dictum cras facilisi nunc facilisis. Eleifend vel sed donec felis libero. In imperdiet pellentesque at urna velit in massa potenti. Id eleifend nulla odio dignissim malesuada est egestas congue arcu.",
-      price: 52.0,
-    },
-    {
-      imageSrc: "/images/service/1.jfif",
-      title: "Sophia Bennett",
-      rating: 4.9,
-      reviewCount: 225,
-      description:
-        "Lorem ipsum dolor sit amet consectetur. Dictum cras facilisi nunc facilisis. Eleifend vel sed donec felis libero. In imperdiet pellentesque at urna velit in massa potenti. Id eleifend nulla odio dignissim malesuada est egestas congue arcu.",
-      price: 52.0,
-    },
-    {
-      imageSrc: "/images/service/1.jfif",
+      imageSrc: "/images/service/1.webp",
       title: "Sophia Bennett",
       rating: 4.9,
       reviewCount: 225,

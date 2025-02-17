@@ -132,3 +132,13 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
 }
+
+.payement-tabs .ant-segmented-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.payement-tabs .ant-segmented-group .ant-segmented-item {
+  width: 100% !important;
+  padding: 6px;
+  font-size: 1rem;
+}
