@@ -4,10 +4,13 @@ import DashTitle from "@/components/ui/dash-title";
 import { Hand } from "lucide-react";
 import Title from "antd/es/typography/Title";
 import { Button } from "antd";
+import ProductCard from "@/components/ui/product-card";
+import { products } from "@/app/(views)/service/serviceData";
+import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="flex flex-col h-screen w-full px-8 py-6 overflow-y-auto">
+    <div className="flex flex-col min-h-screen w-full px-8 py-6 overflow-y-auto">
       <DashTitle>
         <Title level={3} className="flex items-center text-2xl">
           Hello, Elena <Hand className="ml-2" size={20} />
@@ -32,6 +35,13 @@ export default function Page() {
             + Add new
           </Button>
         </div>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 py-12 gap-6">
+        {products.map((item, i) => (
+          <Link href="/provider/services/product" key={i}>
+            <ProductCard product={item} />
+          </Link>
+        ))}
       </div>
     </div>
   );

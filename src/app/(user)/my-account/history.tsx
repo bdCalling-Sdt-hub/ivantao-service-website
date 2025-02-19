@@ -2,6 +2,7 @@
 
 import { Card, Typography } from "antd";
 import { ClockCircleOutlined } from "@ant-design/icons";
+import ReviewMod from "./review-mod";
 
 const { Title, Text } = Typography;
 
@@ -81,7 +82,7 @@ const TransactionCard = ({
   transaction: TransactionEntry;
 }) => (
   <Card className="mb-4 w-full hover:shadow-md transition-shadow">
-    <div className="flex justify-between items-start">
+    <div className="flex justify-between items-center">
       <div className="space-y-1">
         <Text className="text-sm md:text-base font-medium text-gray-800">
           {transaction.title}
@@ -95,6 +96,7 @@ const TransactionCard = ({
           Quantity: {transaction.quantity}, {transaction.location}
         </Text>
       </div>
+      <ReviewMod />
       <div className="text-right">
         <div className="flex items-center gap-1 text-gray-500 text-sm mb-1">
           <ClockCircleOutlined className="text-xs" />

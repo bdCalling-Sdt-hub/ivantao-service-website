@@ -78,7 +78,12 @@ export default function Categories() {
                 <p>{item.posts} posts</p>
               </div>
               <div className="">
-                <Button shape="circle" size="large" className="bg-gray-300">
+                <Button
+                  shape="circle"
+                  size="large"
+                  className="bg-gray-300"
+                  href="/forum/category"
+                >
                   <ArrowUpRightIcon />
                 </Button>
               </div>

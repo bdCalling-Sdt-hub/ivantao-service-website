@@ -13,10 +13,11 @@ import {
   SmileOutlined,
 } from "@ant-design/icons";
 import AddCat from "./add-cat";
-import { Button, Dropdown, MenuProps } from "antd";
+import { Button, Dropdown } from "antd";
 import { EllipsisVertical } from "lucide-react";
 import EditCat from "./edit-cat";
 import DelCat from "./del-cat";
+import SubCat from "./sub-cat";
 
 export default function Page() {
   interface Category {
@@ -36,8 +37,7 @@ export default function Page() {
     { Icon: BookOutlined, title: "Education" },
   ];
   const iconStyle = { fontSize: "36px" };
-
-  const items: MenuProps["items"] = [
+  const items = [
     {
       key: "1",
       label: <EditCat />,
@@ -47,9 +47,10 @@ export default function Page() {
       label: <DelCat />,
     },
   ];
+
   return (
     <>
-      <main className="flex flex-col md:h-screen w-full px-8 py-6 overflow-y-auto">
+      <main className="flex flex-col min-h-screen w-full px-8 py-6 overflow-y-auto">
         <DashTitle>
           <Title level={3} className="flex items-center text-2xl">
             Manage categories
@@ -66,35 +67,25 @@ export default function Page() {
           {categories.map((item) => (
             <div
               key={item.title}
-              className="p-4 shadow-sm flex flex-col justify-center items-center text-center font-semibold gap-4 rounded-lg bg-background w-full h-[140px] sm:h-[160px] hover:shadow-lg transition-shadow cursor-pointer"
+              className="p-4 relative shadow-sm flex flex-col justify-center items-center text-center font-semibold gap-4 rounded-lg bg-background w-full h-[140px] sm:h-[160px] hover:shadow-lg transition-shadow cursor-pointer"
             >
+              <div className="absolute top-3 right-3">
+                <Dropdown
+                  menu={{ items }}
+                  placement="bottomRight"
+                  trigger={["click"]}
+                >
+                  <Button variant="outlined" shape="circle">
+                    <EllipsisVertical />
+                  </Button>
+                </Dropdown>
+              </div>
               <item.Icon style={iconStyle} />
               <div className="text-sm sm:text-base">{item.title}</div>
             </div>
           ))}
         </div>
-        <div className="pt-8 pb-4">
-          <Title level={3}>Sub Categories</Title>
-          <div className="w-full grid md:grid-cols-4 gap-4">
-            {Array.from({ length: 10 }).map((_, index) => (
-              <div key={index}>
-                <div className="h-[200px] w-full rounded-xl shadow-md bg-background relative">
-                  <div className="absolute top-3 right-3">
-                    <Dropdown
-                      menu={{ items }}
-                      placement="bottomRight"
-                      trigger={["click"]}
-                    >
-                      <Button variant="outlined" shape="circle">
-                        <EllipsisVertical />
-                      </Button>
-                    </Dropdown>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <SubCat />
         <AddCat />
       </main>
     </>

@@ -1,8 +1,10 @@
 "use client";
 import DashTitle from "@/components/ui/dash-title";
-import { Avatar, Button, Modal, Radio, Table, TableProps } from "antd";
+import DeletePopover from "@/components/ui/delete-popover";
+import { CheckCircleFilled } from "@ant-design/icons";
+import { Avatar, Button, Modal, Table, TableProps } from "antd";
 import Title from "antd/es/typography/Title";
-import { PencilLineIcon } from "lucide-react";
+import { Check } from "lucide-react";
 import React, { useState } from "react";
 
 export default function Page() {
@@ -18,12 +20,6 @@ export default function Page() {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-  };
-
-  const style: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    gap: 8,
   };
 
   const columns: TableProps["columns"] = [
@@ -66,15 +62,18 @@ export default function Page() {
       key: "action",
       render: (text) => (
         <>
-          <Button
-            onClick={showModal}
-            type="text"
-            className="px-4 py-2 !text-black w-min"
-          >
-            {text}
-          </Button>
+          <div className="flex flex-row justify-start items-center gap-3">
+            <Button
+              onClick={showModal}
+              type="primary"
+              className="p-2 bg-green-300 hover:!bg-green-600 !text-green-700"
+            >
+              {text}
+            </Button>
+            <DeletePopover message="Are you sure delete this offer ?" />
+          </div>
           <Modal
-            title="Change Status"
+            title={null}
             open={isModalOpen}
             onOk={handleOk}
             onCancel={handleCancel}
@@ -83,21 +82,17 @@ export default function Page() {
               <Button
                 size="large"
                 onClick={handleOk}
-                className="bg-[#D5C19C] hover:!bg-[#968565] !text-background w-full !border-none"
+                className="bg-green-500 hover:!bg-green-600 !text-background w-full !border-none"
               >
-                Done
+                Okay
               </Button>
             }
           >
-            <div className="p-4">
-              <Radio.Group
-                style={style}
-                options={[
-                  { value: 1, label: "Pending" },
-                  { value: 2, label: "Completed" },
-                  { value: 3, label: "Canceled" },
-                ]}
-              />
+            <div className="h-[200px] w-full flex flex-col justify-center items-center gap-6">
+              <CheckCircleFilled className="text-green-500 text-6xl" />
+              <p className="text-2xl text-green-500 font-semibold">
+                Offer accepted
+              </p>
             </div>
           </Modal>
         </>
@@ -110,16 +105,52 @@ export default function Page() {
       uname: "Seikh Alib",
       sname: "Cleaning like a pro.",
       price: "$454.00",
-      status: "Canceled",
+      status: "Pending",
       // provider: "lol",
-      action: <PencilLineIcon size={16} />,
+      action: <Check key={23} size={16} />,
+    },
+    {
+      key: 1,
+      uname: "Seikh Alib",
+      sname: "Cleaning like a pro.",
+      price: "$454.00",
+      status: "Pending",
+      // provider: "lol",
+      action: <Check key={23} size={16} />,
+    },
+    {
+      key: 1,
+      uname: "Seikh Alib",
+      sname: "Cleaning like a pro.",
+      price: "$454.00",
+      status: "Pending",
+      // provider: "lol",
+      action: <Check key={23} size={16} />,
+    },
+    {
+      key: 1,
+      uname: "Seikh Alib",
+      sname: "Cleaning like a pro.",
+      price: "$454.00",
+      status: "Pending",
+      // provider: "lol",
+      action: <Check key={23} size={16} />,
+    },
+    {
+      key: 1,
+      uname: "Seikh Alib",
+      sname: "Cleaning like a pro.",
+      price: "$454.00",
+      status: "Pending",
+      // provider: "lol",
+      action: <Check key={23} size={16} />,
     },
   ];
   return (
     <main className="flex flex-col md:h-screen w-full px-4 md:px-8 py-6 overflow-y-auto">
       <DashTitle>
         <Title level={3} className="flex items-center text-2xl">
-          List of your order
+          Custom Order
         </Title>
         <p className="text-gray-400">
           Admin with access to this workspace can promote or demote user
@@ -127,6 +158,9 @@ export default function Page() {
         </p>
       </DashTitle>
       <div className="">
+        <div className="w-full py-2 px-4 bg-[#BBA782] text-background text-base rounded-t-lg">
+          Custom offers
+        </div>
         <Table columns={columns} dataSource={data} />
       </div>
     </main>

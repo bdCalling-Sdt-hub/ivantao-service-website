@@ -27,6 +27,14 @@ export default function Page() {
               size="large"
               placeholder="Search service"
             />
+            <Button
+              href="/admin/forum/reports"
+              type="primary"
+              variant="solid"
+              color="danger"
+            >
+              See Reports
+            </Button>
           </div>
           <Title level={3} className="py-4">
             Service categories

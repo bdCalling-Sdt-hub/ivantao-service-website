@@ -3,6 +3,7 @@ import { Button, Modal } from "antd";
 import React, { useState } from "react";
 import { PencilIcon } from "lucide-react";
 import EditCatForm from "./edit-cat-form";
+import Title from "antd/es/typography/Title";
 export default function EditCat() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,6 +32,11 @@ export default function EditCat() {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        title={
+          <Title level={4} className="text-center">
+            Edit Category
+          </Title>
+        }
         footer={[
           <div
             key={10}

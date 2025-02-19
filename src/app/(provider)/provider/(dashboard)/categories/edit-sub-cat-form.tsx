@@ -1,6 +1,7 @@
+import { InboxOutlined } from "@ant-design/icons";
 import type { FormProps } from "antd";
-import { Form, Input, Select } from "antd";
-import Title from "antd/es/typography/Title";
+import { Form, Select } from "antd";
+import Dragger from "antd/es/upload/Dragger";
 import React from "react";
 
 type FieldType = {
@@ -8,6 +9,9 @@ type FieldType = {
   role?: string;
   join?: string;
   resign?: string;
+};
+const handleChange = (value: string[]) => {
+  console.log(`selected ${value}`);
 };
 
 const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
@@ -18,17 +22,10 @@ const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 
-const handleChange = (value: string[]) => {
-  console.log(`selected ${value}`);
-};
-
-export default function AddCatForm() {
+export default function EditSubCatForm() {
   return (
     <>
       <div className="p-6 px-[7%]">
-        <Title level={4} className="text-center">
-          Add new category
-        </Title>
         <div className="">
           <Form
             name="basic"
@@ -41,13 +38,17 @@ export default function AddCatForm() {
             className="w-full"
           >
             <Form.Item<FieldType>
-              label="Category"
               name="company"
               rules={[
                 { required: true, message: "Please input your username!" },
               ]}
             >
-              <Input size="large" />
+              <Dragger>
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-hint">Click to upload</p>
+              </Dragger>
             </Form.Item>
 
             <Form.Item<FieldType>

@@ -98,7 +98,9 @@ export default function Navbar({ user }: NavbarProps) {
               <Link href="/chat">
                 <MessageOutlined className="hover:text-[#695f4d] transition-colors" />
               </Link>
-              <BellOutlined />
+              <Link href="/notification">
+                <BellOutlined />
+              </Link>
             </div>
             {user && (
               <div className="">

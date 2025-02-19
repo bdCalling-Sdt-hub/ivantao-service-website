@@ -1,6 +1,5 @@
 import type { FormProps } from "antd";
-import { Form, Input } from "antd";
-import Title from "antd/es/typography/Title";
+import { Form, Input, Select } from "antd";
 import React from "react";
 
 type FieldType = {
@@ -8,6 +7,9 @@ type FieldType = {
   role?: string;
   join?: string;
   resign?: string;
+};
+const handleChange = (value: string[]) => {
+  console.log(`selected ${value}`);
 };
 
 const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
@@ -50,7 +52,13 @@ export default function EditCatForm() {
                 { required: true, message: "Please input your password!" },
               ]}
             >
-              <Input size="large" />
+              <Select
+                mode="tags"
+                style={{ width: "100%" }}
+                placeholder="Tags Mode"
+                onChange={handleChange}
+                size="large"
+              />
             </Form.Item>
           </Form>
         </div>

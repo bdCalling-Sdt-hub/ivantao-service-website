@@ -1,8 +1,10 @@
 "use client";
 import { Button, Modal } from "antd";
 import React, { useState } from "react";
-import AddCatForm from "./add-cat-form";
-export default function AddCat() {
+import { PencilIcon } from "lucide-react";
+import EditSubCatForm from "./edit-sub-cat-form";
+import Title from "antd/es/typography/Title";
+export default function EditSubCat() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -18,22 +20,23 @@ export default function AddCat() {
   };
   return (
     <>
-      <div className="w-full grid md:grid-cols-4 gap-4">
-        <Button
-          onClick={showModal}
-          type="primary"
-          htmlType="submit"
-          size="large"
-          className="mt-8 py-6 text-lg px-8 bg-[#C5AD81] text-backgroundfont-bold hover:!bg-[#C4A77D]"
-          variant="filled"
-        >
-          + Add Item
-        </Button>
-      </div>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        className="space-x-2 flex flex-row justify-center items-center font-semibold"
+        onClick={showModal}
+      >
+        <span>Edit</span> <PencilIcon size={16} />
+      </a>
       <Modal
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        title={
+          <Title level={4} className="text-center">
+            Edit Sub Category
+          </Title>
+        }
         footer={[
           <div
             key={10}
@@ -43,12 +46,12 @@ export default function AddCat() {
               size="large"
               className="w-full bg-[#E9DABB] hover:!bg-[#b8aa8f] hover:!text-background border-none"
             >
-              Save
+              Update
             </Button>
           </div>,
         ]}
       >
-        <AddCatForm />
+        <EditSubCatForm />
       </Modal>
     </>
   );

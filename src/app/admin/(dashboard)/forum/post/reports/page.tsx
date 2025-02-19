@@ -1,8 +1,8 @@
 import BackText from "@/components/ui/back-text";
 import DashTitle from "@/components/ui/dash-title";
+import PostCard from "@/components/ui/post-card";
 import Title from "antd/es/typography/Title";
 import React from "react";
-import ForumPostCard from "../forum-post-card";
 
 export default function Page() {
   const posts = [
@@ -44,7 +44,7 @@ export default function Page() {
       <main className="h-full w-full flex flex-col justify-start items-start p-4 overflow-y-auto">
         <DashTitle admin>
           <Title level={3} className="flex items-center text-2xl">
-            Forum posts
+            Reports
           </Title>
           <p className="text-gray-400">
             Admin with access to this workspace can promote or demote user
@@ -52,10 +52,10 @@ export default function Page() {
           </p>
         </DashTitle>
         <div className="flex-grow w-full">
-          <BackText text="Cleaning like a pro" />
+          <BackText text="Back" />
           <div className="">
             {posts.map((item, index) => (
-              <ForumPostCard {...item} key={index} type="post" />
+              <PostCard {...item} key={index} />
             ))}
           </div>
         </div>

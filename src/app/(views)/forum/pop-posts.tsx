@@ -3,7 +3,7 @@ import PostCard from "@/components/ui/post-card";
 import Title from "antd/es/typography/Title";
 import React from "react";
 
-export default function PopPosts() {
+export default function PopPosts({ notitle }: { notitle?: boolean }) {
   const posts = [
     {
       name: "Linuxoid",
@@ -41,7 +41,7 @@ export default function PopPosts() {
 
   return (
     <main className="py-12">
-      <Title level={2}>Popular posts</Title>
+      {notitle ? "" : <Title level={2}>Popular posts</Title>}
       <div className="py-12">
         {posts.map((item, index) => (
           <PostCard {...item} key={index} />

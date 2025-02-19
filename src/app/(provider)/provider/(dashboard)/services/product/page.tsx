@@ -57,7 +57,7 @@ export default function Page() {
                 type="primary"
                 htmlType="submit"
                 size="large"
-                className="w-full mt-8 border-[#DAC7A0] text-black font-bold hover:!text-black !bg-transparent hover:!bg-[#DAC7A0]"
+                className="w-full mt-8 border-[#DAC7A0] text-black font-bold hover:!text-black !bg-transparent hover:!bg-red-500"
               >
                 Delete
               </Button>

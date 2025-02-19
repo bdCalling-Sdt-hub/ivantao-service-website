@@ -8,6 +8,7 @@ import {
   SettingOutlined,
   AppstoreOutlined,
   MobileOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import { KeyRoundIcon } from "lucide-react";
@@ -33,7 +34,6 @@ export default function SideMenu() {
   };
 
   const items: MenuProps["items"] = [
-    // ... (Your existing menu items)
     {
       label: "Dashboard",
       key: "dashboard",
@@ -58,6 +58,11 @@ export default function SideMenu() {
       label: "Your Order",
       key: "order",
       icon: <ShoppingCartOutlined />,
+    },
+    {
+      label: "Custom Order",
+      key: "custom-order",
+      icon: <EditOutlined />,
     },
     {
       label: "Chat",
