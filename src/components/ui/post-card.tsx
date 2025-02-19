@@ -4,6 +4,13 @@ import { Avatar, Button, Form, Input, Modal, Select } from "antd";
 import Title from "antd/es/typography/Title";
 import { AlertOctagon } from "lucide-react";
 import React, { useState } from "react";
+interface PostCardProps {
+  name: string;
+  time: string;
+  title: string;
+  content: string;
+  avatar: string;
+}
 
 export default function PostCard({
   name,
