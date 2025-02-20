@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { Segmented, Calendar, theme } from "antd";
+import { Segmented, Calendar, theme, TimePicker, TimePickerProps } from "antd";
 import type { Dayjs } from "dayjs";
 import dayjs from "dayjs";
 import { CalendarIcon, Clock } from "lucide-react";
@@ -13,6 +13,9 @@ const DatePicker = () => {
   const [activeTab, setActiveTab] = useState("Date");
   const { useToken } = theme;
   const { token } = useToken();
+  const onChange: TimePickerProps["onChange"] = (time, timeString) => {
+    console.log(time, timeString);
+  };
 
   return (
     <div className="w-full rounded-xl bg-white md:p-4 md:px-12">
@@ -79,6 +82,17 @@ const DatePicker = () => {
                 </div>
               );
             }}
+          />
+        </div>
+      )}
+      {activeTab === "Time" && (
+        <div className="w-full">
+          <TimePicker
+            use12Hours
+            format="h:mm A"
+            onChange={onChange}
+            size="large"
+            className="w-full"
           />
         </div>
       )}
