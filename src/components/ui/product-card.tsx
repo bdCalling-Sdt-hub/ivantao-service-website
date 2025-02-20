@@ -31,15 +31,13 @@ export default function ProductCard({ product }: { product: productType }) {
               <div className="flex flex-row justify-start items-center gap-2">
                 <Avatar /> {/* Assuming Avatar is defined elsewhere */}
                 <Title className="!m-0 !text-sm md:!text-lg" level={4}>
-                  {product.title} {/* Changed to product */}
+                  {product.title}
                 </Title>
               </div>
               <div className="flex flex-row justify-end pt-2 md:pt-0 md:justify-start items-center gap-2 text-xs md:text-lg">
                 <StarIcon className="h-4 w-4 md:h-6 md:w-6" fill="" />{" "}
-                {/* Assuming StarIcon is defined elsewhere */}
                 <span>
                   {product.rating} ({product.reviewCount}){" "}
-                  {/* Changed to product */}
                 </span>
               </div>
             </div>
