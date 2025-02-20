@@ -17,7 +17,7 @@ interface productType {
 export default function ProductCard({ product }: { product: productType }) {
   return (
     <Link href="/service/categories/sub-categories/cleaning" legacyBehavior>
-      <div className="h-[300px] min-w-[180px] md:h-[500px] md:min-w-auto rounded-xl p-4 shadow-md bg-background relative">
+      <div className="h-[300px] min-w-[180px] md:h-[500px] md:min-w-auto rounded-xl p-4 shadow-md bg-background relative cursor-pointer hover:shadow-lg hover:bg-gray-100 transition-all">
         <Image
           src={product.imageSrc} // Changed to product
           height={1000}
