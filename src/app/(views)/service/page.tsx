@@ -10,7 +10,7 @@ export default function Page() {
       <Title className="text-center">Services We Provide</Title>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {services.map((item, index) => (
-          <Link key={index} href={`/service/categories/categories`}>
+          <Link key={index} href={`/service/categories`}>
             <div className="bg-background h-auto w-full p-6 rounded-xl hover:shadow-lg cursor-pointer transition-shadow">
               <div>
                 <Image

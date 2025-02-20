@@ -41,7 +41,7 @@ export default function Window({ cat, catSel }: WindowProps) {
               <div className="flex flex-row justify-around gap-3 overflow-x-auto">
                 {categorySelection.map((item) => (
                   <Link
-                    href="/service/categories/categories/cleaning"
+                    href="/service/categories/sub-categories"
                     key={item.title}
                   >
                     <div className="w-[94px] h-[94px] md:w-[200px] md:h-[200px] hover:shadow-lg rounded-lg transition-shadow duration-500 cursor-pointer">

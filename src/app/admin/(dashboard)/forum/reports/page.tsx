@@ -1,8 +1,8 @@
 import BackText from "@/components/ui/back-text";
 import DashTitle from "@/components/ui/dash-title";
-import PostCard from "@/components/ui/post-card";
 import Title from "antd/es/typography/Title";
 import React from "react";
+import ForumPostCard from "../forum-post-card";
 
 export default function Page() {
   const posts = [
@@ -55,7 +55,7 @@ export default function Page() {
           <BackText text="Back" />
           <div className="">
             {posts.map((item, index) => (
-              <PostCard {...item} key={index} />
+              <ForumPostCard type="forum-report" {...item} key={index} />
             ))}
           </div>
         </div>

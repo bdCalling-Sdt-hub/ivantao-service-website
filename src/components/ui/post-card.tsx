@@ -48,7 +48,7 @@ export default function PostCard({
           </div>
           <div className="py-4">
             <Title level={5}>{title}</Title>
-            <p className="text-lg font-light">{content}</p>
+            <p className="text-sm md:text-lg font-light">{content}</p>
           </div>
         </div>
         <div className="">
