@@ -58,6 +58,7 @@ export default async function Page({
             <p className="text-cl font-bold">$5200.00</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
               <Button
+                href="/service/categories/sub-categories/cleaning/payment"
                 className="w-full bg-[#DAC7A0] hover:bg-[#DAC7A0] hover:text-background font-bold"
                 size="large"
               >

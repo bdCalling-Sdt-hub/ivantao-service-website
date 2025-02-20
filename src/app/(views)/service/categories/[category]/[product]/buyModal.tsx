@@ -49,7 +49,7 @@ export default function BuyModal() {
               Cancel
             </Button>
             <Button
-              href="/service/categories/categories/cleaning/payment"
+              href="/service/categories/sub-categories/cleaning/payment"
               size="large"
               type="primary"
               className="bg-[#D5C19C] hover:!bg-[#a5967a] !border-none"

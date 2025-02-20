@@ -86,8 +86,17 @@ const DatePicker = () => {
         </div>
       )}
       {activeTab === "Time" && (
-        <div className="w-full">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
           <TimePicker
+            placeholder="From"
+            use12Hours
+            format="h:mm A"
+            onChange={onChange}
+            size="large"
+            className="w-full"
+          />
+          <TimePicker
+            placeholder="To"
             use12Hours
             format="h:mm A"
             onChange={onChange}
