@@ -25,8 +25,6 @@ const DatePicker = () => {
             {
               label: (
                 <div className="flex items-center justify-center gap-2 w-full">
-                  {" "}
-                  {/* Center content */}
                   <CalendarIcon className="h-4 w-4" />
                   <span>Select Date</span>
                 </div>
@@ -36,8 +34,6 @@ const DatePicker = () => {
             {
               label: (
                 <div className="flex items-center justify-center gap-2 w-full">
-                  {" "}
-                  {/* Center content */}
                   <Clock className="h-4 w-4" />
                   <span>Select Time</span>
                 </div>

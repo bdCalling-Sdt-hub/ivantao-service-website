@@ -43,7 +43,7 @@ export default function ComingSoonForm() {
             htmlType="submit"
             size="large"
             className="w-full mt-8 bg-[#FD5724] text-background font-bold 
-      hover:!bg-[#7a412a]"
+      hover:!bg-[#e0693a] hover:shadow-md"
             variant="filled"
           >
             Join
