@@ -14,21 +14,23 @@ type iconLink = {
 };
 
 const categories: LinkItem[] = [
-  { name: "Everyday essentials", href: "/categories" },
-  { name: "Household", href: "/categories/household" },
-  { name: "Professional", href: "/categories" },
-  { name: "Education", href: "/categories/n" },
-  { name: "Creative", href: "/categoriesy/creative" },
+  { name: "Everyday essentials", href: "/service/categories/everyday" },
+  { name: "Household", href: "/service/categories/household" },
+  { name: "Professional", href: "/service/categories" },
+  { name: "Education", href: "/service/categories/education" },
+  { name: "Creative", href: "/service/categoriesy/creative" },
   {
     name: "Information technology",
-    href: "/categories/information-technology",
+    href: "service/categories/information-technology",
   },
-  { name: "Specialized", href: "/categories/specialized" },
-  { name: "Commercial", href: "/categories/commercial" },
+  { name: "Specialized", href: "service/categories/specialized" },
+  { name: "Commercial", href: "service/categories/commercial" },
+  { name: "Tailored Service", href: "service/categories/custom" },
 ];
 
 const companyLinks: LinkItem[] = [
   { name: "About Tawun", href: "/about" },
+  { name: "How it works", href: "/how-it-works" },
   { name: "Help & support", href: "/help-support" },
   { name: "Terms of service", href: "/tnc" },
   { name: "Privacy policy", href: "/privacy-policy" },

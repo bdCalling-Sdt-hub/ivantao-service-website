@@ -1,17 +1,23 @@
 import Paragraph from "antd/es/typography/Paragraph";
 import Title from "antd/es/typography/Title";
+import Image from "next/image";
 
 import React from "react";
 
+interface coresType {
+  title: string;
+  icon: string;
+}
 export default function CoreVal() {
-  const cores = [
-    { title: "Honesty", icon: "Users" },
-    { title: "Responsibility", icon: "Shield" },
-    { title: "Kindness", icon: "Heart" },
-    { title: "Honesty", icon: "Users" },
-    { title: "Responsibility", icon: "Shield" },
-    { title: "Kindness", icon: "Heart" },
+  const cores: coresType[] = [
+    { title: "Honesty", icon: "1" },
+    { title: "Responsibility", icon: "2" },
+    { title: "Kindness", icon: "3" },
+    { title: "Innovation", icon: "4" },
+    { title: "Collaboration", icon: "5" },
+    { title: "Growth", icon: "6" },
   ];
+
   return (
     <section
       className="core-values"
@@ -27,14 +33,24 @@ export default function CoreVal() {
             maecenas neque.
           </Paragraph>
         </div>
-        <div className="max-w-3xl mx-auto grid grid-cols-3 gap-6">
+        <div className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
           {cores.map((item) => (
             <div
-              className="flex flex-row justify-between items-center py-4 px-6 bg-white"
+              className="flex flex-row justify-center gap-6 items-center py-4 px-6 "
               key={item.title}
             >
-              <div className="">{item.icon}</div>
-              <div className="">{item.title}</div>
+              <div className="">
+                <Image
+                  height={64}
+                  width={64}
+                  className="size-8 md:size-12"
+                  alt="icon"
+                  src={`/images/icons/core_vals/${item.icon}.png`}
+                />
+              </div>
+              <div className="text-background text-sm md:text-lg">
+                {item.title}
+              </div>
             </div>
           ))}
         </div>

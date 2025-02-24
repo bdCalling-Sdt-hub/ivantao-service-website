@@ -34,7 +34,7 @@ export default function Page() {
       <section className="py-12">
         {how_it_works.map((Item, index) => (
           <div
-            className="w-full grid grid-cols-12 items-center gap-6"
+            className="w-full grid grid-cols-12 items-center gap-8"
             key={Item.title.toLocaleLowerCase().trim()}
           >
             <div
@@ -42,7 +42,7 @@ export default function Page() {
                 index % 2 === 0 ? "order-1" : "order-2"
               }`}
             >
-              <Title>{Item.title}</Title>
+              <Title className="!text-2xl lg:!text-4xl">{Item.title}</Title>
               <p className="pl-6">{Item.description}</p>
             </div>
             <div

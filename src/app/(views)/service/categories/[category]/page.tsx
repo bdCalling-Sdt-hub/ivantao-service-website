@@ -1,6 +1,6 @@
 import Window from "@/components/shared/window";
 import React from "react";
-import { categoryPageDatas, categorySelection } from "../page-data";
+import { categoryPageDatas } from "../page-data";
 import { redirect } from "next/navigation";
 import { ArrowLeftOutlined, HomeFilled } from "@ant-design/icons";
 import { Breadcrumb, Button } from "antd";
@@ -57,7 +57,10 @@ export default async function Page({
           className="font-semibold text-xl !gap-x-12"
         />
       </div>
-      <Window cat={category} catSel={categorySelection} />
+      <Window
+        cat={category}
+        // catSel={categorySelection}
+      />
       <Shop />
       <div className="px-[7%] flex flex-row justify-center items-center">
         <Button className="w-1/3 py-6 border-[#D5C19C] font-bold" size="large">

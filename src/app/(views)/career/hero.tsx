@@ -30,14 +30,14 @@ export default function Hero() {
                 >
                   View Careers <ArrowUpRight />
                 </Button>
-                <Button
+                {/* <Button
                   size="large"
                   className="underline"
                   type="link"
                   variant="link"
                 >
                   Looking for Internships?
-                </Button>
+                </Button> */}
               </div>
             </Space>
           </Col>

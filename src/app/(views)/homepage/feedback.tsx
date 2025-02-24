@@ -30,11 +30,11 @@ export default function Feedback() {
   return (
     <section id="feedback" className="px-[7%] py-12 pb-[200px]">
       <Title className="py-8">What our customer says ?</Title>
-      <div className="py-8 flex flex-col md:flex-row justify-between items-center gap-8">
+      <div className="py-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
         {feedbacks.map((item, index) => (
           <div
             key={index}
-            className="w-full md:w-1/4 bg-background shadow-lg p-8 rounded-xl"
+            className="w-full h-min bg-background shadow-lg p-8 rounded-xl"
           >
             <div className="h-full mx-auto">
               <div className="h-full flex flex-row justify-center items-center gap-4 pb-8">

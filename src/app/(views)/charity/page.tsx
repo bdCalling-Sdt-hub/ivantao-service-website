@@ -41,27 +41,27 @@ export default function Page() {
       </div>
       <section className="py-12">
         <Title className="text-center">Fund raising Events</Title>
-        <div className="py-12 flex flex-col md:flex-row justify-center items-center gap-6">
+        <div className="grid grid-cols-3 gap-4">
           <Image
             src="/images/others/charity-block-a.png"
             height={1000}
             width={400}
             alt="thumbnail"
-            className="h-[550px] w-[400px]"
+            className="lg:h-[550px] lg:w-[400px]"
           />
           <Image
             src="/images/others/charity-block-b.png"
             height={1000}
             width={400}
             alt="thumbnail"
-            className="h-[550px] w-[400px]"
+            className="lg:h-[550px] lg:w-[400px]"
           />
           <Image
             src="/images/others/charity-block-c.png"
             height={1000}
             width={400}
             alt="thumbnail"
-            className="h-[550px] w-[400px]"
+            className="lg:h-[550px] lg:w-[400px]"
           />
         </div>
       </section>

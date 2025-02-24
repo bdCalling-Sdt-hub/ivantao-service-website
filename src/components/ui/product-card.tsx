@@ -34,10 +34,10 @@ export default function ProductCard({ product }: { product: productType }) {
                   {product.title}
                 </Title>
               </div>
-              <div className="flex flex-row justify-end pt-2 md:pt-0 md:justify-start items-center gap-2 text-xs md:text-lg">
+              <div className="flex flex-row justify-end pt-2 md:pt-0 md:justify-start items-center gap-2 text-xs sm:text-sm xl:text-lg">
                 <StarIcon className="h-4 w-4 md:h-6 md:w-6" fill="" />{" "}
                 <span>
-                  {product.rating} ({product.reviewCount}){" "}
+                  {product.rating} ({product.reviewCount})
                 </span>
               </div>
             </div>

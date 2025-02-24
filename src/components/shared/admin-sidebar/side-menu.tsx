@@ -8,9 +8,12 @@ import {
   AppstoreOutlined,
   MobileOutlined,
   KeyOutlined,
-  InfoCircleOutlined,
-  QuestionCircleOutlined,
-  PhoneOutlined,
+  // InfoCircleOutlined,
+  // QuestionCircleOutlined,
+  // PhoneOutlined,
+  ArrowLeftOutlined,
+  ApartmentOutlined,
+  BankOutlined,
 } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import { useRouter, usePathname } from "next/navigation";
@@ -58,7 +61,7 @@ export default function SideMenu() {
     {
       label: "Transactions", // Changed to match the image
       key: "transactions",
-      icon: <ShoppingCartOutlined />, // You might want a more specific icon
+      icon: <BankOutlined />, // You might want a more specific icon
     },
     {
       label: "Careers", // Changed to match the image
@@ -68,12 +71,17 @@ export default function SideMenu() {
     {
       label: "Community", // Changed to match the image
       key: "forum",
-      icon: <MessageOutlined />, // You might want a more specific icon
+      icon: <ApartmentOutlined />, // You might want a more specific icon
     },
     {
       label: "Chat", // Changed to match the image
       key: "chat",
       icon: <MessageOutlined />,
+    },
+    {
+      label: "Go back to your website",
+      key: "/home",
+      icon: <ArrowLeftOutlined />,
     },
     {
       label: "Settings", // Moved up to be a top-level item
@@ -85,21 +93,21 @@ export default function SideMenu() {
           key: "change-pass",
           icon: <KeyOutlined />,
         },
-        {
-          label: "About us",
-          key: "about",
-          icon: <InfoCircleOutlined />,
-        },
-        {
-          label: "How it works",
-          key: "howitworks",
-          icon: <QuestionCircleOutlined />,
-        },
-        {
-          label: "Contact us",
-          key: "contact-us",
-          icon: <PhoneOutlined />,
-        },
+        // {
+        //   label: "About us",
+        //   key: "about",
+        //   icon: <InfoCircleOutlined />,
+        // },
+        // {
+        //   label: "How it works",
+        //   key: "howitworks",
+        //   icon: <QuestionCircleOutlined />,
+        // },
+        // {
+        //   label: "Contact us",
+        //   key: "contact-us",
+        //   icon: <PhoneOutlined />,
+        // },
       ],
     },
   ];

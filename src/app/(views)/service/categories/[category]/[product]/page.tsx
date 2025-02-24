@@ -8,7 +8,7 @@ import { StarIcon } from "lucide-react";
 import Reviews from "./reviews";
 import ProductData from "./product_data";
 import RecommendParent from "./recommend-parent";
-import BuyModal from "./buyModal";
+// import BuyModal from "./buyModal";
 
 export default async function Page({
   params,
@@ -36,12 +36,12 @@ export default async function Page({
   return (
     <main className="py-0 md:py-12 px-4 md:px-[7%]">
       <BreadcrumbReady breads={breads} />
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
-        <div className="md:col-span-7 w-full grid grid-cols-1">
-          <div className="order-2 md:order-1 pb-12 w-full col-span-1">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-8 mb-12">
+        <div className="md:col-span-7 w-full grid grid-cols-1 gap-y-5 content-start">
+          <div className="order-2 lg:order-1 pb-12 w-full col-span-1 h-min">
             <ProductData />
           </div>
-          <div className="order-1 md:order-2 w-full pb-8 md:pb-0">
+          <div className="order-1 lg:order-2 w-full pb-8 md:pb-0">
             <RecommendParent />
           </div>
         </div>
@@ -59,18 +59,18 @@ export default async function Page({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
               <Button
                 href="/service/categories/sub-categories/cleaning/payment"
-                className="w-full bg-[#DAC7A0] hover:bg-[#DAC7A0] hover:text-background font-bold"
+                className="w-full bg-[#DAC7A0] hover:bg-[#DAC7A0] text-sm md:text-xs xl:text-base hover:text-background font-bold"
                 size="large"
               >
                 Purchase in person
               </Button>
               <Button
-                className="w-full bg-[#DAC7A0] hover:bg-[#DAC7A0] hover:text-background font-bold"
+                className="w-full bg-[#DAC7A0] hover:bg-[#DAC7A0] text-sm md:text-xs xl:text-base hover:text-background font-bold"
                 size="large"
               >
                 Purchase virtual
               </Button>
-              <BuyModal />
+              {/* <BuyModal /> */}
             </div>
           </div>
           <div className="w-full flex flex-row justify-between items-center py-6">

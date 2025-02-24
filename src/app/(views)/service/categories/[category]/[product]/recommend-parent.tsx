@@ -14,7 +14,7 @@ export default function RecommendParent() {
         <Title className="!m-0 !text-base md:!text-2xl" level={3}>
           Recommended for you
         </Title>
-        <div className="hidden md:flex flex-row justify-end items-center gap-2">
+        <div className="hidden lg:flex flex-row justify-end items-center gap-2">
           <Button className="rounded-full h-9 w-9 border-2 border-[#D5C19C]">
             <CaretLeftOutlined />
           </Button>
@@ -23,7 +23,7 @@ export default function RecommendParent() {
           </Button>
         </div>
         {/* For mobile, switch to toggle recommendations */}
-        <div className="flex md:hidden flex-row justify-end items-center gap-2">
+        <div className="flex lg:hidden flex-row justify-end items-center gap-2">
           <Switch
             checked={rec}
             onChange={setRec}
@@ -35,7 +35,7 @@ export default function RecommendParent() {
       </div>
       {rec && (
         <div className="rounded-xl md:p-8 bg-background mt-6 w-full overflow-x-auto">
-          <div className="flex flex-nowrap md:grid md:grid-cols-2 md:gap-6">
+          <div className="flex flex-nowrap md:grid grid-cols-2 xl:grid-cols-2 gap-4 md:gap-6">
             <Recommends />
           </div>
         </div>

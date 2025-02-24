@@ -83,7 +83,7 @@ export default function HowItWorks() {
       </div>
       <div className="px-6 md:px-[12%] py-12">
         {/* First Section */}
-        <div className="grid grid-cols-1 md:grid-cols-7 gap-6 md:gap-0 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-7 gap-6 md:gap-8 items-center">
           <div className="md:col-span-5 flex flex-col justify-center items-start">
             <Title level={2}>How providers get paid?</Title>
             <p className="mt-6 md:mt-8 w-full md:w-[80%]">
@@ -110,7 +110,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Second Section */}
-        <div className="grid grid-cols-1 md:grid-cols-7 gap-6 md:gap-0 items-center mt-12 md:mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-7 gap-6 md:gap-12 items-center mt-12 md:mt-16">
           <div className="md:col-span-2 flex justify-center order-2 md:order-none">
             <Image
               src="/images/withdraw.png"

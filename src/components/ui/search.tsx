@@ -11,7 +11,7 @@ export default function Search({
   func?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
-    <div className="flex flex-row justify-between items-center">
+    <div className="px-6 lg:px-0 lg:pl-8 w-full flex flex-row justify-between items-center">
       <div className="w-full md:w-full px-4 py-2 rounded-full flex flex-row justify-between items-center bg-[#F1F1F1]">
         <input
           placeholder="Search"

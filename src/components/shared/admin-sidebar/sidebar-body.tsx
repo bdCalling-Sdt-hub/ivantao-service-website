@@ -6,7 +6,7 @@ export default function SidebarBody() {
   return (
     <div className="">
       <div className="">
-        <div className="pl-6">
+        <div className="flex justify-center items-center">
           <Image
             src="/logo.png"
             height={100}

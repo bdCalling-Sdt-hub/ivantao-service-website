@@ -1,6 +1,6 @@
 "use client";
 import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, FormProps } from "antd";
+import { App, Button, Form, FormProps } from "antd";
 
 import Input from "antd/es/input";
 import Link from "next/link";
@@ -14,10 +14,17 @@ type FieldType = {
   password?: string;
 };
 export default function RegisterForm({ user }: { user: string }) {
+  const { message } = App.useApp();
   const navig = useRouter();
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     console.log("Success:", values);
-    navig.push("/");
+    message.success("Succesfully registered");
+
+    if (user == "provider") {
+      navig.push("/my-account");
+    } else {
+      navig.push("/");
+    }
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -97,7 +104,7 @@ export default function RegisterForm({ user }: { user: string }) {
              hover:!bg-[#C4A77D]"
           variant="filled"
         >
-          Log in
+          Register
         </Button>
       </Form.Item>
     </Form>

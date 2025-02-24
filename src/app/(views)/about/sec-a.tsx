@@ -4,15 +4,15 @@ import Title from "antd/es/typography/Title";
 
 export default function SectionA() {
   return (
-    <section className="py-20 px-4 md:px-0 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <section className="py-20 px-4 md:px-0 grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div
-          className="bg-purple-300 rounded-2xl bg-cover h-[50dvh] md:h-auto" // Added height for smaller screens
+          className="bg-purple-300 rounded-2xl bg-cover h-[50dvh] md:h-auto bg-center" // Added height for smaller screens
           style={{ backgroundImage: `url('/images/about/about-a.webp')` }}
         ></div>
         <div className="grid grid-rows-12 gap-8 rounded-2xl">
           <div
-            className="row-span-9 bg-yellow-300 rounded-2xl bg-cover h-[50dvh] md:h-auto" // Added height for smaller screens
+            className="row-span-9 bg-yellow-300 rounded-2xl bg-cover h-[50dvh] md:h-auto bg-center" // Added height for smaller screens
             style={{ backgroundImage: `url('/images/about/about-b.webp')` }}
           ></div>
           <div className="row-span-3 bg-[#6F5B36] rounded-2xl text-center flex flex-col justify-center items-center">

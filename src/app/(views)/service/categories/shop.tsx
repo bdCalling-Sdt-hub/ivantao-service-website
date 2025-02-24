@@ -63,7 +63,7 @@ export default function Shop() {
           </div>
         </div>
       </div>
-      <div className="px-[7%] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 py-12 gap-6">
+      <div className="px-[7%] grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-12 gap-6">
         {products.map((item, i) => (
           <ProductCard key={i} product={item} />
         ))}

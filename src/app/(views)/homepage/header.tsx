@@ -21,13 +21,13 @@ export default function Header() {
             <HeaderClient />
           </div>
         </div>
-        <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-full mt-4 lg:mt-0">
+        <div className="relative h-[300px] sm:h-[400px] md:h-[700px] lg:h-full mt-4 lg:mt-0">
           <Image
             src="/images/header-image.png"
             alt="Header Image"
             height={1500}
             width={1000}
-            className="rounded-lg object-contain"
+            className="rounded-lg object-contain h-full"
           />
           <div className="rounded-lg py-3 px-4 sm:py-4 sm:px-6 shadow-lg shadow-[#6161614f] w-auto absolute left-4 bottom-4 sm:left-6 sm:bottom-6 md:left-8 md:bottom-8 bg-[#FBF9F5] flex flex-row justify-between items-center space-x-4">
             <div>

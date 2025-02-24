@@ -46,7 +46,7 @@ export default function Overview() {
         Tristique massa malesuada tortor semper viverra. Tristique donec id
         nulla elementum fringilla cursus orci.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-12 px-[10%] pt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 md:gap-12 px-[10%] pt-12">
         {data.map((item) => (
           <div
             className="flex flex-row justify-start items-center p-4 bg-[#FFF9EE] gap-6 rounded-2xl"

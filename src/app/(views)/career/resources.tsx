@@ -1,6 +1,7 @@
 import { Card, Col, Row } from "antd";
 import Paragraph from "antd/es/typography/Paragraph";
 import Title from "antd/es/typography/Title";
+import Image from "next/image";
 import React from "react";
 
 export default function Resources() {
@@ -8,14 +9,20 @@ export default function Resources() {
     {
       title: "Rising Tides",
       para: "Lorem ipsum dolor sit amet consectetur. Nisi eget pellentesque condimentum vel nisl quis mattis viverra. Vel mi interdum lectus mi hac ultrices pulvinar. Nibh eros quam viverra viverra. Adipiscing amet sapien massa fringilla. Faucibus libero praesent orci volutpat volutpat iaculis posuere tincidunt.",
+      color: "#E5F9FF",
+      icon: "1",
     },
     {
       title: "Employee resource groups",
       para: "Lorem ipsum dolor sit amet consectetur. Nisi eget pellentesque condimentum vel nisl quis mattis viverra. Vel mi interdum lectus mi hac ultrices pulvinar. Nibh eros quam viverra viverra. Adipiscing amet sapien massa fringilla. Faucibus libero praesent orci volutpat volutpat iaculis posuere tincidunt. ",
+      color: "#F5EDFF",
+      icon: "2",
     },
     {
       title: "Inclusive Networks",
       para: "Lorem ipsum dolor sit amet consectetur. Nisi eget pellentesque condimentum vel nisl quis mattis viverra. Vel mi interdum lectus mi hac ultrices pulvinar. Nibh eros quam viverra viverra. Adipiscing amet sapien massa fringilla. Faucibus libero praesent orci volutpat volutpat iaculis posuere tincidunt. ",
+      color: "#F5F5F5",
+      icon: "3",
     },
   ];
   return (
@@ -35,10 +42,21 @@ export default function Resources() {
       <div className="container mx-auto px-4 pt-16">
         <Row gutter={[16, 16]} justify="center">
           {resources.map((item, i) => (
-            <Col xs={24} sm={12} md={8} key={i}>
+            <Col xs={24} sm={12} md={10} xl={8} key={i}>
               <Card className="shadow-lg rounded-lg">
                 <div className="flex flex-row justify-start items-center gap-4 mb-4">
-                  <div className="h-12 w-12 bg-purple-300 rounded-full"></div>
+                  <div
+                    className="size-16 flex justify-center items-center rounded-full overflow-hidden"
+                    style={{ background: item.color }}
+                  >
+                    <Image
+                      height={64}
+                      width={64}
+                      src={`/images/icons/career_res/${item.icon}.png`}
+                      alt="icon"
+                      className="size-10"
+                    />
+                  </div>
                   <Title level={4} className="!m-0 text-base md:text-lg">
                     {item.title}
                   </Title>
