@@ -8,25 +8,25 @@ export default function Page() {
       title: "How it works?",
       description:
         "Lorem ipsum dolor sit amet consectetur. Potenti sit porttitor nam in lacus tempor cras. Nunc elementum turpis commodo odio massa aliquet ultrices. Etiam in est duis feugiat pretium nec fermentum pharetra. Varius duis dictum lectus iaculis amet mi commodo sit mauris. Nec neque consequat morbi placerat nibh. Non lorem interdum interdum sapien pretium interdum amet nibh. Turpis risus eget nascetur blandit consequat risus. Gravida cras massa neque amet adipiscing egestas donec. Nam egestas diam amet at tincidunt. Orci sed id aenean mi cursus viverra. Mi quis tristique dictumst tellus dignissim. Facilisi rutrum diam commodo in. Pellentesque diam purus potenti velit tincidunt arcu venenatis ut. At tortor a bibendum gravida ac amet. Sit tellus id nulla nunc elit cursus ",
-      image: "/images/how-it-works/1.jfif",
+      image: "/images/how-it-works/1.webp",
     },
     {
       title: "How to do payments on the work page?",
       description:
         "Lorem ipsum dolor sit amet consectetur. Potenti sit porttitor nam in lacus tempor cras. Nunc elementum turpis commodo odio massa aliquet ultrices. Etiam in est duis feugiat pretium nec fermentum pharetra. Varius duis dictum lectus iaculis amet mi commodo sit mauris. Nec neque consequat morbi placerat nibh. Non lorem interdum interdum sapien pretium interdum amet nibh. Turpis risus eget nascetur blandit consequat risus. Gravida cras massa neque amet adipiscing egestas donec. Nam egestas diam amet at tincidunt. Orci sed id aenean mi cursus viverra. Mi quis tristique dictumst tellus dignissim. Facilisi rutrum diam commodo in. Pellentesque diam purus potenti velit tincidunt arcu venenatis ut. At tortor a bibendum gravida ac amet. Sit tellus id nulla nunc elit cursus ",
-      image: "/images/how-it-works/2.jfif",
+      image: "/images/how-it-works/2.webp",
     },
     {
       title: "How is personal information data secured on our platform page?",
       description:
         "Lorem ipsum dolor sit amet consectetur. Potenti sit porttitor nam in lacus tempor cras. Nunc elementum turpis commodo odio massa aliquet ultrices. Etiam in est duis feugiat pretium nec fermentum pharetra. Varius duis dictum lectus iaculis amet mi commodo sit mauris. Nec neque consequat morbi placerat nibh. Non lorem interdum interdum sapien pretium interdum amet nibh. Turpis risus eget nascetur blandit consequat risus. Gravida cras massa neque amet adipiscing egestas donec. Nam egestas diam amet at tincidunt. Orci sed id aenean mi cursus viverra. Mi quis tristique dictumst tellus dignissim. Facilisi rutrum diam commodo in. Pellentesque diam purus potenti velit tincidunt arcu venenatis ut. At tortor a bibendum gravida ac amet. Sit tellus id nulla nunc elit cursus ",
-      image: "/images/how-it-works/3.jfif",
+      image: "/images/how-it-works/3.webp",
     },
     {
       title: "How payment details are secured on our platform?",
       description:
         "Lorem ipsum dolor sit amet consectetur. Potenti sit porttitor nam in lacus tempor cras. Nunc elementum turpis commodo odio massa aliquet ultrices. Etiam in est duis feugiat pretium nec fermentum pharetra. Varius duis dictum lectus iaculis amet mi commodo sit mauris. Nec neque consequat morbi placerat nibh. Non lorem interdum interdum sapien pretium interdum amet nibh. Turpis risus eget nascetur blandit consequat risus. Gravida cras massa neque amet adipiscing egestas donec. Nam egestas diam amet at tincidunt. Orci sed id aenean mi cursus viverra. Mi quis tristique dictumst tellus dignissim. Facilisi rutrum diam commodo in. Pellentesque diam purus potenti velit tincidunt arcu venenatis ut. At tortor a bibendum gravida ac amet. Sit tellus id nulla nunc elit cursus ",
-      image: "/images/how-it-works/4.jfif",
+      image: "/images/how-it-works/4.webp",
     },
   ];
   return (
