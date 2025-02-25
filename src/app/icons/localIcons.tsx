@@ -300,3 +300,19 @@ export const CustomOrdersIcon = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+export const NewsletterIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    width={24}
+    height={24}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M12 2.63989L8.23 4.99989H5V6.99989L2.97 8.28989C2.39 8.63989 2 9.26989 2 9.99989V19.9999C2 20.5303 2.21071 21.039 2.58579 21.4141C2.96086 21.7892 3.46957 21.9999 4 21.9999H20C21.11 21.9999 22 21.1099 22 19.9999V9.99989C22 9.26989 21.61 8.63989 21.03 8.28989L19 6.99989V4.99989H15.77M7 6.99989H17V11.8799L12 14.9999L7 11.8799M8 7.99989V9.49989H16V7.99989M5 9.37989V10.6299L4 9.99989M19 9.37989L20 9.99989L19 10.6299M8 10.4999V11.9999H16V10.4999H8Z"
+      fill="#B0B0B0"
+    />
+  </svg>
+);

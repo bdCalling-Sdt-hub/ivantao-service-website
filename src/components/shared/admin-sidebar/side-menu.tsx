@@ -5,6 +5,7 @@ import {
   CommunityIcons,
   DashboardIcon,
   ListingReportingIcon,
+  NewsletterIcon,
   ProvidersIcon,
   SettingIcon,
   TransitionIcon,
@@ -88,6 +89,11 @@ export default function SideMenu() {
           label: "Change password",
           key: "change-pass",
           icon: <KeyOutlined />,
+        },
+        {
+          label: "Newsletter",
+          key: "newsletter",
+          icon: <NewsletterIcon />,
         },
         // {
         //   label: "About us",
