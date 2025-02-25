@@ -7,7 +7,7 @@ export default function ProductData() {
   return (
     <>
       <Image
-        src="/images/categories/laundry.jfif"
+        src="/images/categories/laundry.webp"
         width={699}
         height={416}
         className="w-full rounded-2xl"
