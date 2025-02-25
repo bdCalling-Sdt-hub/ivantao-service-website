@@ -1,20 +1,16 @@
 "use client";
 import {
-  DashboardOutlined,
-  TagsOutlined,
-  ShoppingCartOutlined,
-  MessageOutlined,
-  SettingOutlined,
-  AppstoreOutlined,
-  MobileOutlined,
-  KeyOutlined,
-  // InfoCircleOutlined,
-  // QuestionCircleOutlined,
-  // PhoneOutlined,
-  ArrowLeftOutlined,
-  ApartmentOutlined,
-  BankOutlined,
-} from "@ant-design/icons";
+  CareersIcon,
+  ChatsIcon,
+  CommunityIcons,
+  DashboardIcon,
+  ListingReportingIcon,
+  ProvidersIcon,
+  SettingIcon,
+  TransitionIcon,
+  UsersIcon,
+} from "@/app/icons/localIcons";
+import { KeyOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import { useRouter, usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
@@ -41,42 +37,42 @@ export default function SideMenu() {
     {
       label: "Dashboard",
       key: "dashboard",
-      icon: <DashboardOutlined />,
+      icon: <DashboardIcon />,
     },
     {
       label: "Listing Reporting", // Changed to match the image
       key: "listing-reporting", // Use kebab-case for keys
-      icon: <AppstoreOutlined />, // You might want a more specific icon
+      icon: <ListingReportingIcon />, // You might want a more specific icon
     },
     {
       label: "Users", // Changed to match the image
       key: "users",
-      icon: <MobileOutlined />, // You might want a more specific icon
+      icon: <UsersIcon />, // You might want a more specific icon
     },
     {
       label: "Providers", // Changed to match the image
       key: "providers",
-      icon: <TagsOutlined />, // You might want a more specific icon
+      icon: <ProvidersIcon />, // You might want a more specific icon
     },
     {
       label: "Transactions", // Changed to match the image
       key: "transactions",
-      icon: <BankOutlined />, // You might want a more specific icon
+      icon: <TransitionIcon />, // You might want a more specific icon
     },
     {
       label: "Careers", // Changed to match the image
       key: "careers",
-      icon: <ShoppingCartOutlined />, // You might want a more specific icon
+      icon: <CareersIcon />, // You might want a more specific icon
     },
     {
       label: "Community", // Changed to match the image
       key: "forum",
-      icon: <ApartmentOutlined />, // You might want a more specific icon
+      icon: <CommunityIcons />, // You might want a more specific icon
     },
     {
       label: "Chat", // Changed to match the image
       key: "chat",
-      icon: <MessageOutlined />,
+      icon: <ChatsIcon />,
     },
     {
       label: "Go back to your website",
@@ -86,7 +82,7 @@ export default function SideMenu() {
     {
       label: "Settings", // Moved up to be a top-level item
       key: "settings",
-      icon: <SettingOutlined />,
+      icon: <SettingIcon />,
       children: [
         {
           label: "Change password",

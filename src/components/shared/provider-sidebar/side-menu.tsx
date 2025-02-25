@@ -1,15 +1,15 @@
 "use client";
 import {
-  DashboardOutlined,
-  TagsOutlined,
-  ShoppingCartOutlined,
-  MessageOutlined,
-  ArrowLeftOutlined,
-  SettingOutlined,
-  AppstoreOutlined,
-  MobileOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
+  CategoriesIcon,
+  ChatsIcon,
+  CustomOrdersIcon,
+  DashboardIcon,
+  OrdersIcon,
+  ServicesIcon,
+  SettingIcon,
+  WithdrawIcon,
+} from "@/app/icons/localIcons";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import { KeyRoundIcon } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
@@ -37,37 +37,37 @@ export default function SideMenu() {
     {
       label: "Dashboard",
       key: "dashboard",
-      icon: <DashboardOutlined />,
+      icon: <DashboardIcon />,
     },
     {
       label: "Services",
       key: "services",
-      icon: <AppstoreOutlined />,
+      icon: <ServicesIcon />,
     },
     {
       label: "Withdraw",
       key: "withdraw",
-      icon: <MobileOutlined />,
+      icon: <WithdrawIcon />,
     },
     {
       label: "Categories",
       key: "categories",
-      icon: <TagsOutlined />,
+      icon: <CategoriesIcon />,
     },
     {
       label: "Your Order",
       key: "order",
-      icon: <ShoppingCartOutlined />,
+      icon: <OrdersIcon />,
     },
     {
       label: "Custom Order",
       key: "custom-order",
-      icon: <EditOutlined />,
+      icon: <CustomOrdersIcon />,
     },
     {
       label: "Chat",
       key: "chat",
-      icon: <MessageOutlined />,
+      icon: <ChatsIcon />,
     },
     {
       label: "Go back to your website",
@@ -77,7 +77,7 @@ export default function SideMenu() {
     {
       label: "Settings",
       key: "settings",
-      icon: <SettingOutlined />,
+      icon: <SettingIcon />,
       children: [
         {
           label: "Change Password",

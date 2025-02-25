@@ -95,6 +95,26 @@ export default function Page() {
                     </span>
                   </div>
                 </Form.Item>
+                <div className="grid grid-cols-2 w-full py-2 gap-6">
+                  <Button
+                    type="primary"
+                    variant="solid"
+                    color="danger"
+                    size="large"
+                    onClick={handleCancel}
+                  >
+                    Reject
+                  </Button>
+                  <Button
+                    type="primary"
+                    variant="solid"
+                    color="green"
+                    size="large"
+                    onClick={handleOk}
+                  >
+                    Approve
+                  </Button>
+                </div>
               </Form>
             </div>
           </Modal>

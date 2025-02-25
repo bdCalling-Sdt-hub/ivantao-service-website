@@ -44,7 +44,13 @@ export default function Page() {
             {Array.from({ length: 6 }).map((_, index) => (
               <div key={index}>
                 <div className="h-[200px] w-full rounded-xl shadow-md bg-background relative p-2">
-                  <div className="h-2/3 w-full bg-gray-300 rounded-lg"></div>
+                  <div
+                    className="h-2/3 w-full bg-gray-300 bg-cover bg-top rounded-lg"
+                    style={{
+                      backgroundImage: "url('/images/service/2.webp')",
+                    }}
+                  ></div>
+
                   <div className="h-1/3 w-full flex flex-row justify-between items-center px-3">
                     <div className="">
                       <Title className="!m-0" level={5}>

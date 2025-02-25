@@ -2,7 +2,7 @@
 import React from "react";
 import DashTitle from "@/components/ui/dash-title";
 import Title from "antd/es/typography/Title";
-import { Input, Select } from "antd";
+import { Button, Input, Select } from "antd";
 import { Search } from "lucide-react";
 import CareerTable from "@/components/ui/career-table";
 
@@ -71,6 +71,14 @@ export default function Page() {
       </div>
       <div className="flex-grow w-full overflow-y-auto">
         <CareerTable data={data} />
+        <div className="pt-8">
+          <Button
+            className="w-full md:w-[300px] bg-[#B7A481] hover:!bg-[#8d7d60] !border-none !text-background"
+            size="large"
+          >
+            + Add new
+          </Button>
+        </div>
       </div>
     </div>
   );
