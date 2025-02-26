@@ -26,8 +26,8 @@ export default function Page() {
   return (
     <main className="py-12">
       <Window cat={category} catSel={categorySelection} />
-      <Shop />
-      <Shop />
+      <Shop title="Just for you" sorter />
+      <Shop title="Most Rated" />
       <div className="px-[7%] ">
         <div className="border-t border-[#E4E7EC] flex flex-row justify-between items-center py-6">
           <p className="font-semibold">Page 1 of 10</p>

@@ -6,7 +6,13 @@ import { ArrowUpDown } from "lucide-react";
 import { products } from "../serviceData";
 import ProductCard from "@/components/ui/product-card";
 
-export default function Shop() {
+export default function Shop({
+  title,
+  sorter,
+}: {
+  title: string;
+  sorter?: boolean;
+}) {
   const items: MenuProps["items"] = [
     {
       label: (
@@ -47,23 +53,27 @@ export default function Shop() {
         <div className="flex flex-row justify-between items-center">
           <div>
             <Title level={2} className="!text-lg md:!text-3xl !m-0">
-              Just for you
+              {title}
             </Title>
           </div>
           <div>
-            <Dropdown menu={{ items }} trigger={["click"]}>
-              <Button
-                size="large"
-                className="text-xs sm:text-sm md:text-lg !outline-2 outline-black font-bold"
-              >
-                Sort by{" "}
-                <ArrowUpDown className="h-3 w-3 sm:h-4 sm:w-4 md:w-6 md:h-6" />
-              </Button>
-            </Dropdown>
+            {sorter ? (
+              <Dropdown menu={{ items }} trigger={["click"]}>
+                <Button
+                  size="large"
+                  className="text-xs sm:text-sm md:text-lg !outline-2 outline-black font-bold"
+                >
+                  Sort by{" "}
+                  <ArrowUpDown className="h-3 w-3 sm:h-4 sm:w-4 md:w-6 md:h-6" />
+                </Button>
+              </Dropdown>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
-      <div className="px-[7%] grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-12 gap-6">
+      <div className="px-[7%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-12 gap-6">
         {products.map((item, i) => (
           <ProductCard key={i} product={item} />
         ))}

@@ -2,29 +2,75 @@
 import React from "react";
 import DashTitle from "@/components/ui/dash-title";
 import Title from "antd/es/typography/Title";
-import { Button, Input, Select } from "antd";
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
-import UPTable from "@/components/ui/up-table";
+import { Button, Input, Select, Table, TableProps } from "antd";
+import {
+  CalendarRangeIcon,
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  Search,
+  TrashIcon,
+} from "lucide-react";
+// import UPTable from "@/components/ui/up-table";
 
 export default function Page() {
-  const data = [
+  const cols: TableProps["columns"] = [
     {
-      sr: 1, // You can add sr if needed, but it's not in the image
-      name: "Md. Abid Hasan", // From "Name"
-      email: "example@gmail.com", // From "Email"
-      contact: "+93215789654", // From "Contact"
-      id: "#5689758", // From "User ID"
-      brought: "23", // From "Bought product" (assuming this means quantity)
-      address: "New work", // From "Address"
+      title: "Date & Time",
+      dataIndex: "date_time",
+      key: "date_time",
+      render: (texts) => (
+        <div className="flex flex-col gap-2">
+          <div className="flex gap-2 items-center">
+            <CalendarRangeIcon className="size-5" />
+            <span>{texts?.date ?? "N/A"}</span>
+          </div>
+          <div className="flex gap-2 items-center">
+            <Clock className="size-5" />
+            <span>{texts?.time ?? "N/A"}</span>
+          </div>
+        </div>
+      ),
     },
     {
-      sr: 2, // You can add sr if needed, but it's not in the image
-      name: "Md. Abid Hasan", // From "Name"
-      email: "example@gmail.com", // From "Email"
-      contact: "+93215789654", // From "Contact"
-      id: "#5689758", // From "User ID"
-      brought: "23", // From "Bought product" (assuming this means quantity)
-      address: "New work", // From "Address"
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      render: (text) => (
+        <div className="flex flex-col justify-center items-start">
+          <a>{text ?? "N/A"}</a>
+        </div>
+      ),
+    },
+    {
+      title: "Action",
+      // dataIndex: "email",
+      // key: "email",
+      render: () => (
+        <div className="flex flex-col justify-center items-start">
+          <Button
+            className="size-10 !bg-red-50 !border-none !p-0"
+            variant="filled"
+            danger
+          >
+            <TrashIcon className="size-5" />
+          </Button>
+        </div>
+      ),
+    },
+  ];
+  const data = [
+    {
+      date_time: { date: "22-02-2025", time: "05:50 PM" },
+      email: "example@gmail.com",
+    },
+    {
+      date_time: { date: "22-02-2025", time: "05:50 PM" },
+      email: "example@gmail.com",
+    },
+    {
+      date_time: { date: "22-02-2025", time: "05:50 PM" },
+      email: "example@gmail.com",
     },
   ];
   const handleChange = (value: string) => {
@@ -63,7 +109,9 @@ export default function Page() {
           className="!bg-transparent !border-black"
         />
       </div>
-      <div className="flex-grow w-full overflow-y-auto"></div>
+      <div className="flex-grow w-full overflow-y-auto">
+        <Table columns={cols} dataSource={data} />
+      </div>
       <div className="border-t border-black pt-4 flex flex-row justify-between items-center">
         <div className="">Showing 10 user details</div>
         <div className="flex flex-row justify-center items-center gap-2">
