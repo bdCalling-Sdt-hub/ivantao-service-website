@@ -6,11 +6,12 @@ import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Search from "../ui/search";
 import Button from "antd/es/button";
-import { Avatar } from "antd";
+import { Avatar, Dropdown, MenuProps } from "antd";
 import Link from "next/link";
 import Language from "@/app/icons/Language";
 import Chat from "@/app/icons/chat";
 import { BellIcon } from "lucide-react";
+import Title from "antd/es/typography/Title";
 
 interface UserType {
   name: string;
@@ -31,6 +32,26 @@ export default function Navbar({ user }: NavbarProps) {
     { title: "Service", key: "/service" },
     { title: "About Us", key: "/about" },
     { title: "Contact Us", key: "/contact" },
+  ];
+
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: (
+        <div className="w-full bg-red-100 flex flex-row justify-between items-center">
+          <Title className="!m-0" level={4}>
+            Notifications
+          </Title>
+          <Button shape="circle" className="border border-black">
+            <CloseOutlined />
+          </Button>
+        </div>
+      ),
+      type: "group",
+    },
+    {
+      type: "divider",
+    },
   ];
 
   useEffect(() => {
@@ -104,12 +125,19 @@ export default function Navbar({ user }: NavbarProps) {
               <Link href="/chat">
                 <Chat className="hover:scale-110 transition-transform" />
               </Link>
-              <Link href="/notification">
-                <BellIcon
-                  fill="#D5C19C"
-                  className="!text-[#D5C19C] hover:scale-110 transition-transform"
-                />
-              </Link>
+              <Dropdown
+                menu={{ items }}
+                trigger={["click"]}
+                placement="bottom"
+                arrow
+              >
+                <Button className="!p-1" variant="text" type="text">
+                  <BellIcon
+                    fill="#D5C19C"
+                    className="!text-[#D5C19C] hover:scale-110 transition-transform"
+                  />
+                </Button>
+              </Dropdown>
             </div>
             {user && (
               <div className="">

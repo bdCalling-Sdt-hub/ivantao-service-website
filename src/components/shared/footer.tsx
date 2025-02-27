@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone } from "lucide-react";
 import React from "react";
 
 type LinkItem = {
@@ -98,18 +97,14 @@ export default function Footer() {
               <p>Street name, Area address</p>
               <p>City name, Country</p>
             </address>
-            <div className="space-y-2">
+            <div className="">
               <div className="flex items-center gap-2 text-gray-600">
-                <Phone className="h-4 w-4" />
-                <a href="tel:+880-244105465" className="hover:underline">
-                  +880-244105465
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-gray-600">
-                <Mail className="h-4 w-4" />
-                <a href="mailto:tawun21@gmail.com" className="hover:underline">
-                  tawun21@gmail.com
-                </a>
+                <Link
+                  href="/contact"
+                  className="hover:underline font-bold !no-underline hover:text-black"
+                >
+                  Contact Us
+                </Link>
               </div>
             </div>
           </div>

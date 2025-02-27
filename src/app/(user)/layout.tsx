@@ -1,6 +1,7 @@
 import "@ant-design/v5-patch-for-react-19";
 import Footer from "@/components/shared/footer";
 import Navbar from "@/components/shared/navbar";
+import BackButt from "@/components/ui/sub-ui/back-butt";
 
 export default function RootLayout({
   children,
@@ -11,6 +12,7 @@ export default function RootLayout({
   return (
     <>
       <Navbar user={user} />
+      <BackButt />
       {children}
       <Footer />
     </>

@@ -6,7 +6,7 @@ import SectionB from "./sec-b";
 
 export default function Page() {
   return (
-    <main className="pb-12 px-[7%]">
+    <main className="py-12 px-[7%]">
       <PageHeader
         img="/images/about/4b8ec5a1ceda545931ca68d9a8bd1547.webp"
         title="Empowering your marketplace"
