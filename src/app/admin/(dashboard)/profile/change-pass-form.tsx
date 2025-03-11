@@ -59,8 +59,7 @@ export default function ChangePassForm() {
             type="primary"
             htmlType="submit"
             size="large"
-            className="bg-[#B7A481] text-lg px-12 py-4 !text-background text-black font-bold 
-             hover:!bg-[#C4A77D]"
+            className="text-lg px-12 py-4 !text-background text-black font-bold bg-[#7849D4] hover:!bg-[#533392]"
             variant="filled"
           >
             Save

@@ -39,7 +39,11 @@ export default function Page() {
                 { required: true, message: "Please input your username!" },
               ]}
             >
-              <Input size="large" placeholder="abidhasan@gmail.com" />
+              <Input
+                size="large"
+                placeholder="abidhasan@gmail.com"
+                className="bg-[#F0E8FF]"
+              />
             </Form.Item>
 
             <div className="flex flex-row justify-center items-center">
@@ -47,7 +51,7 @@ export default function Page() {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  className="w-full bg-[#F27405] px-8 py-6"
+                  className="w-full bg-[#7849D4] px-8 py-6"
                   size="large"
                 >
                   Send Code

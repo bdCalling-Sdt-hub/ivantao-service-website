@@ -32,8 +32,11 @@ export default function ProductData() {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-auto flex flex-row justify-end">
-          <Button className="bg-[#DAC7A0] font-bold hover:!bg-[#aa9a79] hover:!text-background !border-none">
+        <div className="w-full md:w-auto flex flex-row gap-2 justify-end">
+          <Button className="font-bold !border-red-500 border !text-red-500 hover:!text-red-700">
+            Report Listing
+          </Button>
+          <Button className="bg-[#7849D4] hover:!bg-[#57369b] font-bold !text-background !border-none">
             Send message
           </Button>
         </div>

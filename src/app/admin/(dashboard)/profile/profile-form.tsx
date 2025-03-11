@@ -66,8 +66,8 @@ export default function ProfileForm() {
             type="primary"
             htmlType="submit"
             size="large"
-            className="bg-[#B7A481] text-lg px-12 py-4 !text-background text-black font-bold 
-             hover:!bg-[#C4A77D]"
+            className="bg-[#7849D4] hover:!bg-[#533392] !text-background text-lg px-12 py-4 font-bold 
+             ]"
             variant="filled"
           >
             Save

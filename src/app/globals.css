@@ -103,15 +103,15 @@ body {
   color: #b0b0b0 !important;
 }
 .ant-menu-item-selected {
-  background-color: #fff9ee !important;
-  color: #d5c19c !important;
+  background-color: #f0e8ff !important;
+  color: #7849d4 !important;
 }
 
 .prov-tab .ant-tabs-ink-bar {
-  background-color: #b7a481;
+  background-color: #7849d4;
 }
 .prov-tab .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: #b7a481 !important;
+  color: #7849d4 !important;
 }
 /* index.css */
 .draggable-container {
@@ -149,4 +149,9 @@ body {
 }
 .slick-dots li button {
   background-color: black !important;
+}
+
+.my_prof_tabs .ant-segmented-item-selected {
+  background-color: #7849d4 !important;
+  color: #ffffff !important;
 }

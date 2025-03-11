@@ -55,7 +55,7 @@ export default function ChangePass() {
           <div className="flex flex-row justify-center items-center py-12">
             <Form.Item<FieldType>>
               <Button
-                className="bg-[#E9DABB] font-bold px-12 py-6 hover:!bg-[#b6a88c] hover:!text-background !border-none"
+                className="bg-[#7849D4] font-bold px-12 py-6 hover:!bg-[#5a37a0] !text-background !border-none"
                 size="large"
               >
                 Save changes

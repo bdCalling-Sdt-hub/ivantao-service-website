@@ -16,7 +16,7 @@ export default function Page() {
       <div
         className={`${
           people ? "hidden" : "fixed"
-        } top-1/2 -translate-y-1/2 right-4 z-50`}
+        } top-1/2 -translate-y-1/2 right-4 -z-20`}
       >
         <Draggable>
           <Button
@@ -33,9 +33,9 @@ export default function Page() {
       <div
         className={`${
           people ? "block" : "hidden"
-        } col-span-1 md:col-span-3 h-full bg-background rounded-xl overflow-y-auto z-40 top-0 left-0 fixed md:relative`}
+        } col-span-1 md:col-span-3 h-full bg-background rounded-xl overflow-y-auto -z-40 top-0 left-0 fixed md:relative`}
       >
-        <div className={`p-6 sticky  top-0 left-0 bg-background w-full z-10`}>
+        <div className={`p-6 sticky  top-0 left-0 bg-background w-full -z-10`}>
           <Search func={setPeople} />
         </div>
         <div className="py-4 divide-y">
@@ -100,7 +100,7 @@ look away or close your eyes.”"
             size="large"
             shape="circle"
             type="primary"
-            className="!border-none !shadow-none !bg-gray-300 hover:!bg-gray-400 flex justify-center items-center"
+            className="!border-none !shadow-none !bg-[#7849D4] hover:!bg-[#50318a] flex justify-center items-center"
           >
             <SendHorizonal fill="#fff" size={18} className="text-2xl" />
           </Button>

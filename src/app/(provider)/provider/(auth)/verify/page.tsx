@@ -32,7 +32,7 @@ export default function Page() {
           </p>
 
           <div className="py-12">
-            <Input.OTP length={5} {...sharedProps} />
+            <Input.OTP length={6} {...sharedProps} />
           </div>
 
           <div className="flex flex-row justify-center items-center">
@@ -40,7 +40,7 @@ export default function Page() {
               <Button
                 type="primary"
                 htmlType="submit"
-                className="w-full bg-[#F27405] px-8 py-6"
+                className="w-full bg-[#7849D4] px-8 py-6"
                 size="large"
               >
                 Verify Code
@@ -49,7 +49,7 @@ export default function Page() {
           </div>
           <p>
             You have not received the email?{" "}
-            <Link href="#" className="font-semibold text-[#00B047]">
+            <Link href="#" className="font-semibold text-[#6F5B36]">
               Resend
             </Link>
           </p>

@@ -83,7 +83,7 @@ export default function Page() {
               <Button
                 size="large"
                 onClick={handleOk}
-                className="bg-[#D5C19C] hover:!bg-[#968565] !text-background w-full !border-none"
+                className="bg-[#7849D4] hover:!bg-[#533392] !text-background w-full !border-none"
               >
                 Done
               </Button>

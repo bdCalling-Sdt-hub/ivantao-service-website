@@ -126,52 +126,54 @@ export default function Categories() {
 
   return (
     <>
-      <section className="px-4 sm:px-6 lg:px-[7%] py-8 sm:py-12">
-        <div id="categories">
-          <Title level={2} className="mb-6 text-center md:text-left">
-            Categories
-          </Title>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
-            {categories.map((item, i) => (
-              <Link href={item.link} key={i}>
-                <div className="p-4 shadow-sm flex flex-col justify-center items-center text-center font-semibold gap-4 rounded-lg bg-background w-full h-[140px] sm:h-[160px] hover:shadow-lg transition-shadow cursor-pointer">
-                  <item.Icon style={iconStyle} />
-                  <div className="text-sm sm:text-base">{item.title}</div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="px-[20px] sm:px-6 lg:px-[7%] py-8 sm:py-12">
-        <div id="services">
-          <Title level={2} className="mb-6 text-center md:text-left">
-            Top services
-          </Title>
-          <div className="overflow-x-auto w-full py-4 sm:py-8">
-            <div className="flex space-x-4 pb-4">
-              {services.map((item, index) => (
-                <Link key={index} href={item.link}>
-                  <div
-                    className="p-4 shadow-sm flex flex-col justify-between items-center font-semibold gap-4 rounded-lg w-[120px] sm:w-[240px] md:w-[280px] h-[180px] sm:h-[280px] hover:shadow-lg transition-shadow cursor-pointer flex-shrink-0"
-                    style={{ backgroundColor: item.color }}
-                  >
-                    <div className="w-full text-sm text-center sm:text-left sm:text-xl text-background">
-                      {item.title}
-                    </div>
-                    <div className="bg-[#CADBD9] w-full h-[70px] sm:h-[200px] flex flex-col justify-center items-center rounded-xl">
-                      <div
-                        className="bg-cover bg-left-top w-[50px] h-[50px] sm:w-[160px] sm:h-[160px]"
-                        style={{ backgroundImage: `url('${item.image}')` }}
-                      ></div>
-                    </div>
+      <div className="">
+        <section className="px-4 sm:px-6 lg:px-[7%] py-8 sm:py-12">
+          <div id="categories">
+            <Title level={2} className="mb-6 text-center md:text-left">
+              Categories
+            </Title>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
+              {categories.map((item, i) => (
+                <Link href={item.link} key={i}>
+                  <div className="p-4 shadow-sm flex flex-col justify-center items-center text-center font-semibold gap-4 rounded-lg bg-background w-full h-[140px] sm:h-[160px] hover:shadow-lg transition-shadow cursor-pointer">
+                    <item.Icon style={iconStyle} />
+                    <div className="text-sm sm:text-base">{item.title}</div>
                   </div>
                 </Link>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <section className="px-[20px] sm:px-6 lg:px-[7%] py-8 sm:py-12">
+          <div id="services">
+            <Title level={2} className="mb-6 text-center md:text-left">
+              Top services
+            </Title>
+            <div className="overflow-x-auto w-full py-4 sm:py-8">
+              <div className="flex space-x-4 pb-4">
+                {services.map((item, index) => (
+                  <Link key={index} href={item.link}>
+                    <div
+                      className="p-4 shadow-sm flex flex-col justify-between items-center font-semibold gap-4 rounded-lg w-[120px] sm:w-[240px] md:w-[280px] h-[180px] sm:h-[280px] hover:shadow-lg transition-shadow cursor-pointer flex-shrink-0"
+                      style={{ backgroundColor: item.color }}
+                    >
+                      <div className="w-full text-sm text-center sm:text-left sm:text-xl text-background">
+                        {item.title}
+                      </div>
+                      <div className="bg-[#CADBD9] w-full h-[70px] sm:h-[200px] flex flex-col justify-center items-center rounded-xl">
+                        <div
+                          className="bg-cover bg-left-top w-[50px] h-[50px] sm:w-[160px] sm:h-[160px]"
+                          style={{ backgroundImage: `url('${item.image}')` }}
+                        ></div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

@@ -33,7 +33,7 @@ export default function Overview() {
     },
   ];
   return (
-    <section className="bg-[#BBA782] py-8 text-background px-0 md:px-12 text-center mt-8">
+    <section className="bg-[#7849D4] py-8 text-background px-0 md:px-12 text-center mt-8">
       <Title level={3} className="!text-background text-center !mb-8">
         Tawun Overview
       </Title>
@@ -49,7 +49,7 @@ export default function Overview() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 md:gap-12 px-[10%] pt-12">
         {data.map((item) => (
           <div
-            className="flex flex-row justify-start items-center p-4 bg-[#FFF9EE] gap-6 rounded-2xl"
+            className="flex flex-row justify-start items-center p-4 bg-[#F0E8FF] gap-6 rounded-2xl"
             key={item.title.trim().toLocaleLowerCase()}
           >
             <div className="flex justify-center items-center h-12 w-12 text-3xl bg-background rounded-lg text-[#4285F4]">
@@ -68,7 +68,7 @@ export default function Overview() {
       </div>
       <div className="w-full flex justify-center mt-8">
         <Button
-          className="px-8 py-6 bg-[#FFF9EE] hover:bg-[#ece2cf] !font-semibold"
+          className="px-8 py-6 bg-[#F0E8FF] hover:bg-[#c6b4e9] !font-semibold"
           size="large"
         >
           Learn More <ArrowRightOutlined />

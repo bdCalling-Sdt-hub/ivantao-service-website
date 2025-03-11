@@ -20,10 +20,10 @@ export default function CoreVal() {
 
   return (
     <section
-      className="core-values"
-      style={{ backgroundImage: "url('/images/categories/custom.jfif')" }}
+      className="core-values bg-cover"
+      style={{ backgroundImage: "url('/images/career/core-val.jpg')" }}
     >
-      <div className="w-full h-full backdrop-blur-sm py-[94px]">
+      <div className="w-full h-full backdrop-blur-sm backdrop-brightness-75 py-[94px]">
         <div className="text-center mb-16">
           <Title level={1} className="!text-white">
             Our core values

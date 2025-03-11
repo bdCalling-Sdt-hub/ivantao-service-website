@@ -59,13 +59,13 @@ export default async function Page({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
               <Button
                 href="/service/categories/sub-categories/cleaning/payment"
-                className="w-full bg-[#DAC7A0] hover:bg-[#DAC7A0] text-sm md:text-xs xl:text-base hover:text-background font-bold"
+                className="w-full bg-[#7849D4] hover:bg-[#5f3aaa] text-sm md:text-xs xl:text-base text-background font-bold"
                 size="large"
               >
                 Purchase in person
               </Button>
               <Button
-                className="w-full bg-[#DAC7A0] hover:bg-[#DAC7A0] text-sm md:text-xs xl:text-base hover:text-background font-bold"
+                className="w-full bg-[#7849D4] hover:bg-[#58359e] text-sm md:text-xs xl:text-base text-background font-bold"
                 size="large"
               >
                 Purchase virtual

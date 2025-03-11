@@ -32,7 +32,7 @@ export default function EditCareer() {
         footer={[
           <div key={109} className="flex justify-center items-center">
             <Button
-              className="px-8 py-4 bg-[#B7A481] hover:!bg-[#8a7b60] !text-background"
+              className="px-8 py-4 bg-[#7849D4] hover:!bg-[#533392] !text-background border-none"
               size="large"
             >
               Save changes

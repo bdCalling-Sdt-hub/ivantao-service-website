@@ -54,7 +54,7 @@ export default function Page() {
             onClick={showModal}
             type="link"
             variant="link"
-            className="text-orange-500 underline"
+            className="text-[#7849D4] underline"
           >
             {record.action}
           </Button>

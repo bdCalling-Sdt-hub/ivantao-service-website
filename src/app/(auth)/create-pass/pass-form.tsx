@@ -35,7 +35,7 @@ export default function PassForm() {
         <Input.Password
           prefix={<LockOutlined />}
           size="large"
-          className="bg-[#F2ECE1]"
+          className="bg-[#F0E8FF]"
           placeholder="Enter your new password"
         />
       </Form.Item>
@@ -47,7 +47,7 @@ export default function PassForm() {
         <Input.Password
           prefix={<LockOutlined />}
           size="large"
-          className="bg-[#F2ECE1]"
+          className="bg-[#F0E8FF]"
           placeholder="Re type your password"
         />
       </Form.Item>
@@ -59,8 +59,8 @@ export default function PassForm() {
           type="primary"
           htmlType="submit"
           size="large"
-          className="w-full mt-8 bg-[#DAC7A0] text-black font-bold 
-             hover:!bg-[#C4A77D]"
+          className="w-full mt-8 bg-[#7849D4] text-background font-bold 
+             hover:!bg-[#4f318b]"
           variant="filled"
         >
           Update & Login

@@ -99,7 +99,7 @@ export default function Page() {
       <div className="py-12 grid grid-cols-1 lg:grid-cols-7 gap-6">
         <div className="lg:col-span-5 rounded-t-xl overflow-hidden w-full bg-background pb-4">
           <div className="w-full">
-            <div className="py-6 px-4 md:px-6 flex flex-col md:flex-row justify-between items-start md:items-center bg-[#BBA782]">
+            <div className="py-6 px-4 md:px-6 flex flex-col md:flex-row justify-between items-start md:items-center bg-[#7849D4]">
               <Title
                 level={3}
                 className="!m-0 !text-background text-lg md:text-xl"
@@ -140,7 +140,7 @@ export default function Page() {
         </div>
         <div className="lg:col-span-2">
           <div className="w-full">
-            <div className="py-6 px-4 md:px-6 rounded-t-xl bg-[#BBA782]">
+            <div className="py-6 px-4 md:px-6 rounded-t-xl bg-[#7849D4]">
               <Title
                 level={3}
                 className="!m-0 !text-background text-lg md:text-xl"

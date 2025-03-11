@@ -36,7 +36,7 @@ export default function Opportunities() {
     <section className="py-16">
       <div className="mx-auto">
         <div className="px-[7%] bg-background py-20 relative">
-          <div className="absolute top-6 right-0 mr-[7%] px-6 py-2 rounded-full border-2 border-[#88744F]">
+          <div className="absolute top-6 right-0 mr-[7%] px-6 py-2 rounded-full border-2 border-[#7849D4]">
             3 open positions
           </div>
           <Title level={2} className="mb-0 text-center">
@@ -53,7 +53,7 @@ export default function Opportunities() {
                 className="flex-1 p-3"
                 placeholder="Search opportunities"
               />
-              <button className="p-3 px-4 bg-[#88744F]">
+              <button className="p-3 px-4 bg-[#7849D4]">
                 <SearchOutlined className="text-background" />
               </button>
             </div>
@@ -65,11 +65,11 @@ export default function Opportunities() {
             <div className="pt-12" key={i}>
               <div className="h-[120px] flex justify-center items-center">
                 <div className="asbolute left-0 bg-[#FBF9F5] p-1">
-                  <div className=" bg-[#88744F] px-2 md:px-4 py-2 rounded-full font-bold text-background text-xs md:text-base">
+                  <div className=" bg-[#7849D4] px-2 md:px-4 py-2 rounded-full font-bold text-background text-xs md:text-base">
                     {item.role}
                   </div>
                 </div>
-                <div className="w-full h-[2px] bg-[#88744F]"></div>
+                <div className="w-full h-[2px] bg-[#7849D4]"></div>
               </div>
               <div className="space-y-6">
                 {item.opens.map((item, i) => (

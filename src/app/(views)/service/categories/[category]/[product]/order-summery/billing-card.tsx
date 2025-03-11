@@ -5,7 +5,7 @@ import { DataItem } from "./page";
 
 const BillingCard: React.FC<{ data: DataItem[] }> = ({ data }) => (
   <div className="rounded-xl bg-background mt-6">
-    <div className="p-6 bg-gray-100 rounded-xl">
+    <div className="p-6 bg-[#F0E8FF] rounded-xl">
       <Title level={4} className="text-center">
         Billing information
       </Title>

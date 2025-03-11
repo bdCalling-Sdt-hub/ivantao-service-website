@@ -21,7 +21,7 @@ export default function UserProfile({
   avatarUrl,
 }: UserProfileProps) {
   return (
-    <div className="relative w-full mx-auto p-8 bg-white rounded-xl shadow-sm">
+    <div className="relative w-full mx-auto p-8 bg-[#F0E8FF] rounded-xl shadow-sm">
       {/* Logout Button */}
       <Button
         icon={<LogoutOutlined />}
@@ -32,7 +32,7 @@ export default function UserProfile({
       </Button>
 
       {/* Balance Display */}
-      <div className="absolute right-0 top-0 text-right  p-2 md:p-8 flex flex-col justify-center items-center md:px-[74px] bg-[#FBF9F5] rounded-bl-xl">
+      <div className="absolute right-0 top-0 text-right  p-2 md:p-8 flex flex-col justify-center items-center md:px-[74px] bg-[#fff] rounded-bl-xl">
         <div className="text-sm md:text-lg font-medium mb-1">Balance</div>
         <div className="text-base md:text-xl font-bold border md:border-2 border-black rounded-lg px-2 md:px-6 py-1 md:py-2">
           ${balance.toFixed(2)}

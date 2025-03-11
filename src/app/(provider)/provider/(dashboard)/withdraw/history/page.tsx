@@ -5,7 +5,7 @@ import React from "react";
 
 export default function History() {
   return (
-    <main className="flex flex-col md:h-screen w-full px-8 py-6 overflow-y-auto">
+    <main className="flex flex-col min-h-screen w-full px-8 py-6 overflow-y-auto">
       <DashTitle>
         <Title level={3} className="flex items-center text-2xl">
           Withdraw

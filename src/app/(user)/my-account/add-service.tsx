@@ -23,7 +23,7 @@ export default function AddService() {
   return (
     <>
       <Button
-        className="col-span-2 font-semibold"
+        className="col-span-2 font-semibold !bg-[#7849D4]"
         size="large"
         type="primary"
         onClick={showModal}
@@ -36,7 +36,7 @@ export default function AddService() {
         onCancel={handleCancel}
         title={[
           <div key={12} className="w-full pt-8">
-            <div className="w-full text-center py-2 rounded-md bg-blue-600 text-background">
+            <div className="w-full text-center py-2 rounded-md !bg-[#7849D4] text-background">
               Add new service
             </div>
           </div>,
@@ -61,7 +61,12 @@ export default function AddService() {
           <Button variant="outlined" size="large">
             Cancel
           </Button>
-          <Button size="large" variant="filled" type="primary">
+          <Button
+            size="large"
+            className="!bg-[#7849D4]"
+            variant="filled"
+            type="primary"
+          >
             Add
           </Button>
         </div>

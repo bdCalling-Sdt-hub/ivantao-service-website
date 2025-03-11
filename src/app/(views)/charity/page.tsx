@@ -10,11 +10,11 @@ export default function Page() {
       <section>
         <PartA />
       </section>
-      <div className="bg-[#BBA782] py-6 flex flex-col md:flex-row justify-center items-center gap-6 my-12 px-4 md:px-0">
+      <div className="bg-[#7849D4] py-6 flex flex-col md:flex-row justify-center items-center gap-6 my-12 px-4 md:px-0">
         {/* Responsive flex direction and padding */}
         <div className="flex flex-row justify-start items-center gap-4 text-background">
           {/* Align items center vertically */}
-          <div className="p-4 rounded-lg bg-[#D0BFA0] flex items-center justify-center">
+          <div className="p-4 rounded-lg flex items-center justify-center">
             {/* Center icon within the circle */}
             <HandHeart className="h-6 w-6" /> {/* Control icon size */}
           </div>
@@ -27,7 +27,7 @@ export default function Page() {
         </div>
         <div className="flex flex-row justify-start items-center gap-4 text-background">
           {/* Align items center vertically */}
-          <div className="p-4 rounded-lg bg-[#D0BFA0] flex items-center justify-center">
+          <div className="p-4 rounded-lg flex items-center justify-center">
             {/* Center icon within the circle */}
             <HandCoins className="h-6 w-6" /> {/* Control icon size */}
           </div>

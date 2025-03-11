@@ -43,7 +43,7 @@ export default function UPTable({
 
 function Col({ provider }: { provider?: boolean }) {
   return (
-    <div className="flex items-center py-4 text-xs sm:text-sm md:text-base font-semibold sticky top-0 bg-[#FBF9F5]">
+    <div className="flex items-center py-4 text-xs sm:text-sm md:text-base font-semibold sticky top-0">
       <div className="w-1/12 text-center">Sr. No</div>
       <div className="w-3/12 text-center">User Name</div>
       <div className="w-2/12 text-center">Email</div>
@@ -73,7 +73,7 @@ function Data({
   provider?: boolean;
 }) {
   return (
-    <div className="flex items-center py-3 text-xs sm:text-sm md:text-base gap-4 bg-background rounded-lg divide-x divide-gray-300">
+    <div className="flex items-center py-3 text-xs sm:text-sm md:text-base gap-4 rounded-lg divide-x divide-gray-300 bg-[#F0E8FF]">
       <div className="w-1/12 flex justify-center items-center font-semibold">
         {sr}.
       </div>

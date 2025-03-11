@@ -29,7 +29,7 @@ export default function Header() {
             width={1000}
             className="rounded-lg object-contain h-full"
           />
-          <div className="rounded-lg py-3 px-4 sm:py-4 sm:px-6 shadow-lg shadow-[#6161614f] w-auto absolute left-4 bottom-4 sm:left-6 sm:bottom-6 md:left-8 md:bottom-8 bg-[#FBF9F5] flex flex-row justify-between items-center space-x-4">
+          <div className="rounded-lg py-3 px-4 sm:py-4 sm:px-6 shadow-lg shadow-[#6161614f] w-auto absolute left-4 bottom-4 sm:left-6 sm:bottom-6 md:left-8 md:bottom-8 bg-[#ffffff] flex flex-row justify-between items-center space-x-4">
             <div>
               <Title level={3} className="text-lg sm:text-xl md:text-2xl">
                 26k+

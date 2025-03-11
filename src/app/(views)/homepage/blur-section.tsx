@@ -20,7 +20,7 @@ export default function BlurSection() {
         </Title>
         <Button
           href="/service/categories"
-          className="text-lg px-12 !py-6 text-[#88744F]"
+          className="text-lg px-12 !py-6 bg-[#7849D4] hover:!bg-[#57349c] !text-[#ffffff] !border-none"
           size="large"
         >
           Browse all{" "}

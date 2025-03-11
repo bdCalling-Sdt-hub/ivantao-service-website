@@ -81,7 +81,7 @@ const TransactionCard = ({
 }: {
   transaction: TransactionEntry;
 }) => (
-  <Card className="mb-4 w-full hover:shadow-md transition-shadow">
+  <Card className="mb-4 w-full hover:shadow-md transition-shadow bg-[#F0E8FF]">
     <div className="flex justify-between items-center">
       <div className="space-y-1">
         <Text className="text-sm md:text-base font-medium text-gray-800">

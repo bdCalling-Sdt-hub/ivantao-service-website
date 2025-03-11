@@ -32,7 +32,7 @@ export default function TransactionTable({ data }: { data: ListingItem[] }) {
 
 function Col() {
   return (
-    <div className="flex items-center py-4 text-xs sm:text-sm md:text-base font-semibold sticky top-0 bg-[#FBF9F5]">
+    <div className="flex items-center py-4 text-xs sm:text-sm md:text-base font-semibold sticky top-0">
       <div className="w-1/12 text-center">Sr. No</div>
       <div className="w-3/12 text-center">Service</div>
       <div className="w-2/12 text-center">Sell Details</div>
@@ -60,13 +60,13 @@ function Data({
   percAmm?: number;
 }) {
   return (
-    <div className="flex items-center py-3 text-xs sm:text-sm md:text-base gap-4 bg-background rounded-lg divide-x divide-gray-300">
+    <div className="flex items-center py-3 text-xs sm:text-sm md:text-base gap-4 bg-[#F0E8FF] rounded-lg divide-x divide-gray-300">
       <div className="w-1/12 flex justify-center items-center font-semibold">
         {sr}.
       </div>
       <div className="w-3/12 flex justify-start items-center gap-4">
         <div className="h-12 w-12 bg-gray-300 rounded-lg"></div>
-        <div className="md:text-lg font-bold text-orange-500">{service}</div>
+        <div className="md:text-lg font-bold text-[#7849D4]">{service}</div>
       </div>
       <div className="w-2/12 flex flex-col justify-center items-center font-semibold">
         <p className="text-xs sm:text-sm">{`Provider: ${pvName}`}</p>
@@ -76,7 +76,7 @@ function Data({
         ${price}
       </div>
       <div className="w-3/12 flex justify-center items-center gap-1 text-sm">
-        <span className="text-xl text-orange-500 font-semibold">
+        <span className="text-xl text-[#7849D4] font-semibold">
           +{percentage}%
         </span>
         (${percAmm?.toFixed(1)})

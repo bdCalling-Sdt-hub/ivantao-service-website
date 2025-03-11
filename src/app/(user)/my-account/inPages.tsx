@@ -30,12 +30,12 @@ export default function InPages() {
           value={activeTab}
           onChange={handleTabChange}
           size="large"
-          className="!w-full bg-[#FBF9F5]"
+          className="!w-full !bg-inherit my_prof_tabs"
           vertical={isMobile}
           block
         />
       </div>
-      <div className="pyt-12">
+      <div className="py-12">
         {/* Conditionally render content based on the active tab */}
         {activeTab === "Account Details" && <AccDet />}
         {activeTab === "Change Password" && <ChangePass />}

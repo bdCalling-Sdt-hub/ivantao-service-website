@@ -77,7 +77,7 @@ export default function Page() {
               >
                 <Upload.Dragger name="files" action="/upload.do">
                   <p className="ant-upload-drag-icon">
-                    <InboxOutlined />
+                    <InboxOutlined className="!text-[#7849D4]" />
                   </p>
                   <p className="ant-upload-text">
                     Click or drag file to this area to upload
@@ -91,7 +91,7 @@ export default function Page() {
                 type="primary"
                 htmlType="submit"
                 size="large"
-                className="w-full mt-8 text-background font-bold"
+                className="w-full mt-8 text-background !bg-[#7849D4] hover:!bg-[#5d39a5]  font-bold"
                 variant="filled"
               >
                 Submit

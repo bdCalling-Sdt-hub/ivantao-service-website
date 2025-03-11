@@ -41,7 +41,7 @@ function Data({ title, category, start, end, applicants, link }: ListingItem) {
   return (
     <div className="flex items-center py-3 text-xs sm:text-sm md:text-base gap-4 bg-background rounded-lg divide-x divide-gray-300">
       <div className="w-2/12 flex justify-center items-center font-semibold">
-        <div className="md:text-lg font-bold text-orange-500">{title}</div>
+        <div className="md:text-lg font-bold text-[#7849D4]">{title}</div>
       </div>
       <div className="w-2/12 flex justify-center items-center gap-4">
         {category}
@@ -54,7 +54,7 @@ function Data({ title, category, start, end, applicants, link }: ListingItem) {
       </div>
       <div className="w-2/12 flex justify-center items-center">
         ({applicants})
-        <Link href={link} className="underline pl-2 text-orange-400">
+        <Link href={link} className="underline pl-2 text-[#7849D4]">
           See Applicants
         </Link>
       </div>

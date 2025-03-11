@@ -49,7 +49,7 @@ export default function WorkingHrs() {
             onOk={handleOk}
             onCancel={handleCancel}
           >
-            <div className="p-2 bg-blue-500 text-xl font-bold text-background text-center rounded-lg">
+            <div className="p-2 bg-[#7849D4] text-xl font-bold text-background text-center rounded-lg">
               Weekly
             </div>
             <div className="flex flex-row justify-center items-center gap-4 flex-wrap mb-4 py-8">
@@ -62,7 +62,7 @@ export default function WorkingHrs() {
                 </Button>
               ))}
             </div>
-            <div className="p-2 bg-blue-500 text-xl font-bold text-background text-center rounded-lg">
+            <div className="p-2 bg-[#7849D4] text-xl font-bold text-background text-center rounded-lg">
               Daily
             </div>
             <div className="grid grid-cols-2 gap-6 py-4">
@@ -81,7 +81,7 @@ export default function WorkingHrs() {
                 type="primary"
                 variant="filled"
                 size="large"
-                className="col-span-4"
+                className="col-span-4 !bg-[#7849D4] hover:bg-[#50308f]"
                 onClick={handleOk}
               >
                 Save Changes
@@ -104,13 +104,13 @@ export default function WorkingHrs() {
         <div className="mb-2">
           <span className="font-medium">Daily - 10 hours</span>
         </div>
-        <Space>
+        <Space className="border-black border-2 rounded-lg overflow-visible">
           {/* Use Space for consistent spacing between buttons */}
           {dailyHours.map((hours, index) => (
             <Button
               key={index}
               size="large"
-              className="bg-background border-2 border-black text-gray-700 rounded-md px-4 py-2 text-sm font-medium hover:bg-gray-200"
+              className="bg-background shadow-none text-gray-700 rounded-md px-4 py-2 text-sm font-medium !border-none overflow-visible hover:bg-gray-200"
             >
               {hours.from} - {hours.to}
             </Button>

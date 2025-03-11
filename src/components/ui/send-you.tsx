@@ -11,7 +11,7 @@ export default function SentYou({
   return (
     <div className="p-4 flex flex-row justify-end items-end gap-4 ">
       <div className="w-2/3 md:max-w-[33.333333%] flex flex-col justify-start items-end">
-        <div className="p-2 w-full px-6 bg-[#E0F0FF] rounded-3xl rounded-br-none">
+        <div className="p-2 w-full px-6 bg-[#F0E8FF] rounded-3xl rounded-br-none">
           {message}
         </div>
         {seen ? (

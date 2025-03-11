@@ -8,10 +8,10 @@ export default function SidebarBody() {
       <div className="">
         <div className="flex justify-center items-center">
           <Image
-            src="/logo.png"
+            src="/logo_v2.png"
             height={100}
             width={100}
-            className="h-[94px] w-[94px]"
+            className="h-[64px] w-[64px] md:h-auto md:w-1/4 rounded-lg"
             alt="logo"
           />
         </div>

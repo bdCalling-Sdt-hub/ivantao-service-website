@@ -23,7 +23,7 @@ export default function ReviewMod() {
     <>
       <Button
         onClick={showModal}
-        className="!text-background bg-orange-400 hover:!bg-orange-500"
+        className="!text-background bg-[#7849D4] hover:!bg-[#553499]"
         type="primary"
       >
         <StarFilled /> Make a review
@@ -39,13 +39,13 @@ export default function ReviewMod() {
           <div className="flex justify-end items-end gap-4">
             <Button
               onClick={handleCancel}
-              className="hover:!border-red-400 hover:!text-red-500 px-6"
+              className="hover:!border-[#7849D4] hover:!text-[#7849D4] px-6"
             >
               Cancel
             </Button>
             <Button
               type="primary"
-              className="bg-orange-400 hover:!bg-orange-500 hover:!text-background px-6"
+              className="bg-[#7849D4] hover:!bg-[#59379e] hover:!text-background px-6"
               onClick={handleOk}
             >
               Submit

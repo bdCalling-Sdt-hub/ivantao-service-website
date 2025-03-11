@@ -33,7 +33,7 @@ export default function Exp() {
         {exps.map((item, index) => (
           <div
             key={item.jobTitle + index}
-            className="p-3 md:p-6 md:px-8 bg-background rounded-xl flex flex-col md:flex-row justify-between items-end md:items-center"
+            className="p-3 md:p-6 md:px-8 rounded-xl flex flex-col md:flex-row justify-between items-end md:items-center bg-[#F0E8FF]"
           >
             <div className="flex flex-col w-full md:w-auto">
               <div className="flex flex-col md:flex-row justify-start items-start gap-2 md:gap-4">

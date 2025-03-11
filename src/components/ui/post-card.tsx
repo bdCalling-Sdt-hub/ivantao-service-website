@@ -107,7 +107,7 @@ export default function PostCard({
           <Form.Item>
             <Button
               size="large"
-              className="w-full bg-[#88744F] hover:!bg-[#64563b] !text-background !border-none"
+              className="w-full bg-[#7849D4] hover:!bg-[#58369c] !text-background !border-none"
               onClick={handleOk}
             >
               Send

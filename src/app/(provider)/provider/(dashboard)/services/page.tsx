@@ -29,7 +29,7 @@ export default function Page() {
         <div className="">
           <Button
             href="/provider/services/add"
-            className="bg-[#D5C19C] hover:!bg-[#9c8c6e] hover:!text-background font-bold px- border-none"
+            className="bg-[#7849D4] hover:!bg-[#7849D4] !text-background font-bold px-8 border-none"
             size="large"
           >
             + Add new

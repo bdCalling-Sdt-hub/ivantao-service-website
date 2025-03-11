@@ -5,7 +5,7 @@ import React from "react";
 
 export default function User() {
   return (
-    <div className="py-2 px-4 bg-[#F7F3EB] rounded-xl flex flex-row justify-between w-full">
+    <div className="py-2 px-4 bg-[#F0E8FF] rounded-xl flex flex-row justify-between w-full">
       <Link href="/provider/profile">
         <div className="flex flex-row justify-start items-center gap-2 text-lg font-semibold">
           <Avatar />

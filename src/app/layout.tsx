@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ReactLenis root>
-        <body className={`antialiased bg-[#FBF9F5] overflow-x-hidden`}>
+        <body className={`antialiased bg-[#FFFFFF] overflow-x-hidden`}>
           <App>{children}</App>
         </body>
       </ReactLenis>

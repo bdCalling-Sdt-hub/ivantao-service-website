@@ -23,7 +23,7 @@ export default function CongModal() {
         onClick={showModal}
         type="primary"
         htmlType="submit"
-        className="w-full bg-[#D5C19C] hover:!bg-[#9e8f73] px-8 py-6"
+        className="w-full bg-[#7849D4] hover:!bg-[#5b38a1] px-8 py-6"
         size="large"
       >
         Pay $29.00
@@ -49,7 +49,7 @@ export default function CongModal() {
             href="/service/categories/categories/cleaning/order-summery"
             size="large"
             type="primary"
-            className="bg-[#D5C19C] hover:!bg-[#a5967a] text-black !border-none w-full text-xl font-semibold py-6"
+            className="bg-[#7849D4] hover:!bg-[#57349c] !text-background !border-none w-full text-xl font-semibold py-6"
           >
             Done
           </Button>

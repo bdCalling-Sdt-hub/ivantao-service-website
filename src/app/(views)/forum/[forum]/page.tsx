@@ -36,7 +36,9 @@ export default function Page({ params }: { params: { forum: string } }) {
           >
             <ChevronLeft />
           </Button>
-          <Avatar size="large" />
+          <div className="">
+            <Avatar size="large" className="!size-9 aspect-square" />
+          </div>
           <Input
             size="large"
             className="bg-gray-200 !border-none"
@@ -78,7 +80,7 @@ export default function Page({ params }: { params: { forum: string } }) {
           <Button
             onClick={showModal}
             size="large"
-            className="bg-[#BBA782] hover:!bg-[#918062] !text-background !border-none"
+            className="bg-[#7849D4] hover:!bg-[#5d39a5] !text-background !border-none"
           >
             Create post
           </Button>

@@ -29,7 +29,7 @@ export default function ListingTable({ data }: { data: ListingItem[] }) {
 
 function Col() {
   return (
-    <div className="flex items-center py-2 text-xs sm:text-sm md:text-base font-semibold bg-[#FBF9F5] sticky top-0">
+    <div className="flex items-center py-2 text-xs sm:text-sm md:text-base font-semibold sticky top-0">
       <div className="w-3/12 text-center">Provider Name</div>
       <div className="w-3/12 text-center">Service</div>
       <div className="w-2/12 text-center">Categories</div>
@@ -51,7 +51,7 @@ function Data({
   date?: string;
 }) {
   return (
-    <div className="flex items-center py-3 text-xs sm:text-sm md:text-base bg-background rounded-lg divide-x divide-gray-300">
+    <div className="flex items-center py-3 text-xs sm:text-sm md:text-base rounded-lg divide-x divide-gray-300 bg-[#F0E8FF]">
       <div className="w-3/12 flex justify-center items-center gap-3">
         <div className="size-6 md:size-8 bg-gray-300 rounded-lg"></div>
         <div className="truncate">{pvName}</div>

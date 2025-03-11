@@ -30,7 +30,7 @@ export default function SecB() {
       <div className="">
         <Title>
           Let’s Talk About{" "}
-          <span className="text-[#88744F]">
+          <span className="text-[#7849D4]">
             Your <br /> Next Investment
           </span>
         </Title>
@@ -60,7 +60,7 @@ export default function SecB() {
         </div>
         <Input size="large" placeholder="Email" />
         <Button
-          className="bg-[#BBA782] !text-background !rounded-none !border-none px-8 py-6 mt-8"
+          className="bg-[#7849D4] hover:bg-[#5a389e] !text-background !rounded-none !border-none px-8 py-6 mt-8"
           size="large"
         >
           Subscribe

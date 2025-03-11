@@ -26,7 +26,7 @@ export default function Page() {
         </video>
       </div>
       <div className="py-12">
-        <div className="bg-[#BBA782] py-8 text-sm md:text-lg font-semibold text-background text-center">
+        <div className="bg-[#7849D4] py-8 text-sm md:text-lg font-semibold text-background text-center">
           Long term sustained, Double-digit growth <RiseOutlined />
         </div>
         <div className="py-8 flex flex-row justify-center items-center">

@@ -101,8 +101,8 @@ export default function AddForm() {
           rules={[{ required: true, message: "Please enter the image URL" }]}
         >
           <Dragger {...props} className="bg-transparent">
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
+            <p className="ant-upload-drag-icon !text-[#7849D4]">
+              <InboxOutlined className="" />
             </p>
             <p className="ant-upload-text">
               Click or drag file to this area to upload
@@ -147,7 +147,7 @@ export default function AddForm() {
             type="primary"
             htmlType="submit"
             size="large"
-            className="w-full mt-8 bg-[#DAC7A0] text-black font-bold hover:!bg-[#C4A77D]"
+            className="w-full mt-8 bg-[#7849D4] text-background font-bold hover:!bg-[#5d38a7]"
             variant="filled"
           >
             Add Item

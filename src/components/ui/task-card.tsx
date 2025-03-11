@@ -23,7 +23,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   price = 550.0,
 }) => {
   return (
-    <div className="w-full bg-white rounded-xl shadow-sm p-4 md:p-6">
+    <div className="w-full bg-white rounded-xl shadow-md p-4 md:p-6">
       <div className="flex flex-col md:flex-row md:justify-between ">
         {/* Title Section */}
         <div className="px-4 py-2 md:py-4 min-w-[200px] text-center md:text-left">

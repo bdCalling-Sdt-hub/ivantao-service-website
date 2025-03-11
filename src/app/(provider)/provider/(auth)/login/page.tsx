@@ -46,7 +46,11 @@ export default function Page() {
                 { required: true, message: "Please input your username!" },
               ]}
             >
-              <Input size="large" placeholder="abidhasan@gmail.com" />
+              <Input
+                size="large"
+                placeholder="abidhasan@gmail.com"
+                className="bg-[#F0E8FF]"
+              />
             </Form.Item>
 
             <Form.Item<FieldType>
@@ -56,7 +60,11 @@ export default function Page() {
                 { required: true, message: "Please input your password!" },
               ]}
             >
-              <Input.Password size="large" placeholder="*********" />
+              <Input.Password
+                size="large"
+                placeholder="*********"
+                className="bg-[#F0E8FF]"
+              />
             </Form.Item>
 
             <div className="flex flex-row justify-between items-center">
@@ -68,8 +76,8 @@ export default function Page() {
                 <Checkbox className="text-lg">Remember me</Checkbox>
               </Form.Item>
               <Link
-                href="/provider/forgot"
-                className="text-[#D93D04] font-bold text-base"
+                href="/provider/forgot-pass"
+                className="text-[#7849D4] font-bold text-base"
               >
                 Forgot Password?
               </Link>
@@ -80,7 +88,7 @@ export default function Page() {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  className="w-full bg-[#F27405] px-8 py-6"
+                  className="w-full bg-[#7849D4] px-8 py-6"
                   size="large"
                 >
                   Sign in

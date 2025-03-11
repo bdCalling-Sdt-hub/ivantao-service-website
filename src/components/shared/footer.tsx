@@ -44,7 +44,7 @@ const socialMediaLinks: iconLink[] = [
     icon: (
       <svg
         className="h-6 w-6"
-        fill="currentColor"
+        fill="#ffffff"
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
@@ -62,7 +62,7 @@ const socialMediaLinks: iconLink[] = [
     icon: (
       <svg
         className="h-6 w-6"
-        fill="currentColor"
+        fill="#ffffff"
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
@@ -80,7 +80,7 @@ const socialMediaLinks: iconLink[] = [
 
 export default function Footer() {
   return (
-    <footer className="w-full pt-12 bg-white">
+    <footer className="w-full pt-12 bg-[#7849D4] !text-background">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -93,12 +93,12 @@ export default function Footer() {
                 className="w-auto h-auto"
               />
             </Link>
-            <address className="not-italic text-gray-600">
+            <address className="not-italic !text-background">
               <p>Street name, Area address</p>
               <p>City name, Country</p>
             </address>
             <div className="">
-              <div className="flex items-center gap-2 text-gray-600">
+              <div className="flex items-center gap-2 !text-background">
                 <Link
                   href="/contact"
                   className="hover:underline font-bold !no-underline hover:text-black"
@@ -114,7 +114,10 @@ export default function Footer() {
             <ul className="space-y-2">
               {categories.map(({ name, href }) => (
                 <li key={name}>
-                  <Link href={href} className="text-gray-600 hover:underline">
+                  <Link
+                    href={href}
+                    className="!text-background hover:underline"
+                  >
                     {name}
                   </Link>
                 </li>
@@ -127,7 +130,10 @@ export default function Footer() {
             <ul className="space-y-2">
               {companyLinks.map(({ name, href }) => (
                 <li key={name}>
-                  <Link href={href} className="text-gray-600 hover:underline">
+                  <Link
+                    href={href}
+                    className="!text-background hover:underline"
+                  >
                     {name}
                   </Link>
                 </li>
@@ -151,7 +157,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="py-4 mt-12 text-center text-gray-600 font-bold">
+        <div className="py-4 mt-12 text-center !text-background font-bold">
           <p>© Tawun 2024 | All Rights Reserved</p>
         </div>
       </div>

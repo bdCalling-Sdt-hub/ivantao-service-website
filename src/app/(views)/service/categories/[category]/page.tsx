@@ -61,9 +61,9 @@ export default async function Page({
         cat={category}
         // catSel={categorySelection}
       />
-      <Shop />
+      <Shop title={""} />
       <div className="px-[7%] flex flex-row justify-center items-center">
-        <Button className="w-1/3 py-6 border-[#D5C19C] font-bold" size="large">
+        <Button className="w-1/3 py-6 border-[#7849D4] font-bold" size="large">
           Load more
         </Button>
       </div>

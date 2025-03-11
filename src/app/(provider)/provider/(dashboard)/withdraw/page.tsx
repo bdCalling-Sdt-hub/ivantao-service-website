@@ -16,7 +16,7 @@ export default function Page() {
 
   return (
     <>
-      <main className="flex flex-col md:h-screen w-full px-2 md:px-8 py-6 overflow-y-auto">
+      <main className="flex flex-col min-h-screen w-full px-2 md:px-8 py-6 overflow-y-auto">
         <DashTitle>
           <Title level={3} className="flex items-center text-2xl">
             Withdraw
@@ -81,7 +81,7 @@ export default function Page() {
                 type="primary"
                 htmlType="submit"
                 size="large"
-                className="mt-8 py-6 w-1/2 text-lg px-8 bg-[#C5AD81] text-black font-bold hover:!bg-[#C4A77D]"
+                className="mt-8 py-6 w-1/2 text-lg px-8 bg-[#7849D4] hover:!bg-[#533392] !text-background font-bold"
               >
                 Withdraw
               </Button>

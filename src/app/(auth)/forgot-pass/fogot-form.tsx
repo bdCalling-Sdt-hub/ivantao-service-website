@@ -34,7 +34,7 @@ export default function ForgotForm() {
         <Input
           prefix={<MailOutlined />}
           size="large"
-          className="bg-[#F2ECE1]"
+          className="bg-[#F0E8FF]"
           placeholder="Please enter your email"
         />
       </Form.Item>
@@ -43,8 +43,8 @@ export default function ForgotForm() {
           type="primary"
           htmlType="submit"
           size="large"
-          className="w-full mt-8 bg-[#DAC7A0] text-black font-bold 
-             hover:!bg-[#C4A77D]"
+          className="w-full mt-8 bg-[#7849D4] text-background font-bold 
+             hover:!bg-[#583799]"
           variant="filled"
         >
           Enter

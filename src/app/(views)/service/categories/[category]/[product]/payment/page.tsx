@@ -35,7 +35,7 @@ export default function Page() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="h-min rounded-xl bg-background p-4 shadow-md">
           <Image
-            src="/images/service/1.jfif"
+            src="/images/service/1.webp"
             height={1600}
             width={800}
             alt="thumbnail"

@@ -46,7 +46,7 @@ export default function Reviews() {
       <div className="w-full flex flex-row justify-center items-center">
         <Button
           variant="outlined"
-          className="border-[#DAC7A0] border-2 mt-8 mx-auto w-4/5 font-semibold"
+          className="border-[#7849D4] border-2 mt-8 mx-auto w-4/5 font-semibold"
           size="large"
         >
           Load More

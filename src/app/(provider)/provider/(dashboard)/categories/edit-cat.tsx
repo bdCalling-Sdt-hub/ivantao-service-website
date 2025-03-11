@@ -44,7 +44,7 @@ export default function EditCat() {
           >
             <Button
               size="large"
-              className="w-full bg-[#E9DABB] hover:!bg-[#b8aa8f] hover:!text-background border-none"
+              className="w-full bg-[#7849D4] hover:!bg-[#533392] !text-background border-none"
             >
               Save
             </Button>

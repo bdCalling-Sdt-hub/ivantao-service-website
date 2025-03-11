@@ -14,12 +14,12 @@ export default function RecommendParent() {
         <Title className="!m-0 !text-base md:!text-2xl" level={3}>
           Recommended for you
         </Title>
-        <div className="hidden lg:flex flex-row justify-end items-center gap-2">
-          <Button className="rounded-full h-9 w-9 border-2 border-[#D5C19C]">
+        <div className="hidden lg:hidden flex-row justify-end items-center gap-2">
+          <Button className="rounded-full h-9 w-9 border-2 border-[#7849D4] ">
             <CaretLeftOutlined />
           </Button>
-          <Button className="rounded-full h-9 w-9 bg-[#D5C19C]">
-            <CaretRightOutlined />
+          <Button className="rounded-full h-9 w-9 bg-[#7849D4] ">
+            <CaretRightOutlined className="text-background" />
           </Button>
         </div>
         {/* For mobile, switch to toggle recommendations */}

@@ -91,7 +91,7 @@ export default function SideMenu() {
   return (
     <Menu
       onClick={onClick}
-      selectedKeys={[current]} // Use selectedKeys for initial and dynamic selection
+      selectedKeys={[current]}
       mode="inline"
       items={items}
       className="w-full mt-4"

@@ -63,6 +63,7 @@ export default function RootLayout({
 
       {/* Content Area */}
       <Content
+        className="!bg-background"
         style={{
           marginLeft: isMobile ? 0 : 250, // No margin on mobile
           transition: "margin-left 0.3s ease",

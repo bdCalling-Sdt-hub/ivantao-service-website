@@ -6,14 +6,14 @@ export default function SectionB() {
   return (
     <section className="py-20 px-4 md:px-0 grid grid-cols-1 md:grid-cols-2 gap-8">
       <div className="grid grid-rows-2 gap-8">
-        <div className="p-6 bg-[#F7F3EB] rounded-2xl flex flex-col justify-start items-start gap-8">
+        <div className="p-6 bg-[#7849D4] rounded-2xl flex flex-col justify-start items-start gap-8">
           <Button
             className="text-black bg-background font-bold py-6 px-8 !border-none w-full md:w-auto"
             size="large"
           >
             Our Vision
           </Button>
-          <p className="text-[#888888] text-sm md:text-base">
+          <p className="text-background text-sm md:text-base">
             {" "}
             {/* Added text size responsiveness */}
             Lorem ipsum dolor sit amet consectetur. Molestie nibh nibh porttitor
@@ -28,14 +28,14 @@ export default function SectionB() {
             quis tellus leo augue donec in quam sem.
           </p>
         </div>
-        <div className="p-6 bg-[#F7F3EB] rounded-2xl flex flex-col justify-start items-start gap-8">
+        <div className="p-6 bg-[#7849D4] rounded-2xl flex flex-col justify-start items-start gap-8">
           <Button
             className="text-black bg-background font-bold py-6 px-8 !border-none w-full md:w-auto"
             size="large"
           >
             Our Mission
           </Button>
-          <p className="text-[#888888] text-sm md:text-base">
+          <p className="text-background text-sm md:text-base">
             {" "}
             {/* Added text size responsiveness */}
             Lorem ipsum dolor sit amet consectetur. Molestie nibh nibh porttitor
@@ -79,7 +79,7 @@ export default function SectionB() {
             {" "}
             {/* Center the button */}
             <Button
-              className="bg-[#D5C19C] !border-none hover:!bg-[#a8987b] text-base md:text-lg py-4 md:py-6 px-8 md:px-16"
+              className="bg-[#7849D4] !border-none text-background hover:!bg-[#6640b1] text-base md:text-lg py-4 md:py-6 px-8 md:px-16"
               size="large"
               href="/service/categories"
             >

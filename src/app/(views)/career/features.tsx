@@ -17,10 +17,15 @@ export default function Features() {
   ];
   return (
     <section className="py-16">
-      <div className="container mx-auto px-4">
+      <div className="">
         <div className="text-center mb-16">
-          <Title level={2}>TAWUN is where the future works</Title>
-          <Paragraph className="text-gray-600 max-w-2xl mx-auto">
+          <Title
+            level={2}
+            className="w-full text-center bg-[#7849D4] !text-background py-4"
+          >
+            TAWUN is where the future works
+          </Title>
+          <Paragraph className="text-gray-600 max-w-4xl mx-auto">
             Lorem ipsum dolor sit amet consectetur. At aliquam tristique
             maecenas neque non sit id ultricies vitae. Gravida nec mi maecenas
             dolor gravida hac libero. Quis quis diam sem accumsan est sed enim.
@@ -28,27 +33,29 @@ export default function Features() {
             condimentum nec pellentesque mi turpis nunc.
           </Paragraph>
         </div>
-        <Row gutter={[32, 64]}>
-          {features.map((item) => (
-            <Col xs={24} md={8} key={item.title}>
-              <div className="text-center shadow-md relative rounded-xl bg-background">
-                <div
-                  className="absolute -top-8 left-1/2 -translate-x-1/2 p-4 rounded-xl h-16 w-16 shadow-md shadow-[#8b8b8ba1] flex justify-center items-center"
-                  style={{ backgroundColor: item.color }}
-                >
-                  <item.icon className="w-8 h-8 text-gray-700" />
+        <div className="block container mx-auto px-4">
+          <Row gutter={[32, 64]} className="">
+            {features.map((item) => (
+              <Col xs={24} md={8} key={item.title}>
+                <div className="text-center shadow-md relative rounded-xl bg-background">
+                  <div
+                    className="absolute -top-8 left-1/2 -translate-x-1/2 p-4 rounded-xl h-16 w-16 shadow-md shadow-[#8b8b8ba1] flex justify-center items-center"
+                    style={{ backgroundColor: item.color }}
+                  >
+                    <item.icon className="w-8 h-8 text-gray-700" />
+                  </div>
+                  <div className="p-6 py-12">
+                    <Title level={3}>{item.title}</Title>
+                    <Paragraph className="text-gray-600">
+                      Lorem ipsum dolor sit amet consectetur. At aliquam
+                      tristique maecenas.
+                    </Paragraph>
+                  </div>
                 </div>
-                <div className="p-6 py-12">
-                  <Title level={3}>{item.title}</Title>
-                  <Paragraph className="text-gray-600">
-                    Lorem ipsum dolor sit amet consectetur. At aliquam tristique
-                    maecenas.
-                  </Paragraph>
-                </div>
-              </div>
-            </Col>
-          ))}
-        </Row>
+              </Col>
+            ))}
+          </Row>
+        </div>
       </div>
     </section>
   );

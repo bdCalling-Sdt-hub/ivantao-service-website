@@ -24,7 +24,7 @@ export default function Hero() {
             <Space>
               <div className="flex flex-col justify-start gap-2">
                 <Button
-                  className="px-12 py-6 bg-[#88744F] hover:!bg-[#726244] font-semibold"
+                  className="px-12 py-6 bg-[#7849D4] hover:!bg-[#5b39a0] font-semibold"
                   size="large"
                   type="primary"
                 >

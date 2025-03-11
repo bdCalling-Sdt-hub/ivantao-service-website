@@ -49,7 +49,7 @@ export default function Page() {
               key={index}
               className="shadow-md p-6 md:p-8 rounded-xl bg-background w-full md:w-auto" // Added width responsiveness
             >
-              <div className="p-4 flex justify-center items-center text-2xl md:text-3xl text-[#A28E69]">
+              <div className="p-4 flex justify-center items-center text-2xl md:text-3xl text-[#7849D4]">
                 {" "}
                 {/* Added responsive icon size */}
                 {item.icon}

@@ -73,7 +73,7 @@ export default function Page() {
         <CareerTable data={data} />
         <div className="pt-8">
           <Button
-            className="w-full md:w-[300px] bg-[#B7A481] hover:!bg-[#8d7d60] !border-none !text-background"
+            className="w-full md:w-[300px] bg-[#7849D4] hover:!bg-[#533392] !border-none !text-background"
             size="large"
           >
             + Add new

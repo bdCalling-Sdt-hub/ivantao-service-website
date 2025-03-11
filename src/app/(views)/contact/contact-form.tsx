@@ -68,7 +68,7 @@ export default function ContactForm() {
         <Button
           htmlType="submit"
           size="large"
-          className="bg-[#D2BC9B] hover:!bg-[#c5af8f] border-none font-semibold px-12 md:px-20 rounded-md h-12 text-black hover:!text-[#6b5e49] w-full md:w-auto" // Added responsive button width
+          className="bg-[#7849D4] hover:!bg-[#543396] border-none font-semibold px-12 md:px-20 rounded-md h-12 !text-background w-full md:w-auto" // Added responsive button width
         >
           Send
         </Button>

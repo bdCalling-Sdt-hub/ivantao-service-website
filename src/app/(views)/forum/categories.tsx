@@ -7,52 +7,52 @@ import React from "react";
 export default function Categories() {
   const catagories = [
     {
-      src: "/images/categories/household.jfif",
+      src: "/images/categories/household.webp",
       title: "Cleaning like a pro",
       posts: "23 posts",
     },
     {
-      src: "/images/categories/household.jfif",
+      src: "/images/categories/household.webp",
       title: "Cleaning like a pro",
       posts: "23 posts",
     },
     {
-      src: "/images/categories/household.jfif",
+      src: "/images/categories/household.webp",
       title: "Cleaning like a pro",
       posts: "23 posts",
     },
     {
-      src: "/images/categories/household.jfif",
+      src: "/images/categories/household.webp",
       title: "Cleaning like a pro",
       posts: "23 posts",
     },
     {
-      src: "/images/categories/household.jfif",
+      src: "/images/categories/household.webp",
       title: "Cleaning like a pro",
       posts: "23 posts",
     },
     {
-      src: "/images/categories/household.jfif",
+      src: "/images/categories/household.webp",
       title: "Cleaning like a pro",
       posts: "23 posts",
     },
     {
-      src: "/images/categories/household.jfif",
+      src: "/images/categories/household.webp",
       title: "Cleaning like a pro",
       posts: "23 posts",
     },
     {
-      src: "/images/categories/household.jfif",
+      src: "/images/categories/household.webp",
       title: "Cleaning like a pro",
       posts: "23 posts",
     },
     {
-      src: "/images/categories/household.jfif",
+      src: "/images/categories/household.webp",
       title: "Cleaning like a pro",
       posts: "23 posts",
     },
     {
-      src: "/images/categories/household.jfif",
+      src: "/images/categories/household.webp",
       title: "Cleaning like a pro",
       posts: "23 posts",
     },

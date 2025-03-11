@@ -9,7 +9,7 @@ export default function HeaderClient() {
     <div className="w-full">
       <div className="flex flex-col justify-start items-start gap-6 pb-20">
         <Button
-          className="w-full md:w-1/2 py-6 bg-[#88744F] hover:!bg-[#726244] font-semibold"
+          className="w-full md:w-1/2 py-6 bg-[#7849D4] hover:!bg-[#543496] font-semibold"
           size="large"
           type="primary"
           href="/register?type=provider"
@@ -17,7 +17,7 @@ export default function HeaderClient() {
           Become a service provider
         </Button>
         <Button
-          className="w-full md:w-1/2 py-6 hover:!text-[#88744F] hover:!border-[#88744F] font-semibold"
+          className="w-full md:w-1/2 py-6 hover:!text-[#7849D4] hover:!border-[#7849D4] font-semibold"
           size="large"
           href="/register?type=user"
         >

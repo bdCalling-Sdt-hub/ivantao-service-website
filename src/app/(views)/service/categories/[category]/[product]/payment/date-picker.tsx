@@ -43,7 +43,7 @@ const DatePicker = () => {
           ]}
           value={activeTab}
           onChange={(val) => setActiveTab(val)} // No need for "as string" with useState
-          className="w-full mb-4 bg-[rgb(203,186,159)] p-1 payement-tabs" // Add flex for even distribution
+          className="w-full mb-4 bg-[#7849D4] p-1 payement-tabs" // Add flex for even distribution
         />
       </div>
 

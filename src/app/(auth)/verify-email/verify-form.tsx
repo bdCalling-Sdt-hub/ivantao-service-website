@@ -29,9 +29,9 @@ export default function VerifyForm() {
           ]}
         >
           <Input.OTP
-            length={4}
+            length={6}
             size="large"
-            style={{ color: "#DAC7A0" }}
+            style={{ color: "#F0E8FF" }}
             variant="filled"
           />
         </Form.Item>
@@ -42,12 +42,12 @@ export default function VerifyForm() {
           type="primary"
           htmlType="submit"
           size="large"
-          className="w-full mt-8 bg-[#DAC7A0] text-black font-bold hover:!bg-[#C4A77D]"
+          className="w-full mt-8 bg-[#7849D4] text-background font-bold hover:!bg-[#58369c]"
         >
           Enter
         </Button>
       </Form.Item>
-      <div className="underline text-[#DAC7A0] text-end">
+      <div className="underline text-[#7849D4] text-end">
         <span className="cursor-pointer hover:text-black transition-colors">
           Send Again
         </span>

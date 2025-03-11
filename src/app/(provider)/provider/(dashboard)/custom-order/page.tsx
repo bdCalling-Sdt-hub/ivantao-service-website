@@ -53,7 +53,7 @@ export default function Page() {
       dataIndex: "status",
       key: "status",
       render: (text) => (
-        <div className="px-4 py-2 bg-[#FEF2F2] w-min rounded-full">{text}</div>
+        <div className="px-4 py-2 bg-[#F5F1FC] w-min rounded-full">{text}</div>
       ),
     },
     {
@@ -158,7 +158,7 @@ export default function Page() {
         </p>
       </DashTitle>
       <div className="">
-        <div className="w-full py-2 px-4 bg-[#BBA782] text-background text-base rounded-t-lg">
+        <div className="w-full py-2 px-4 bg-[#7849D4] !text-background text-base rounded-t-lg">
           Custom offers
         </div>
         <Table columns={columns} dataSource={data} />
