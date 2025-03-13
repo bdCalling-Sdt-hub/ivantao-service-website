@@ -95,7 +95,7 @@ export default function Navbar({ user }: NavbarProps) {
       <div
         className={`${
           isMobile && !isMenuOpen ? "hidden" : "flex"
-        } flex-col lg:flex-row justify-between flex-1 items-center w-full lg:w-auto bg-[#7849D4]  absolute lg:relative top-[94px] left-0 lg:top-0 `}
+        } flex-col lg:flex-row justify-between flex-1 items-center w-full lg:w-auto bg-[#7849D4]  absolute lg:relative top-[94px] lg:top-0 `}
       >
         <ul className="flex flex-col gap-2 lg:flex-row justify-start items-center space-y-4 lg:space-y-0 md:space-x-2 lg:space-x-2 py-4 lg:py-0 text-sm md:text-lg w-full lg:w-auto pl-0 lg:pl-4 xl:pl-8">
           {navLinks?.map((item) => (
@@ -143,7 +143,7 @@ export default function Navbar({ user }: NavbarProps) {
             {user && (
               <div className="">
                 <Button
-                  className="font-semibold !bg-[#7849D4] hover:bg-[#50308f] border-none !text-[#7849D4]"
+                  className="font-semibold bg-[#FFFFFF] hover:!bg-[#e9d7e4] border-none !text-[#7849D4]"
                   size="large"
                   href="/my-account"
                 >
