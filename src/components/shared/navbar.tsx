@@ -143,7 +143,7 @@ export default function Navbar({ user }: NavbarProps) {
             {user && (
               <div className="">
                 <Button
-                  className="font-semibold bg-[#FFFFFF] hover:!bg-[#e9d7e4] border-none !text-[#7849D4]"
+                  className="font-semibold !bg-[#7849D4] hover:bg-[#50308f] border-none !text-[#7849D4]"
                   size="large"
                   href="/my-account"
                 >

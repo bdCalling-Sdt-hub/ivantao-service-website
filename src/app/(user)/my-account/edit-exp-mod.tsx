@@ -38,7 +38,7 @@ export default function EditExpMod() {
           >
             <Button
               size="large"
-              className="w-full bg-[#E9DABB] hover:!bg-[#b8aa8f] hover:!text-background border-none"
+              className="w-full !bg-[#7849D4] hover:bg-[#50308f] !text-background border-none"
             >
               Save
             </Button>
