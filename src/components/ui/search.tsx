@@ -4,15 +4,20 @@ import { Button } from "antd";
 import { SearchIcon } from "lucide-react";
 import React from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Search({
   func,
+  className,
+  ...props
 }: {
   func?: React.Dispatch<React.SetStateAction<boolean>>;
+  className?: string;
 }) {
   return (
-    <div className="px-6 lg:px-0 lg:pl-8 w-full flex flex-row justify-between items-center">
-      <div className="w-full md:w-full px-4 py-2 rounded-full flex flex-row justify-between items-center bg-[#F1F1F1]">
+    <div
+      className={`px-6 lg:px-0 lg:pl-8 w-full flex flex-row justify-between items-center ${className}`}
+      {...props}
+    >
+      <div className="w-full md:w-full px-4 py-2 rounded-full flex flex-row justify-between items-center bg-[#F0E8FF]">
         <input
           placeholder="Search"
           className="w-full outline-none bg-transparent"

@@ -69,12 +69,12 @@ export default function Navbar({ user }: NavbarProps) {
   };
   if (isLoading) {
     return (
-      <div className="sticky top-0 left-0 h-[94px] w-full lg:px-6 xl:px-[7%] flex flex-col lg:flex-row justify-between items-center bg-[#7849D4] z-20"></div>
+      <div className="sticky top-0 left-0 h-[94px] w-full lg:px-6 xl:px-[7%] flex flex-row justify-between items-center bg-[#7849D4] z-20"></div>
     );
   }
 
   return (
-    <nav className="sticky top-0 left-0 h-[94px] w-full sm:px-4 lg:px-6 xl:px-[7%] flex flex-col lg:flex-row justify-between items-center bg-[#7849D4] z-20">
+    <nav className="sticky top-0 left-0 h-[94px] w-full sm:px-4 lg:px-6 xl:px-[7%] flex flex-row justify-between items-center bg-[#7849D4] z-20">
       <div className="flex px-4 md:px-0 justify-between items-center w-full lg:w-auto py-4 lg:py-0">
         <Link href="/">
           <Image
@@ -85,6 +85,7 @@ export default function Navbar({ user }: NavbarProps) {
             alt="logo"
           />
         </Link>
+        <Search className="flex lg:hidden" />
         {isMobile && (
           <button onClick={toggleMenu} className="text-2xl">
             {isMenuOpen ? <CloseOutlined /> : <MenuOutlined />}
@@ -94,7 +95,7 @@ export default function Navbar({ user }: NavbarProps) {
       <div
         className={`${
           isMobile && !isMenuOpen ? "hidden" : "flex"
-        } flex-col lg:flex-row justify-between flex-1 items-center w-full lg:w-auto bg-[#7849D4]`}
+        } flex-col lg:flex-row justify-between flex-1 items-center w-full lg:w-auto bg-[#7849D4]  absolute lg:relative top-[94px] left-0 lg:top-0 `}
       >
         <ul className="flex flex-col gap-2 lg:flex-row justify-start items-center space-y-4 lg:space-y-0 md:space-x-2 lg:space-x-2 py-4 lg:py-0 text-sm md:text-lg w-full lg:w-auto pl-0 lg:pl-4 xl:pl-8">
           {navLinks?.map((item) => (
@@ -116,7 +117,7 @@ export default function Navbar({ user }: NavbarProps) {
         </ul>
 
         <div className="flex flex-col h-full px-0 md:px-0 gap-2 lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4 py-4 md:flex-grow lg:py-0 w-full lg:w-auto">
-          <Search />
+          <Search className="hidden lg:!flex" />
           <div className="flex flex-row justify-between md:justify-end space-x-4 w-full px-4 md:px-0 md:w-min items-center">
             <div className="flex flex-row items-center justify-start text-2xl space-x-4">
               <span className="cursor-pointer hover:scale-110 w-[38px] h-[38px] rounded-lg flex flex-row justify-center items-center text-background">
