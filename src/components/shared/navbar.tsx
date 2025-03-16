@@ -12,10 +12,7 @@ import Language from "@/app/icons/Language";
 import Chat from "@/app/icons/chat";
 import { BellIcon } from "lucide-react";
 import Title from "antd/es/typography/Title";
-
-interface UserType {
-  name: string;
-}
+import { UserType } from "@/types/userType";
 
 interface NavbarProps {
   user?: UserType;
@@ -147,7 +144,7 @@ export default function Navbar({ user }: NavbarProps) {
                   size="large"
                   href="/my-account"
                 >
-                  <Avatar /> {user.name}
+                  <Avatar /> {user.full_name}
                 </Button>
               </div>
             )}

@@ -1,7 +1,8 @@
 "use client";
+import { Finalizer, postFetcher } from "@/lib/simplifier";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Form, FormProps } from "antd";
-
+import { App, Button, Form, FormProps } from "antd";
+import { useCookies } from "react-cookie";
 import Input from "antd/es/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -13,10 +14,38 @@ type FieldType = {
 };
 
 export default function LoginForm({ user }: { user: string }) {
-  const navig = useRouter();
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
-    navig.push("/");
+  const [form] = Form.useForm();
+  const { message } = App.useApp();
+  const nav = useRouter();
+  const [, setPookie] = useCookies(["raven"]);
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    try {
+      const res = await postFetcher({
+        link: "/auth/login",
+        meth: "POST",
+        data: { email: values.email, password: values.password },
+      });
+      if (!res.status) {
+        form.setFields([
+          {
+            name: "password",
+            errors: [res.message],
+          },
+        ]);
+        return;
+      }
+      Finalizer(message, res.status, res.message);
+      const token = res.access_token;
+      try {
+        setPookie("raven", token);
+        nav.push("/");
+      } catch (error) {
+        console.error(error);
+        message.error("Something went wrong when trying to set token");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -26,6 +55,7 @@ export default function LoginForm({ user }: { user: string }) {
   };
   return (
     <Form
+      form={form}
       name="login"
       layout="vertical"
       initialValues={{ remember: true }}

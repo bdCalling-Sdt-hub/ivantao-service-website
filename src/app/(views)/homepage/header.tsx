@@ -1,7 +1,6 @@
 import Title from "antd/es/typography/Title";
 import HeaderClient from "./header-client";
 import Image from "next/image";
-
 export default function Header() {
   return (
     <header className="min-h-[calc(100dvh-94px)] w-full p-4 sm:p-6 md:p-8 lg:px-[7%]">
