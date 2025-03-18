@@ -8,7 +8,7 @@ export default function Page() {
         <div className="text-center pb-12">
           <Title>Verify Email</Title>
           <p className="text-[#6D6D6D]">
-            We have sent a 4 digits code on your email
+            We have sent a 6 digits code on your email
           </p>
         </div>
         <VerifyForm />

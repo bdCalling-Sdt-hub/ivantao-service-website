@@ -1,10 +1,21 @@
+"use server";
 import Title from "antd/es/typography/Title";
 import React from "react";
 import { services } from "./serviceData";
 import Image from "next/image";
 import Link from "next/link";
+import { getFetcher } from "@/lib/simplifier";
+import { cookies } from "next/headers";
 
-export default function Page() {
+export default async function Page() {
+  const pookies = cookies();
+  const token = pookies.get("raven");
+  const call = await getFetcher({
+    link: "/get-all-services?sort=108",
+    token: token?.value,
+  });
+  console.log(call);
+
   return (
     <main className="py-16 px-[7%] mx-auto">
       <Title className="text-center">Services We Provide</Title>

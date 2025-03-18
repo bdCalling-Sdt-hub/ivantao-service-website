@@ -1,25 +1,63 @@
 "use client";
+import { postFetcher } from "@/lib/simplifier";
 import { LockOutlined } from "@ant-design/icons";
-import { Button, Form, FormProps } from "antd";
+import { Button, Form, FormProps, message } from "antd";
 
 import Input from "antd/es/input";
+import { useRouter } from "next/navigation";
 // import Link from "next/link";
 import React from "react";
+import { useCookies } from "react-cookie";
 
 type FieldType = {
   password?: string;
   repass?: string;
 };
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
 
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
 export default function PassForm() {
+  const [form] = Form.useForm();
+  const [cookies] = useCookies(["raven"]);
+  const navig = useRouter();
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    if (values.password != values.repass) {
+      form.setFields([
+        {
+          name: "repass",
+          errors: ["Password and Retype password must match."],
+        },
+      ]);
+      return;
+    }
+
+    try {
+      const call = await postFetcher({
+        link: "/auth/change-password",
+        meth: "POST",
+        data: {
+          new_password: values.password,
+          new_password_confirmation: values.repass,
+        },
+        token: cookies.raven,
+      });
+      console.log(call);
+      if (call.status) {
+        message.success(call.message);
+        navig.push("/");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <Form
+      form={form}
       name="login"
       layout="vertical"
       onFinish={onFinish}

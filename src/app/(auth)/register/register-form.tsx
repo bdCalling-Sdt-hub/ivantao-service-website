@@ -6,7 +6,7 @@ import { App, Button, Form, FormProps } from "antd";
 import Input from "antd/es/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 
 type FieldType = {
@@ -20,7 +20,9 @@ export default function RegisterForm({ user }: { user: string }) {
   const { message } = App.useApp();
   const navig = useRouter();
   const [pookies, setPookie] = useCookies(["raven"]);
+  const [waiting, setWaiting] = useState<boolean>(false);
   const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    setWaiting(true);
     try {
       console.log(values);
 
@@ -56,21 +58,23 @@ export default function RegisterForm({ user }: { user: string }) {
             errors: serviceErrors.length > 0 ? serviceErrors : [],
           },
         ]);
-
+        setWaiting(false);
         return;
       } else {
         setPookie("raven", call.access_token);
         Finalizer(message, call.status, call.message);
       }
     } catch (error) {
+      setWaiting(false);
       console.error(error);
+      return;
     }
-
     if (user == "provider") {
       navig.push("/my-account");
     } else {
       navig.push("/");
     }
+    setWaiting(false);
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -148,6 +152,7 @@ export default function RegisterForm({ user }: { user: string }) {
       </div>
       <Form.Item label={null}>
         <Button
+          loading={waiting}
           type="primary"
           htmlType="submit"
           size="large"
