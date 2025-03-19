@@ -5,6 +5,7 @@ import { LogoutOutlined, EditOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
 import { UserType } from "@/types/userType";
+import { defaultUserProfile } from "@/lib/config";
 type UserProfileProps = {
   user: UserType;
 };
@@ -12,7 +13,6 @@ export default function UserProfile({ user }: UserProfileProps) {
   const navig = useRouter();
   const [, , removeCookie] = useCookies(["raven"]);
   const { message } = App.useApp();
-  console.log(user);
 
   return (
     <div className="relative w-full mx-auto p-8 bg-[#F0E8FF] rounded-xl shadow-sm">
@@ -51,7 +51,7 @@ export default function UserProfile({ user }: UserProfileProps) {
               user.image !==
                 "http://10.0.80.16:8002/uploads/profile_images/default_user.png"
                 ? user.image
-                : "https://api.dicebear.com/9.x/big-ears-neutral/svg?eyes=variant03&mouth=variant0702&nose=variant01&backgroundColor=ffffff"
+                : defaultUserProfile
             }
             size={120}
             className="border-4 border-white shadow-lg"

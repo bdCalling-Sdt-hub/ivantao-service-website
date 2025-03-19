@@ -1,28 +1,47 @@
-import React from "react";
+"use client";
 import type { FormProps } from "antd";
-import { Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 import Services from "./services";
 import WorkingHrs from "./working-hrs";
 import Title from "antd/es/typography/Title";
+import { UserType } from "@/types/userType";
 
 type FieldType = {
-  name?: string;
+  full_name?: string;
   email?: string;
   address?: string;
-  about?: string;
+  about_yourself?: string;
 };
 
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
+export default function ProvAccDetForm({ user }: { user: UserType }) {
+  const [form] = Form.useForm();
+  form.setFields([
+    {
+      name: "full_name",
+      value: user.full_name,
+    },
+    { name: "email", value: user.email },
+    { name: "about_yourself", value: user.address },
+    // { name: "address", value: call?.data.address },
+    // { name: "address", value: call?.data.address },
+    // { name: "address", value: call?.data.address },
+    // { name: "address", value: call?.data.address },
+    // { name: "address", value: call?.data.address },
+  ]);
 
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+    console.log("Success:", values);
+  };
 
-export default function AccDetForm() {
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <Form
+      form={form}
       name="basic"
       layout="vertical"
       initialValues={{ remember: true }}
@@ -34,7 +53,7 @@ export default function AccDetForm() {
     >
       <Form.Item<FieldType>
         label="Name"
-        name="name"
+        name="full_name"
         rules={[{ required: true, message: "Please input your username!" }]}
       >
         <Input size="large" placeholder="Seint Josef" />
@@ -56,7 +75,7 @@ export default function AccDetForm() {
       </Form.Item>
       <Form.Item<FieldType>
         label="About Yourself"
-        name="about"
+        name="about_yourself"
         rules={[{ required: true, message: "Please input your password!" }]}
       >
         <Input.TextArea
@@ -78,6 +97,16 @@ export default function AccDetForm() {
             <WorkingHrs />
           </div>
         </div>
+      </div>
+      <div className="flex flex-row justify-center items-center py-12">
+        <Form.Item<FieldType>>
+          <Button
+            className="bg-[#7849D4] font-bold px-12 py-6 hover:!bg-[#5a37a0] !text-background !border-none"
+            size="large"
+          >
+            Save changes
+          </Button>
+        </Form.Item>
       </div>
     </Form>
   );

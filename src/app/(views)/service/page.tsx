@@ -1,20 +1,32 @@
 "use server";
 import Title from "antd/es/typography/Title";
 import React from "react";
-import { services } from "./serviceData";
+// import { services } from "./serviceData";
 import Image from "next/image";
 import Link from "next/link";
 import { getFetcher } from "@/lib/simplifier";
-import { cookies } from "next/headers";
+import { ServiceType } from "@/types/Services";
+// import { cookies } from "next/headers";
+// import { redirect } from "next/navigation";
+// import { message } from "antd";
 
 export default async function Page() {
-  const pookies = cookies();
-  const token = pookies.get("raven");
+  // const pookies = cookies();
+  // const token = pookies.get("raven");
+
+  // if (!token) {
+  //   message.error("");
+  //   redirect(`/`);
+  // }
+
   const call = await getFetcher({
-    link: "/get-all-services?sort=108",
-    token: token?.value,
+    link: "/get-all-services",
+    // token: token?.value,
   });
   console.log(call);
+  if (!call.status) {
+  }
+  const services: ServiceType[] = call.data.data;
 
   return (
     <main className="py-16 px-[7%] mx-auto">

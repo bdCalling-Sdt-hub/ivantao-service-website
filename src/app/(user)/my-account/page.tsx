@@ -40,7 +40,7 @@ export default async function Page() {
   return (
     <main className="px-[7%] py-16">
       <UserProfile user={accData.data} />
-      <InPages />
+      <InPages user={accData.data} />
     </main>
   );
 }

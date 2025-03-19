@@ -35,19 +35,25 @@ export default function Navbar({ user }: NavbarProps) {
     {
       key: "1",
       label: (
-        <div className="w-full bg-red-100 flex flex-row justify-between items-center">
+        <div className="w-full flex flex-row justify-between items-center gap-6">
           <Title className="!m-0" level={4}>
             Notifications
           </Title>
-          <Button shape="circle" className="border border-black">
-            <CloseOutlined />
-          </Button>
         </div>
       ),
       type: "group",
     },
     {
       type: "divider",
+    },
+    {
+      key: "3",
+      label: (
+        <div className="w-[200px] flex flex-row justify-between items-center gap-6">
+          lol
+        </div>
+      ),
+      type: "group",
     },
   ];
 
