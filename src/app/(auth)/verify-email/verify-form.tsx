@@ -38,7 +38,7 @@ export default function VerifyForm() {
       if (call.status) {
         setCookies("raven", call.access_token);
         message.success(call.message);
-        localStorage.removeItem("forgot_email");
+
         navig.push("/create-pass");
       } else {
         console.log(call.error);

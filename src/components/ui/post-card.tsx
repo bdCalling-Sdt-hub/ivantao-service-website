@@ -1,24 +1,12 @@
 "use client";
+import { postType } from "@/types/forums";
 import { MoreOutlined } from "@ant-design/icons";
 import { Avatar, Button, Form, Input, Modal, Select } from "antd";
 import Title from "antd/es/typography/Title";
 import { AlertOctagon } from "lucide-react";
 import React, { useState } from "react";
-interface PostCardProps {
-  name: string;
-  time: string;
-  title: string;
-  content: string;
-  avatar: string;
-}
 
-export default function PostCard({
-  name,
-  time,
-  title,
-  content,
-  avatar,
-}: PostCardProps) {
+export default function PostCard({ title, time_ago, user, comment }: postType) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -38,17 +26,17 @@ export default function PostCard({
         {/* Added mb-4 for spacing */}
         <div className="flex flex-col justify-start items-start">
           <div className="flex flex-row justify-start items-center gap-4">
-            <Avatar size="large" src={avatar} />
+            <Avatar size="large" src={user.image} />
             <div className="">
               <Title className="!m-0" level={5}>
-                {name}
+                {title}
               </Title>
-              <p>{time}</p> {/* Display time */}
+              <p>{time_ago}</p> {/* Display time */}
             </div>
           </div>
           <div className="py-4">
             <Title level={5}>{title}</Title>
-            <p className="text-sm md:text-lg font-light">{content}</p>
+            <p className="text-sm md:text-lg font-light">{comment}</p>
           </div>
         </div>
         <div className="">

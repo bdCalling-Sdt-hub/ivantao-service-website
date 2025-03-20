@@ -6,8 +6,7 @@ import { Button, Form, FormProps, message } from "antd";
 import Input from "antd/es/input";
 import { useRouter } from "next/navigation";
 // import Link from "next/link";
-import React from "react";
-import { useCookies } from "react-cookie";
+import React, { useState } from "react";
 
 type FieldType = {
   password?: string;
@@ -16,9 +15,10 @@ type FieldType = {
 
 export default function PassForm() {
   const [form] = Form.useForm();
-  const [cookies] = useCookies(["raven"]);
   const navig = useRouter();
+  const [waiting, setWaiting] = useState<boolean>(false);
   const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    setWaiting(true);
     if (values.password != values.repass) {
       form.setFields([
         {
@@ -30,23 +30,33 @@ export default function PassForm() {
     }
 
     try {
+      const tempMail = localStorage.getItem("forgot_email");
+      console.log({
+        email: tempMail,
+        password: values.password,
+        password_confirmation: values.repass,
+      });
+
       const call = await postFetcher({
-        link: "/auth/change-password",
+        link: "/auth/reset-password",
         meth: "POST",
         data: {
-          new_password: values.password,
-          new_password_confirmation: values.repass,
+          email: tempMail,
+          password: values.password,
+          password_confirmation: values.repass,
         },
-        token: cookies.raven,
       });
+      setWaiting(false);
       console.log(call);
       if (call.status) {
         message.success(call.message);
+        localStorage.removeItem("forgot_email");
         navig.push("/");
       }
     } catch (error) {
       console.error(error);
     }
+    setWaiting(false);
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -94,6 +104,7 @@ export default function PassForm() {
       </div> */}
       <Form.Item label={null}>
         <Button
+          loading={waiting}
           type="primary"
           htmlType="submit"
           size="large"

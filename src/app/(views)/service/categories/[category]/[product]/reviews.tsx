@@ -1,27 +1,36 @@
+"use server";
 import React from "react";
 import Title from "antd/es/typography/Title";
 
 import { Avatar, Button } from "antd";
 import { StarIcon } from "lucide-react";
+import { ReviewType } from "@/types/others";
 
-export default function Reviews() {
-  const reviews = [
-    {
-      name: "Charlotte Anderson",
-      rating: 4.9,
-      review:
-        "Lorem ipsum dolor sit amet consectetur. Dui et lectus risus hac varius mi eget. Scelerisque egestas ut posuere nibh ac mattis ultrices ut. Vitae posuere sem congue suscipit iaculis aliquam tellus commodo. Nec pellentesque at eget venenatis. Odio purus integer mollis pretium cras natoque blandit. Sed eget porta tristique feugiat habitant sodales elit massa dolor. Auctor mi facilisis et morbi. Nibh egestas mattis nisl varius lectus consectetur. Tempor nunc at arcu leo facilisis pellentesque magna nam sapien. Cras mi convallis consectetur eget pulvinar quam urna. Interdum semper hendrerit arcu ornare. Tristique molestie",
-    },
-    {
-      name: "Charlotte Anderson",
-      rating: 4.9,
-      review:
-        "Lorem ipsum dolor sit amet consectetur. Dui et lectus risus hac varius mi eget. Scelerisque egestas ut posuere nibh ac mattis ultrices ut. Vitae posuere sem congue suscipit iaculis aliquam tellus commodo. Nec pellentesque at eget venenatis. Odio purus integer mollis pretium cras natoque blandit. Sed eget porta tristique feugiat habitant sodales elit massa dolor. Auctor mi facilisis et morbi. Nibh egestas mattis nisl varius lectus consectetur. Tempor nunc at arcu leo facilisis pellentesque magna nam sapien. Cras mi convallis consectetur eget pulvinar quam urna. Interdum semper hendrerit arcu ornare. Tristique molestie",
-    },
-  ];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function Reviews({ data }: { data: ReviewType[] }) {
+  console.log("reviews");
+
+  if (!data) {
+    return <>Data not found on this</>;
+  }
+
+  // const reviews = [
+  //   {
+  //     name: "Charlotte Anderson",
+  //     rating: 4.9,
+  //     review:
+  //       "Lorem ipsum dolor sit amet consectetur. Dui et lectus risus hac varius mi eget. Scelerisque egestas ut posuere nibh ac mattis ultrices ut. Vitae posuere sem congue suscipit iaculis aliquam tellus commodo. Nec pellentesque at eget venenatis. Odio purus integer mollis pretium cras natoque blandit. Sed eget porta tristique feugiat habitant sodales elit massa dolor. Auctor mi facilisis et morbi. Nibh egestas mattis nisl varius lectus consectetur. Tempor nunc at arcu leo facilisis pellentesque magna nam sapien. Cras mi convallis consectetur eget pulvinar quam urna. Interdum semper hendrerit arcu ornare. Tristique molestie",
+  //   },
+  //   {
+  //     name: "Charlotte Anderson",
+  //     rating: 4.9,
+  //     review:
+  //       "Lorem ipsum dolor sit amet consectetur. Dui et lectus risus hac varius mi eget. Scelerisque egestas ut posuere nibh ac mattis ultrices ut. Vitae posuere sem congue suscipit iaculis aliquam tellus commodo. Nec pellentesque at eget venenatis. Odio purus integer mollis pretium cras natoque blandit. Sed eget porta tristique feugiat habitant sodales elit massa dolor. Auctor mi facilisis et morbi. Nibh egestas mattis nisl varius lectus consectetur. Tempor nunc at arcu leo facilisis pellentesque magna nam sapien. Cras mi convallis consectetur eget pulvinar quam urna. Interdum semper hendrerit arcu ornare. Tristique molestie",
+  //   },
+  // ];
   return (
     <>
-      {reviews.map((item, index) => (
+      {data.map((item, index) => (
         <div
           className="p-6 bg-background shadow-md rounded-xl w-full"
           key={index}

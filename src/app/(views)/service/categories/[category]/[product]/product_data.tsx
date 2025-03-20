@@ -1,13 +1,35 @@
+"use server";
 import React from "react";
 import Image from "next/image";
 import { Avatar, Button } from "antd";
 import Title from "antd/es/typography/Title";
 import { StarIcon } from "lucide-react";
-export default function ProductData() {
+import { ServiceBrief } from "@/types/Services";
+import { getFetcher } from "@/lib/simplifier";
+import { ProviderType } from "@/types/userType";
+export default async function ProductData({
+  data,
+  token,
+}: {
+  data: ServiceBrief;
+  token: string | undefined;
+}) {
+  const call = await getFetcher({
+    link: `/provider-profile/${data.provider_id}`,
+    token: token,
+  });
+  // console.log(call);
+
+  if (!call.status) {
+    return <>Something is wrong..</>;
+  }
+
+  const providerdata: ProviderType = call.data;
+
   return (
     <>
       <Image
-        src="/images/categories/laundry.webp"
+        src={data.image ? data.image : "https://placehold.co/1000x600"}
         width={699}
         height={416}
         className="w-full rounded-2xl"
@@ -18,7 +40,7 @@ export default function ProductData() {
           <Avatar size="large" className="h-16 w-16 mr-4" />
           <div className="flex flex-col">
             <Title level={5} className="!mb-0">
-              Md. Hasan
+              {providerdata.full_name}
             </Title>
             {/* Added margin to Title */}
             <div className="flex flex-row items-center gap-3">

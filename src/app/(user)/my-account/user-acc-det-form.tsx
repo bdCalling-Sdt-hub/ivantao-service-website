@@ -1,33 +1,55 @@
 "use client";
 import type { FormProps } from "antd";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { UserType } from "@/types/userType";
+import { useEffect, useState } from "react";
+import { postFetcher } from "@/lib/simplifier";
+import { useCookies } from "react-cookie";
 
 type FieldType = {
   full_name?: string;
   email?: string;
   address?: string;
-  about_yourself?: string;
 };
 
 export default function UserAccDetForm({ user }: { user: UserType }) {
   const [form] = Form.useForm();
-  form.setFields([
-    {
-      name: "full_name",
-      value: user.full_name,
-    },
-    { name: "email", value: user.email },
-    { name: "about_yourself", value: user.address },
-    // { name: "address", value: call?.data.address },
-    // { name: "address", value: call?.data.address },
-    // { name: "address", value: call?.data.address },
-    // { name: "address", value: call?.data.address },
-    // { name: "address", value: call?.data.address },
-  ]);
+  const [waiting, setWaiting] = useState<boolean>(false);
+  const [cookies] = useCookies(["raven"]);
+  useEffect(() => {
+    form.setFields([
+      {
+        name: "full_name",
+        value: user.full_name,
+      },
+      { name: "email", value: user.email },
+      { name: "address", value: user.address },
+    ]);
+  }, []);
 
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    setWaiting(true);
+
+    try {
+      const readyData = {
+        full_name: values.full_name,
+        address: values.address,
+      };
+      const call = await postFetcher({
+        link: "/auth/profile-update",
+        meth: "POST",
+        data: readyData,
+        token: cookies.raven,
+      });
+      console.log(call);
+      if (call.status) {
+        message.success(call.message);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setWaiting(false);
+    }
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -61,7 +83,12 @@ export default function UserAccDetForm({ user }: { user: UserType }) {
         name="email"
         rules={[{ required: true, message: "Please input your password!" }]}
       >
-        <Input size="large" placeholder="abidhasan@gmail.com" />
+        <Input
+          size="large"
+          placeholder="abidhasan@gmail.com"
+          disabled
+          readOnly
+        />
       </Form.Item>
       <Form.Item<FieldType>
         label="Address"
@@ -73,8 +100,10 @@ export default function UserAccDetForm({ user }: { user: UserType }) {
       <div className="flex flex-row justify-center items-center py-12">
         <Form.Item<FieldType>>
           <Button
+            loading={waiting}
             className="bg-[#7849D4] font-bold px-12 py-6 hover:!bg-[#5a37a0] !text-background !border-none"
             size="large"
+            htmlType="submit"
           >
             Save changes
           </Button>

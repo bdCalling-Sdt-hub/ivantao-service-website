@@ -1,20 +1,52 @@
+"use server";
 import React from "react";
 import BreadcrumbReady from "@/components/ui/breadcrumReady";
 import { HomeFilled } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
 
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { StarIcon } from "lucide-react";
 import Reviews from "./reviews";
 import ProductData from "./product_data";
 import RecommendParent from "./recommend-parent";
+import { getFetcher } from "@/lib/simplifier";
+import { cookies } from "next/headers";
+import { ServiceDetailedType } from "@/types/Services";
+
 // import BuyModal from "./buyModal";
 
 export default async function Page({
   params,
 }: {
-  params: Promise<{ category: string; product: string }>;
+  params: Promise<{
+    category: string;
+    product: string;
+  }>;
 }) {
+  const cookieStore = cookies();
+  const getToken = cookieStore.get("raven");
+
+  if (!getToken?.value) {
+    message.warning("You must be logged in to see this content");
+  }
+
+  const call = await getFetcher({
+    link: `/get-services-details/${(await params).product}`,
+    token: getToken?.value,
+  });
+
+  if (!call.status) {
+    return (
+      <>
+        <main className="!p-8 h-[300px] w-full flex justify-center items-center">
+          <Title level={3}>{call.message}</Title>
+        </main>
+      </>
+    );
+  }
+  const data: ServiceDetailedType = call.data;
+  const service = call.data.service;
+
   const breads = [
     {
       href: "/",
@@ -27,9 +59,7 @@ export default async function Page({
       ),
     },
     {
-      title: (await params).product.replace(/\b\w/g, (char) =>
-        char.toUpperCase()
-      ),
+      title: service.title,
     },
   ];
 
@@ -39,7 +69,7 @@ export default async function Page({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-8 mb-12">
         <div className="md:col-span-7 w-full grid grid-cols-1 gap-y-5 content-start">
           <div className="order-2 lg:order-1 pb-12 w-full col-span-1 h-min">
-            <ProductData />
+            <ProductData data={service} token={getToken?.value} />
           </div>
           <div className="order-1 lg:order-2 w-full pb-8 md:pb-0">
             <RecommendParent />
@@ -47,15 +77,12 @@ export default async function Page({
         </div>
         <div className="md:col-span-4 w-full">
           <div className="p-6 bg-background rounded-xl">
-            <Title level={3}>Share cleaning service as pro.</Title>
+            <Title level={3}>{service.title}</Title>
             <p className="font-semibold text-gray-500">66 order in queue</p>
-            <p className="py-4">
-              Lorem ipsum dolor sit amet consectetur. Dictum cras facilisi nunc
-              facilisis. Eleifend vel sed donec felis libero. In imperdiet
-              pellentesque at urna velit in massa potenti. Id eleifend nulla
-              odio dignissim malesuada est egestas congue arcu.
+            <p className="py-4">{service.description}</p>
+            <p className="text-cl font-bold">
+              ${parseInt(service.price).toFixed(2)}
             </p>
-            <p className="text-cl font-bold">$5200.00</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
               <Button
                 href="/service/categories/sub-categories/cleaning/payment"
@@ -79,17 +106,20 @@ export default async function Page({
             </Title>
             <div className="flex flex-row justify-end items-center gap-2 flex-1">
               <div className="flex flex-row justify-end items-center">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <StarIcon key={i} className="h-4 w-4" fill="" /> // Added key and styling
-                ))}
+                {Array.from({ length: parseInt(data.average_rating) }).map(
+                  (_, i) => (
+                    <StarIcon key={i} className="h-4 w-4" fill="" /> // Added key and styling
+                  )
+                )}
               </div>
               <span className="font-bold">
-                4.9 <span className="text-gray-500">(226)</span>
+                {parseInt(data.average_rating)}{" "}
+                <span className="text-gray-500">({data.total_reviews})</span>
               </span>
             </div>
           </div>
           <div className="py-6 space-y-6">
-            <Reviews />
+            <Reviews data={data.reviews} />
           </div>
         </div>
       </div>

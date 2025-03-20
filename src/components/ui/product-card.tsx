@@ -21,6 +21,7 @@ import { useCookies } from "react-cookie";
 
 export default function ProductCard({ product }: { product: ServiceType }) {
   const [provider, setProvider] = useState<ProviderType | null>(null);
+
   const [cookies] = useCookies(["raven"]);
   useEffect(() => {
     async function getProvider(id: string) {
@@ -36,7 +37,7 @@ export default function ProductCard({ product }: { product: ServiceType }) {
   }, []);
 
   return (
-    <Link href="/service/categories/sub-categories/cleaning" legacyBehavior>
+    <Link href={`/service/categories/sub-categories/${product.id}`}>
       <div className="h-[300px] sm:h-[300px] sm:min-w-[180px] md:h-[500px] md:min-w-auto rounded-xl p-2 md:p-4 shadow-md bg-background relative cursor-pointer hover:shadow-lg transition-all">
         <Image
           src={product.image} // Changed to product

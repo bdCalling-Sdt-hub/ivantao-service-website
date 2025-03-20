@@ -101,3 +101,25 @@ export interface CategoryApiResponseType {
   data: InnerCategoryApiResponseType;
   status: boolean;
 }
+
+export interface ServiceBrief {
+  id: string;
+  provider_id: string;
+  service_category_id: string;
+  service_sub_categories_id: string;
+  title: string;
+  description: string;
+  price: string;
+  image: string;
+  service_type: "virtual" | "in-person" | "hybrid";
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ServiceDetailedType {
+  service: ServiceBrief;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  reviews: any[]; // You can replace 'any' with a proper Review interface if needed
+  average_rating: string;
+  total_reviews: string;
+}

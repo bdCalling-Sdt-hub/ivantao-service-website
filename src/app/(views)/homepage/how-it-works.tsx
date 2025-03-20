@@ -34,7 +34,7 @@ export default function HowItWorks() {
           <Button
             href="/how-it-works"
             size="large"
-            className="px-8 py-6 text-lg font-semibold !border-2 border-[#88744F] text-[#88744F]"
+            className="px-8 py-6 text-lg font-semibold !border-2 !border-[#5a37a0] !text-[#44297a]"
           >
             See all
           </Button>
