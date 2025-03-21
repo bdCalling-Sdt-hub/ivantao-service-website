@@ -1,14 +1,70 @@
 "use client";
-import { Button, Form, Input } from "antd";
+import { getFetcher, postFetcher } from "@/lib/simplifier";
+import { UserType } from "@/types/userType";
+import { Button, Form, Input, message } from "antd";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 const { TextArea } = Input;
 
 export default function ContactForm() {
   const [form] = Form.useForm();
+  const [cookies] = useCookies(["raven"]);
+  const [waiting, setWaiting] = useState<boolean>(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onFinish = (values: any) => {
+  useEffect(() => {
+    async function getData() {
+      setWaiting(true);
+      if (cookies.raven) {
+        const call = await getFetcher({
+          link: "/auth/own-profile",
+          token: cookies.raven,
+        });
+        console.log(call.data);
+
+        if (!call.status) {
+          console.log("server couldnt retrive user data");
+        }
+        const user: UserType = call.data;
+        form.setFields([
+          { name: "name", value: user.full_name },
+          { name: "email", value: user.email },
+          { name: "phone", value: user.contact },
+        ]);
+        setWaiting(false);
+      }
+      setWaiting(false);
+    }
+    getData();
+  }, []);
+
+  const onFinish = async (values: {
+    email: string;
+    message: string;
+    name: string;
+    phone: string;
+    subject: string;
+  }) => {
     console.log("Form values:", values);
+    setWaiting(true);
+
+    try {
+      const call = await postFetcher({
+        link: "/contact-message",
+        meth: "POST",
+        token: cookies.raven,
+        data: values,
+      });
+      if (!call.status) {
+        message.error(call.message);
+      }
+      message.success(call.message);
+      form.resetFields();
+      setWaiting(false);
+    } catch (error) {
+      console.error(error);
+    }
+    setWaiting(false);
   };
 
   return (
@@ -66,6 +122,7 @@ export default function ContactForm() {
 
       <Form.Item className="flex justify-center">
         <Button
+          loading={waiting}
           htmlType="submit"
           size="large"
           className="bg-[#7849D4] hover:!bg-[#543396] border-none font-semibold px-12 md:px-20 rounded-md h-12 !text-background w-full md:w-auto" // Added responsive button width

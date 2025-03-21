@@ -27,7 +27,6 @@ export default async function PopPosts({ notitle }: { notitle?: boolean }) {
       </main>
     );
   }
-  console.log(call.data.data);
   const posts: postType[] = call.data.data;
 
   // const posts = [

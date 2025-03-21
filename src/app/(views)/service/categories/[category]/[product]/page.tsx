@@ -85,7 +85,7 @@ export default async function Page({
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
               <Button
-                href="/service/categories/sub-categories/cleaning/payment"
+                href={`/service/categories/sub-categories/${service.id}/payment`}
                 className="w-full bg-[#7849D4] hover:bg-[#5f3aaa] text-sm md:text-xs xl:text-base text-background font-bold"
                 size="large"
               >
