@@ -12,7 +12,7 @@ import { useCookies } from "react-cookie";
 type FieldType = {
   full_name?: string;
   email?: string;
-  service?: string;
+  provider_description?: string;
   password?: string;
 };
 export default function RegisterForm({ user }: { user: string }) {
@@ -120,7 +120,7 @@ export default function RegisterForm({ user }: { user: string }) {
       {user == "provider" && (
         <Form.Item<FieldType>
           label="What service you want to provide?"
-          name="service"
+          name="provider_description"
           rules={[
             { required: true, message: "This field is required to fill" },
           ]}

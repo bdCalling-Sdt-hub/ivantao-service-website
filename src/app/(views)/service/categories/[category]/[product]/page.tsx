@@ -4,7 +4,7 @@ import BreadcrumbReady from "@/components/ui/breadcrumReady";
 import { HomeFilled } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
 
-import { Button, message } from "antd";
+import { Button } from "antd";
 import { StarIcon } from "lucide-react";
 import Reviews from "./reviews";
 import ProductData from "./product_data";
@@ -27,7 +27,11 @@ export default async function Page({
   const getToken = cookieStore.get("raven");
 
   if (!getToken?.value) {
-    message.warning("You must be logged in to see this content");
+    return (
+      <div className="h-[200px] w-full flex justify-center items-center">
+        You must be logged in to see this content
+      </div>
+    );
   }
 
   const call = await getFetcher({

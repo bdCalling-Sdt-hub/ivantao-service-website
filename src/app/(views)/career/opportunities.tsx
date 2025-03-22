@@ -1,10 +1,29 @@
+"use server";
 import ApplyButton from "@/components/ui/apply-button";
+import { getFetcher } from "@/lib/simplifier";
 import { SearchOutlined } from "@ant-design/icons";
 import Paragraph from "antd/es/typography/Paragraph";
 import Title from "antd/es/typography/Title";
+import { cookies } from "next/headers";
 import React from "react";
 
-export default function Opportunities() {
+export default async function Opportunities() {
+  // if (typeof window !== "undefined") {
+  //   return <>client</>;
+  // } else {
+  //   return <>server</>;
+  // }
+
+  const cookieStore = await cookies();
+  const token = cookieStore.get("raven")?.value;
+
+  try {
+    const call = await getFetcher({ link: "/list-job", token: token });
+    console.log(call);
+  } catch (error) {
+    console.error(error);
+  }
+
   const opportunities = [
     {
       role: "Design",

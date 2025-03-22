@@ -31,19 +31,7 @@ export default function AddExpMod() {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        footer={[
-          <div
-            key={10}
-            className="w-full h-auto flex flex-row justify-center items-center px-[7%]"
-          >
-            <Button
-              size="large"
-              className="w-full bg-[#7849D4] hover:!bg-[#4f2f8f] !text-background border-none"
-            >
-              Save
-            </Button>
-          </div>,
-        ]}
+        footer={null}
       >
         <Addexp />
       </Modal>

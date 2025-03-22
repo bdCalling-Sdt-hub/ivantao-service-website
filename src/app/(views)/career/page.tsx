@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client";
 
 import Image from "next/image";
 import {
@@ -25,7 +24,7 @@ const { Content } = Layout;
 const { Title, Text, Paragraph } = Typography;
 
 export default function Page() {
-  const { token } = theme.useToken();
+  // const { token } = theme.useToken();
 
   return (
     <main>

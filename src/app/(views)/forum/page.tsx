@@ -24,7 +24,7 @@ export default function Page() {
           <Categories />
         </section>
         <section>
-          <PopPosts />
+          <PopPosts link="/forum-list" />
         </section>
       </main>
     </>

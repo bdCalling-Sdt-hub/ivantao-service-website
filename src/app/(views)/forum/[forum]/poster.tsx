@@ -5,62 +5,61 @@ import {
   Button,
   Form,
   Input,
+  message,
   Modal,
   Upload,
   UploadFile,
-  UploadProps,
 } from "antd";
 import { ChevronLeft, ImageIcon, SendIcon } from "lucide-react";
 import { UploadOutlined } from "@ant-design/icons";
 import FormItem from "antd/es/form/FormItem";
+import { formPostFetcher } from "@/lib/simplifier";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/navigation";
 
-export default function Poster() {
+export default function Poster({ id }: { id: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [form] = Form.useForm();
+  const [cookies] = useCookies(["raven"]);
+  const navig = useRouter();
+  const showModal = () => setIsModalOpen(true);
+  const handleCancel = () => setIsModalOpen(false);
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleChange = ({ fileList }: { fileList: any }) =>
+    setFileList(fileList);
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
+  const handlePublish = async () => {
+    try {
+      const values = await form.validateFields();
+      const formData = new FormData();
+      formData.append("title", values.title);
+      formData.append("comment", values.comment);
+      formData.append("categories_id", id);
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleChange: UploadProps["onChange"] = (info) => {
-    let newFileList = [...info.fileList];
-
-    newFileList = newFileList.slice(-2);
-
-    // Read from response and show file link
-    newFileList = newFileList.map((file) => {
-      if (file.response) {
-        // Assuming file.response contains the URL
-        file.url = file.response.url;
+      if (fileList.length > 0 && fileList[0].originFileObj) {
+        formData.append("image", fileList[0].originFileObj);
       }
-      return file;
-    });
 
-    setFileList(newFileList);
-  };
+      console.log("Form Data:", Object.fromEntries(formData.entries()));
 
-  const handlePublish = () => {
-    form.validateFields().then((values) => {
-      console.log("Form Data:", values);
-      console.log("Uploaded Files:", fileList);
+      const call = await formPostFetcher({
+        link: "/forum-post",
+        meth: "POST",
+        data: formData,
+        token: cookies.raven,
+      });
+      if (!call.status) {
+        message.error(call.message);
+        return;
+      }
 
-      // Add the image URL to the form data if there's an uploaded file
-      const formData = {
-        ...values,
-        image: fileList.length > 0 ? fileList[0].url : null,
-      };
-
-      console.log("Final Data:", formData);
-    });
+      message.success(call.message);
+      navig.refresh();
+    } catch (error) {
+      console.error("Validation Failed:", error);
+    }
   };
 
   return (
@@ -72,7 +71,7 @@ export default function Poster() {
       >
         <ChevronLeft />
       </Button>
-      <div className="">
+      <div>
         <Avatar size="large" className="!size-9 aspect-square" />
       </div>
       <Input
@@ -85,7 +84,6 @@ export default function Poster() {
       <Modal
         className="!w-[70%] h-auto"
         open={isModalOpen}
-        onOk={handleOk}
         onCancel={handleCancel}
         title={null}
         footer={
@@ -95,9 +93,10 @@ export default function Poster() {
             </Button>
             <Upload
               multiple={false}
-              onChange={handleChange}
               fileList={fileList}
-              action="/upload" // Placeholder for actual upload URL
+              beforeUpload={() => false} // Prevent auto-upload
+              onChange={handleChange}
+              showUploadList={true}
             >
               <Button icon={<UploadOutlined />}>Upload</Button>
             </Upload>

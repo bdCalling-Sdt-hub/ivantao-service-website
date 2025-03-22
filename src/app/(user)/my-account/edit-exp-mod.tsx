@@ -2,8 +2,17 @@ import { EditOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd";
 import React, { useState } from "react";
 import EditExp from "./editexp";
+import { experienceType } from "@/types/others";
 
-export default function EditExpMod() {
+export default function EditExpMod({
+  id,
+  token,
+  item,
+}: {
+  id: string;
+  token: string;
+  item: experienceType;
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -31,21 +40,9 @@ export default function EditExpMod() {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        footer={[
-          <div
-            key={10}
-            className="w-full h-auto flex flex-row justify-center items-center px-[7%]"
-          >
-            <Button
-              size="large"
-              className="w-full !bg-[#7849D4] hover:bg-[#50308f] !text-background border-none"
-            >
-              Save
-            </Button>
-          </div>,
-        ]}
+        footer={null}
       >
-        <EditExp />
+        <EditExp id={id} token={token} item={item} />
       </Modal>
     </>
   );

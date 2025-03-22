@@ -2,12 +2,19 @@
 import PostCard from "@/components/ui/post-card";
 import { getFetcher } from "@/lib/simplifier";
 import { postType } from "@/types/forums";
+import { Empty } from "antd";
 
 import Title from "antd/es/typography/Title";
 import { cookies } from "next/headers";
 import React from "react";
 
-export default async function PopPosts({ notitle }: { notitle?: boolean }) {
+export default async function PopPosts({
+  notitle,
+  link,
+}: {
+  notitle?: boolean;
+  link: string;
+}) {
   const cookieStore = cookies();
   const getToken = cookieStore.get("raven");
 
@@ -19,11 +26,11 @@ export default async function PopPosts({ notitle }: { notitle?: boolean }) {
     );
   }
 
-  const call = await getFetcher({ link: "/forum-list", token: getToken.value });
+  const call = await getFetcher({ link: link, token: getToken.value });
   if (!call.status) {
     return (
-      <main className="py-12 flex flex-col justify-center items-center">
-        <Title>Something went wrong..</Title>
+      <main className="h-[300px] py-12 flex flex-col justify-center items-center">
+        <Empty />
       </main>
     );
   }

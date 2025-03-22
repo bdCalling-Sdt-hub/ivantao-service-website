@@ -1,17 +1,35 @@
 "use client";
+import { deleteFetcher } from "@/lib/simplifier";
 import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-import { Button, Modal } from "antd";
+import { Button, message, Modal } from "antd";
 import Title from "antd/es/typography/Title";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-export default function DelExp() {
+export default function DelExp({ id, token }: { id: string; token: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const navig = useRouter();
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
+  const handleOk = async () => {
+    try {
+      const call = await deleteFetcher({
+        link: `/delete-experience/${id}`,
+        token: token,
+      });
+
+      if (!call.status) {
+        message.error(call.message);
+        setIsModalOpen(false);
+        return;
+      }
+      message.success(call.message);
+      navig.push("/my-account");
+    } catch (error) {
+      console.error(error);
+    }
     setIsModalOpen(false);
   };
 

@@ -1,4 +1,3 @@
-"use client";
 import ProvAccDetForm from "./provider-acc-det-form";
 import Exp from "./exp";
 import { UserType } from "@/types/userType";

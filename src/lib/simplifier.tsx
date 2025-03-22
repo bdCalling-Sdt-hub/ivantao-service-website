@@ -28,9 +28,44 @@ export async function postFetcher({
   return response;
 }
 
+export async function formPostFetcher({
+  link,
+  meth,
+  token,
+  data,
+}: {
+  link: string;
+  meth?: string;
+  token?: string;
+  data?: FormData;
+}) {
+  const call = await fetch(`${base_url}${link}`, {
+    method: meth ?? "POST",
+    headers: {
+      ...(token && { Authorization: `Bearer ${token}` }),
+    },
+    body: data,
+  });
+
+  const response = await call.json();
+  return response;
+}
+
 export async function getFetcher({ link, token }: getFetcherType) {
   const call = await fetch(`${base_url}${link}`, {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token && { Authorization: `Bearer ${token}` }),
+    },
+  });
+  const response = await call.json();
+  return response;
+}
+
+export async function deleteFetcher({ link, token }: getFetcherType) {
+  const call = await fetch(`${base_url}${link}`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       ...(token && { Authorization: `Bearer ${token}` }),

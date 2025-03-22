@@ -10,7 +10,7 @@ export default function InPages({ user }: { user: UserType }) {
   const pageTabs = ["Account Details", "Change Password"];
   if (user.role == "user") {
     pageTabs.push("Order history");
-  } else if (user.role == "Dashboard") {
+  } else if (user.role == "provider") {
     pageTabs.push("Dashboard");
   }
   const [activeTab, setActiveTab] = useState(pageTabs[0]); // Initialize with the first tab

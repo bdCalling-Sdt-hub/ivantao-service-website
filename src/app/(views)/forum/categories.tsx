@@ -13,6 +13,15 @@ export default async function Categories() {
     link: "/get-all-category",
     token: token?.value,
   });
+
+  if (!token) {
+    return (
+      <div className="py-12 w-full overflow-x-auto flex justify-center items-center">
+        You must be logged in to see this contents
+      </div>
+    );
+  }
+
   const categories: Category[] = call.data.data;
   // const catagories = [
   //   {
