@@ -3,7 +3,6 @@ import ApplyButton from "@/components/ui/apply-button";
 import BackText from "@/components/ui/back-text";
 import { getFetcher } from "@/lib/simplifier";
 import { Job } from "@/types/others";
-import { message } from "antd";
 import Title from "antd/es/typography/Title";
 import {
   Building2,
@@ -14,7 +13,6 @@ import {
   MapPin,
 } from "lucide-react";
 import { cookies } from "next/headers";
-import Link from "next/link";
 import React, { JSX } from "react";
 interface JobOpportunity {
   title: string;
@@ -100,7 +98,7 @@ const job_opp: JobOpportunity = {
 export default async function Page({ params }: { params: { detail: string } }) {
   console.log(params.detail);
 
-  const cookieStore = await cookies();
+  const cookieStore = cookies();
   const token = cookieStore.get("raven")?.value;
   if (!token) {
     return (
@@ -119,11 +117,21 @@ export default async function Page({ params }: { params: { detail: string } }) {
   } catch (error) {
     console.error(error);
   }
+  console.log(call);
 
   if (!call.status) {
-    message.error(call.message);
+    console.error(call.message);
+
+    return (
+      <>
+        <div className="h-[300px] w-full flex justify-center items-center">
+          {call.message}
+        </div>
+      </>
+    );
   }
   const job: Job = call.data;
+
   return (
     <main className="py-12 px-6 md:px-[7%]">
       <BackText text={"Back to Careers"} />
@@ -138,7 +146,7 @@ export default async function Page({ params }: { params: { detail: string } }) {
                 {job.job_role}
               </Title>
               <ApplyButton
-                to={job_opp.to}
+                to={`/career/${job.id}/apply-role`}
                 //  className="mt-4 md:mt-0"
               />
             </div>
@@ -211,17 +219,17 @@ function Section({ title, text }: { title: string; text: string }) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function ListSection({ title, items }: { title: string; items: any }) {
-  return (
-    <div className="pt-8 px-4 md:px-6 space-y-4">
-      <Title level={3} className="!m-0 text-lg md:text-xl">
-        {title}
-      </Title>
-      <ul className="list-disc pl-4 text-sm md:text-base">
-        {items.map((item: string, i: React.Key) => (
-          <li key={i}>{item}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+// function ListSection({ title, items }: { title: string; items: any }) {
+//   return (
+//     <div className="pt-8 px-4 md:px-6 space-y-4">
+//       <Title level={3} className="!m-0 text-lg md:text-xl">
+//         {title}
+//       </Title>
+//       <ul className="list-disc pl-4 text-sm md:text-base">
+//         {items.map((item: string, i: React.Key) => (
+//           <li key={i}>{item}</li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }

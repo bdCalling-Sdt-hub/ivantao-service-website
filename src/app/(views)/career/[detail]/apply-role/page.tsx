@@ -1,34 +1,103 @@
 "use client";
+
 import { InboxOutlined } from "@ant-design/icons";
-import { Button, Form, FormProps, Upload } from "antd";
+import { Button, Form, Upload, message } from "antd";
 import Input from "antd/es/input";
-import React from "react";
-import BackText from "@/components/ui/back-text";
 import Title from "antd/es/typography/Title";
+import { useState } from "react";
+import BackText from "@/components/ui/back-text";
+import type { UploadFile } from "antd/es/upload/interface";
+import { formPostFetcher } from "@/lib/simplifier";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/navigation";
 
-type FieldType = {
-  name?: string;
-  email?: string;
+interface FormValues {
+  name: string;
+  email: string;
   cover_letter?: string;
-  upload_resume?: string;
-};
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
+  document?: File;
+}
 
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const normFile = (e: unknown) => {
-  //   console.log("Upload event:", e);
-  //   if (Array.isArray(e)) {
-  //     return e;
-  //   }
-  //   return e?.fileList;
-};
+export default function Page({ params }: { params: { detail: string } }) {
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [cookies] = useCookies(["raven"]);
+  const navig = useRouter();
+  const [waiting, setWaiting] = useState<boolean>(false);
 
-export default function Page() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleFileChange = (info: any) => {
+    const { file, fileList: newFileList } = info;
+
+    // Check file size (10MB limit)
+    const isLt10M = file.size / 1024 / 1024 < 10;
+    if (!isLt10M) {
+      message.error("File must be smaller than 10MB!");
+      return false;
+    }
+
+    // Update file list state
+    setFileList(newFileList);
+    return false;
+  };
+
+  const onFinish = async (values: FormValues) => {
+    setWaiting(true);
+
+    // Create FormData instance
+    const formData = new FormData();
+
+    // Append form data fields
+    formData.append("name", values.name);
+    formData.append("email", values.email);
+    formData.append("cover_letter", values.cover_letter || "");
+    formData.append("career_id", params.detail);
+
+    // Check if the file is available and append it to FormData
+    if (fileList.length > 0 && fileList[0].originFileObj) {
+      console.log("Appending file:", fileList[0].originFileObj); // Debugging the actual file
+      formData.append("document", fileList[0].originFileObj);
+    } else {
+      message.error("Please upload a file.");
+      setWaiting(false);
+      return;
+    }
+
+    // Debugging step: Check the FormData object
+    console.log("Form Data before submission:");
+    for (const pair of formData.entries()) {
+      console.log(`${pair[0]}: ${pair[1]}`);
+    }
+    console.log(values);
+
+    try {
+      console.log(formData);
+
+      const call = await formPostFetcher({
+        link: "/apply-form",
+        meth: "POST",
+        token: cookies.raven,
+        data: formData, // Send FormData with the actual file
+      });
+
+      if (!call.status) {
+        message.error(call.message);
+        setWaiting(false);
+        return;
+      }
+      message.success(call?.message);
+      navig.push("/career");
+      setWaiting(false);
+    } catch (error) {
+      console.error("Error during submission:", error);
+      setWaiting(false);
+    }
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <main className="py-12 px-[7%]">
       <BackText text={"Back"} />
@@ -46,53 +115,49 @@ export default function Page() {
             autoComplete="off"
             requiredMark={false}
           >
-            <Form.Item<FieldType>
+            <Form.Item<FormValues>
               label="Name"
               name="name"
               rules={[{ required: true, message: "Please enter your name" }]}
             >
               <Input size="large" placeholder="Abid Hasan" />
             </Form.Item>
-            <Form.Item<FieldType>
+            <Form.Item<FormValues>
               label="Email"
               name="email"
               rules={[{ required: true, message: "Please enter your email" }]}
             >
               <Input size="large" placeholder="example@gmail.com" />
             </Form.Item>
-            <Form.Item<FieldType> label="Cover Letter" name="cover_letter">
-              <Input.TextArea
-                size="large"
-                className=""
-                rows={8}
-                placeholder="Type here"
-              />
+            <Form.Item<FormValues> label="Cover Letter" name="cover_letter">
+              <Input.TextArea size="large" rows={8} placeholder="Type here" />
             </Form.Item>
             <Form.Item label="Upload your resume">
-              <Form.Item
-                name="upload_resume"
-                valuePropName="fileList"
-                getValueFromEvent={normFile}
-                noStyle
+              <Upload.Dragger
+                name="document"
+                fileList={fileList}
+                multiple={false}
+                beforeUpload={() => false} // Prevent auto upload
+                onChange={handleFileChange}
+                accept=".pdf,application/pdf"
+                maxCount={1}
               >
-                <Upload.Dragger name="files" action="/upload.do">
-                  <p className="ant-upload-drag-icon">
-                    <InboxOutlined className="!text-[#7849D4]" />
-                  </p>
-                  <p className="ant-upload-text">
-                    Click or drag file to this area to upload
-                  </p>
-                  <p className="ant-upload-hint">Max 10 MB</p>
-                </Upload.Dragger>
-              </Form.Item>
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined className="!text-[#7849D4]" />
+                </p>
+                <p className="ant-upload-text">
+                  Click or drag file to this area to upload
+                </p>
+                <p className="ant-upload-hint">Max 10 MB</p>
+              </Upload.Dragger>
             </Form.Item>
-            <Form.Item label={null}>
+            <Form.Item>
               <Button
+                loading={waiting}
                 type="primary"
                 htmlType="submit"
                 size="large"
-                className="w-full mt-8 text-background !bg-[#7849D4] hover:!bg-[#5d39a5]  font-bold"
-                variant="filled"
+                className="w-full mt-8 text-background !bg-[#7849D4] hover:!bg-[#5d39a5] font-bold"
               >
                 Submit
               </Button>

@@ -4,7 +4,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["10.0.80.16"],
+    domains: ["10.0.80.16", "182.252.68.227"],
   },
 };
 

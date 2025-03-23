@@ -19,6 +19,7 @@ import CoreVal from "./core-val";
 import Resources from "./resources";
 import Opportunities from "./opportunities";
 import Newsletter from "./newsletter";
+import Faq from "./faq";
 
 const { Content } = Layout;
 const { Title, Text, Paragraph } = Typography;
@@ -45,6 +46,8 @@ export default function Page() {
 
       {/* Newsletter */}
       <Newsletter />
+
+      <Faq />
     </main>
   );
 }
