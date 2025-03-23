@@ -1,7 +1,9 @@
 "use server";
 import ApplyButton from "@/components/ui/apply-button";
 import { getFetcher } from "@/lib/simplifier";
+import { Job, JobData } from "@/types/others";
 import { SearchOutlined } from "@ant-design/icons";
+import { message } from "antd";
 import Paragraph from "antd/es/typography/Paragraph";
 import Title from "antd/es/typography/Title";
 import { cookies } from "next/headers";
@@ -16,41 +18,26 @@ export default async function Opportunities() {
 
   const cookieStore = await cookies();
   const token = cookieStore.get("raven")?.value;
+  if (!token) {
+    return (
+      <div className="h-[300px] w-full flex justify-center items-center text-lg font-semibold">
+        Please login to see the available job posts
+      </div>
+    );
+  }
+  let call;
 
   try {
-    const call = await getFetcher({ link: "/list-job", token: token });
-    console.log(call);
+    call = await getFetcher({ link: "/list-job", token: token });
   } catch (error) {
     console.error(error);
   }
 
-  const opportunities = [
-    {
-      role: "Design",
-      opens: [
-        {
-          role: "UI-UX Designer",
-          location: "Banasree, Dhaka",
-          category: "Design",
-        },
-        {
-          role: "Graphic Designer",
-          location: "Banasree, Dhaka",
-          category: "Design",
-        },
-      ],
-    },
-    {
-      role: "Development",
-      opens: [
-        {
-          role: "React native developer",
-          location: "Banasree, Dhaka",
-          category: "Development",
-        },
-      ],
-    },
-  ];
+  if (!call.status) {
+    message.error(call.message);
+  }
+
+  const jobData: JobData[] = call.data;
   return (
     <section className="py-16">
       <div className="mx-auto">
@@ -79,40 +66,45 @@ export default async function Opportunities() {
           </div>
         </div>
 
-        <div className="py-12 px-[7%]">
-          {opportunities.map((item, i) => (
-            <div className="pt-12" key={i}>
-              <div className="h-[120px] flex justify-center items-center">
-                <div className="asbolute left-0 bg-[#FBF9F5] p-1">
-                  <div className=" bg-[#7849D4] px-2 md:px-4 py-2 rounded-full font-bold text-background text-xs md:text-base">
-                    {item.role}
+        <div className="!py-12 !px-[7%]">
+          {Object.entries(jobData as unknown as Record<string, Job[]>).map(
+            ([category, jobs]) => (
+              <div className="pt-12" key={category}>
+                {/* Category Header */}
+                <div className="h-[120px] relative flex justify-center items-center">
+                  <div className="absolute left-0 bg-[#FFFFFF] p-1">
+                    <div className="bg-[#7849D4] px-2 md:px-4 py-2 rounded-full font-bold text-background text-xs md:text-base">
+                      {category}
+                    </div>
                   </div>
+                  <div className="w-full h-[2px] bg-[#7849D4]"></div>
                 </div>
-                <div className="w-full h-[2px] bg-[#7849D4]"></div>
-              </div>
-              <div className="space-y-6">
-                {item.opens.map((item, i) => (
-                  <div
-                    className="py-6 px-8 flex flex-col gap-6 md:gap-0 md:flex-row justify-between items-center font-semibold rounded-xl bg-background"
-                    key={item.role + i}
-                  >
-                    <div className="">
-                      <Title
-                        level={5}
-                        className="!m-0 !text-2xl md:!text-base text-center"
-                      >
-                        {item.role}
-                      </Title>
+
+                {/* Jobs in this Category */}
+                <div className="space-y-6">
+                  {jobs.map((job) => (
+                    <div
+                      className="py-6 px-8 flex flex-col gap-6 md:gap-0 md:flex-row justify-between items-center font-semibold rounded-xl bg-background"
+                      key={job.id}
+                    >
+                      <div className="w-1/3">
+                        <Title
+                          level={5}
+                          className="!m-0 !text-2xl md:!text-base text-center md:text-start"
+                        >
+                          {job.job_role}
+                        </Title>
+                      </div>
+                      <div className="!text-sm md:!text-base w-1/3">
+                        {job.address}
+                      </div>
+                      <ApplyButton to={`/career/${job.id}`} />
                     </div>
-                    <div className="!text-sm md:!text-base">
-                      {item.location}
-                    </div>
-                    <ApplyButton to="/career/about-opportunity" />
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
       </div>
     </section>

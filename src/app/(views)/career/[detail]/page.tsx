@@ -1,6 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+"use server";
 import ApplyButton from "@/components/ui/apply-button";
 import BackText from "@/components/ui/back-text";
+import { getFetcher } from "@/lib/simplifier";
+import { Job } from "@/types/others";
+import { message } from "antd";
 import Title from "antd/es/typography/Title";
 import {
   Building2,
@@ -10,6 +13,8 @@ import {
   Hourglass,
   MapPin,
 } from "lucide-react";
+import { cookies } from "next/headers";
+import Link from "next/link";
 import React, { JSX } from "react";
 interface JobOpportunity {
   title: string;
@@ -92,7 +97,33 @@ const job_opp: JobOpportunity = {
   posted_date: "",
 };
 
-export default function Page() {
+export default async function Page({ params }: { params: { detail: string } }) {
+  console.log(params.detail);
+
+  const cookieStore = await cookies();
+  const token = cookieStore.get("raven")?.value;
+  if (!token) {
+    return (
+      <div className="h-[300px] w-full flex justify-center items-center text-lg font-semibold">
+        Please login to see this content
+      </div>
+    );
+  }
+  let call;
+
+  try {
+    call = await getFetcher({
+      link: `/job-details/${params.detail}`,
+      token: token,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  if (!call.status) {
+    message.error(call.message);
+  }
+  const job: Job = call.data;
   return (
     <main className="py-12 px-6 md:px-[7%]">
       <BackText text={"Back to Careers"} />
@@ -104,7 +135,7 @@ export default function Page() {
                 level={3}
                 className="!m-0 !text-background text-lg md:text-xl"
               >
-                {job_opp.title}
+                {job.job_role}
               </Title>
               <ApplyButton
                 to={job_opp.to}
@@ -114,9 +145,9 @@ export default function Page() {
           </div>
           <div className="p-4 md:p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="p-6 border rounded-lg space-y-6">
-              {renderJobDetail(job_opp.icons.location, job_opp.company.name)}
-              {renderJobDetail(job_opp.icons.globe, job_opp.company.website)}
-              {renderJobDetail(job_opp.icons.pin, job_opp.location)}
+              {renderJobDetail(job_opp.icons.location, "Tawun")}
+              {renderJobDetail(job_opp.icons.globe, "tawun.com")}
+              {renderJobDetail(job_opp.icons.pin, job.address)}
             </div>
             <div className="p-6 border rounded-lg space-y-6">
               {renderJobDetail(
@@ -124,11 +155,14 @@ export default function Page() {
                 job_opp.employment_type
               )}
               {renderJobDetail(job_opp.icons.clock, job_opp.employment_type)}
-              {renderJobDetail(job_opp.icons.calendar, job_opp.end_date)}
+              {renderJobDetail(
+                job_opp.icons.calendar,
+                "Deadline: " + job.deadline
+              )}
             </div>
           </div>
-          <Section title="About Position" text={job_opp.about_position.text} />
-          <Section title="What you'll do" text={job_opp.what_youll_do.text} />
+          <Section title="About Position" text={job.description} />
+          {/* <Section title="What you'll do" text={job_opp.what_youll_do.text} />
           <ListSection
             title="What you should have"
             items={job_opp.what_you_should_have.items}
@@ -136,7 +170,7 @@ export default function Page() {
           <ListSection
             title="Nice to have"
             items={job_opp.nice_to_have.items}
-          />
+          /> */}
         </div>
         <div className="lg:col-span-2">
           <div className="w-full">
@@ -149,10 +183,7 @@ export default function Page() {
               </Title>
             </div>
           </div>
-          <div className="bg-background p-4 md:p-6">
-            {job_opp.about_us.text}{" "}
-            <span className="font-bold">Read more...</span>
-          </div>
+          <div className="bg-background p-4 md:p-6">{job.description}</div>
         </div>
       </div>
     </main>
@@ -187,40 +218,9 @@ function ListSection({ title, items }: { title: string; items: any }) {
         {title}
       </Title>
       <ul className="list-disc pl-4 text-sm md:text-base">
-        {items.map(
-          (
-            item:
-              | string
-              | number
-              | bigint
-              | boolean
-              | React.ReactElement<
-                  unknown,
-                  string | React.JSXElementConstructor<any>
-                >
-              | Iterable<React.ReactNode>
-              | React.ReactPortal
-              | Promise<
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | React.ReactPortal
-                  | React.ReactElement<
-                      unknown,
-                      string | React.JSXElementConstructor<any>
-                    >
-                  | Iterable<React.ReactNode>
-                  | null
-                  | undefined
-                >
-              | null
-              | undefined,
-            i: React.Key | null | undefined
-          ) => (
-            <li key={i}>{item}</li>
-          )
-        )}
+        {items.map((item: string, i: React.Key) => (
+          <li key={i}>{item}</li>
+        ))}
       </ul>
     </div>
   );

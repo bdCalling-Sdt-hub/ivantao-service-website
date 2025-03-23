@@ -20,3 +20,19 @@ export interface experienceType {
   created_at: string;
   updated_at: string;
 }
+
+export interface Job {
+  id: number;
+  job_role: string;
+  job_category: string;
+  description: string;
+  job_type: string;
+  address: string;
+  deadline: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface JobData {
+  [category: string]: Job[];
+}
