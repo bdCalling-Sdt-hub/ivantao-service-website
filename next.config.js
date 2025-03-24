@@ -4,7 +4,16 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["10.0.80.16", "182.252.68.227"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+      {
+        protocol: "http",
+        hostname: "**",
+      },
+    ],
   },
 };
 

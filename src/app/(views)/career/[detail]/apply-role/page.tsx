@@ -23,6 +23,7 @@ export default function Page({ params }: { params: { detail: string } }) {
   const [cookies] = useCookies(["raven"]);
   const navig = useRouter();
   const [waiting, setWaiting] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFileChange = (info: any) => {
@@ -42,6 +43,7 @@ export default function Page({ params }: { params: { detail: string } }) {
 
   const onFinish = async (values: FormValues) => {
     setWaiting(true);
+    setErrorMessage("");
 
     // Create FormData instance
     const formData = new FormData();
@@ -62,33 +64,42 @@ export default function Page({ params }: { params: { detail: string } }) {
       return;
     }
 
-    // Debugging step: Check the FormData object
-    console.log("Form Data before submission:");
-    for (const pair of formData.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
-    }
-    console.log(values);
-
     try {
-      console.log(formData);
-
       const call = await formPostFetcher({
         link: "/apply-form",
         meth: "POST",
         token: cookies.raven,
-        data: formData, // Send FormData with the actual file
+        data: formData,
       });
 
       if (!call.status) {
-        message.error(call.message);
+        // Handle error object properly
+        if (typeof call.message === "string") {
+          message.error(call.message);
+        } else if (call.message && typeof call.message === "object") {
+          // If message is an object, format it for display
+          const errorMessages = Object.entries(call.message)
+            .map(([key, value]) => `${key}: ${value}`)
+            .join(", ");
+          setErrorMessage(errorMessages);
+          message.error("Validation error. Please check the form.");
+        } else {
+          message.error("An unknown error occurred");
+        }
         setWaiting(false);
         return;
       }
-      message.success(call?.message);
+
+      message.success(
+        typeof call.message === "string"
+          ? call.message
+          : "Application submitted successfully"
+      );
       navig.push("/career");
-      setWaiting(false);
     } catch (error) {
       console.error("Error during submission:", error);
+      message.error("Failed to submit application");
+    } finally {
       setWaiting(false);
     }
   };
@@ -106,6 +117,11 @@ export default function Page({ params }: { params: { detail: string } }) {
           Applying for UI-UX Designer
         </Title>
         <div className="px-[5%] md:px-[20%] lg:px-[30%]">
+          {errorMessage && (
+            <div className="mb-4 p-3 bg-red-50 text-red-600 rounded-md">
+              {errorMessage}
+            </div>
+          )}
           <Form
             name="login"
             layout="vertical"

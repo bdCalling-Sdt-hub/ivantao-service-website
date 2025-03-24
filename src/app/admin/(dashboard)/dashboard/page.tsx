@@ -1,16 +1,53 @@
+"use server";
 import React from "react";
 import Overview from "./overview";
 import Chart from "./chart";
 import DashTitle from "@/components/ui/dash-title";
 import { Hand } from "lucide-react";
 import Title from "antd/es/typography/Title";
+import { getFetcher } from "@/lib/simplifier";
+import { cookies } from "next/headers";
+import DashboardDataType from "@/types/dashboard";
 
-export default function Page() {
+export default async function Page() {
+  const cookieStore = cookies();
+  const token = cookieStore.get("raven")?.value;
+
+  const getUserData = async () => {
+    try {
+      const call = await getFetcher({
+        link: "/auth/own-profile",
+        token: token,
+      });
+      if (!call.status) {
+        console.error(call.message);
+        return "SERVER ERR";
+      }
+      return call.data.full_name;
+    } catch (error) {
+      console.error(error);
+      return "NOT FOUND";
+    }
+  };
+
+  const call = await getFetcher({ link: "/total-dashboard", token: token });
+
+  if (!call.status) {
+    return (
+      <div className="h-screen w-screen flex justify-center items-center">
+        {call.message}
+      </div>
+    );
+  }
+
+  const dashData: DashboardDataType = call.data;
+  console.log(dashData);
+
   return (
     <div className="flex flex-col min-h-screen w-full px-4 md:px-8 py-6">
       <DashTitle admin>
         <Title level={3} className="flex items-center text-2xl">
-          Hello, Elena <Hand className="ml-2" size={20} />
+          Hello, {getUserData()} <Hand className="ml-2" size={20} />
         </Title>
       </DashTitle>
       <div className="md:flex-grow w-full">

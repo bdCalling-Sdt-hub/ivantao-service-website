@@ -17,7 +17,7 @@ export async function postFetcher({
   data,
 }: postFetcherType) {
   const call = await fetch(`${base_url}${link}`, {
-    method: meth ? meth : "GET",
+    method: meth ? meth : "POST",
     headers: {
       "Content-Type": "application/json",
       ...(token && { Authorization: `Bearer ${token}` }),
