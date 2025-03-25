@@ -1,43 +1,43 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DashTitle from "@/components/ui/dash-title";
 import Title from "antd/es/typography/Title";
-import { Button, Input, Select } from "antd";
+import { Button, Input, Select, Spin, message } from "antd";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import UPTable from "@/components/ui/up-table";
+import { getFetcher } from "@/lib/simplifier";
+import { useCookies } from "react-cookie";
+import { UserType } from "@/types/userType"; // Assuming providers use the same UserType structure or create a ProviderType if needed
 
 export default function Page() {
-  const data = [
-    {
-      sr: 1, // You can add sr if needed, but it's not in the image
-      name: "Md. Abid Hasan", // From "Name"
-      email: "example@gmail.com", // From "Email"
-      contact: "+93215789654", // From "Contact"
-      id: "#5689758", // From "User ID"
-      brought: "23", // From "Bought product" (assuming this means quantity)
-      address: "New work", // From "Address"
-    },
-    {
-      sr: 2, // You can add sr if needed, but it's not in the image
-      name: "Md. Abid Hasan", // From "Name"
-      email: "example@gmail.com", // From "Email"
-      contact: "+93215789654", // From "Contact"
-      id: "#5689758", // From "User ID"
-      brought: "23", // From "Bought product" (assuming this means quantity)
-      address: "New work", // From "Address"
-    },
-    {
-      sr: 3, // You can add sr if needed, but it's not in the image
-      name: "Md. Abid Hasan", // From "Name"
-      email: "example@gmail.com", // From "Email"
-      contact: "+93215789654", // From "Contact"
-      id: "#5689758", // From "User ID"
-      brought: "23", // From "Bought product" (assuming this means quantity)
-      address: "New work", // From "Address"
-    },
-  ];
+  const [cookies] = useCookies(["raven"]);
+  const [providerList, setProviderList] = useState<UserType[]>([]); // Assuming ProviderType or UserType
+  const [filter, setFilter] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const fetchProviderList = async (selectedFilter = "") => {
+    setLoading(true);
+    try {
+      const link = selectedFilter
+        ? `/provider-list?filter=${selectedFilter}`
+        : "/provider-list";
+      const call = await getFetcher({ link, token: cookies.raven });
+      setProviderList(call.data);
+    } catch (error) {
+      message.error("Failed to fetch provider list");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProviderList();
+  }, []);
+
   const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+    setFilter(value);
+    fetchProviderList(value);
   };
 
   return (
@@ -47,8 +47,8 @@ export default function Page() {
           Providers
         </Title>
         <p className="text-gray-400">
-          Admin with access to this workspace can promote or demote user
-          maintain business insights
+          Admin with access to this workspace can manage provider details and
+          maintain business insights.
         </p>
       </DashTitle>
       <div className="py-2 flex flex-row justify-between items-center">
@@ -61,24 +61,31 @@ export default function Page() {
           placeholder="Search Provider"
         />
         <Select
-          placeholder="Sort by"
+          placeholder="Filter"
+          value={filter || undefined}
           style={{ width: 120 }}
           onChange={handleChange}
           options={[
-            { value: "newest", label: "Name" },
-            { value: "name", label: "Email" },
-            { value: "in_person", label: "User ID " },
+            { value: "name", label: "Name" },
+            { value: "email", label: "Email" },
+            { value: "id", label: "Provider ID" },
           ]}
           className="!bg-transparent !border-black"
         />
       </div>
       <div className="flex-grow w-full overflow-y-auto">
-        <UPTable data={data} provider />
+        {loading ? (
+          <div className="flex justify-center items-center h-full">
+            <Spin size="large" />
+          </div>
+        ) : (
+          <UPTable data={providerList} provider={true} />
+        )}
       </div>
       <div className="border-t border-black pt-4 flex flex-row justify-between items-center">
-        <div className="">Showing 10 user details</div>
+        <div className="">Showing {providerList.length} provider details</div>
         <div className="flex flex-row justify-center items-center gap-2">
-          <Button shape="circle">
+          <Button shape="circle" disabled>
             <ChevronLeft />
           </Button>
           <Button shape="circle">1</Button>

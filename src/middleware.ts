@@ -27,8 +27,29 @@ async function isAdmin(token: string | undefined): Promise<boolean> {
 
 export async function middleware(request: NextRequest) {
   const token = cookies().get("raven")?.value;
+  const pathname = request.nextUrl.pathname;
+  const is_admin = await isAdmin(token); // Calculate isAdmin once
+  console.log("hello");
+  // Allow access to /admin/login, /admin/verify, and /admin/forgot-pass regardless of admin status.
+  if (
+    pathname.startsWith("/admin/login") ||
+    pathname.startsWith("/admin/verify") ||
+    pathname.startsWith("/admin/forgot-pass")
+  ) {
+    if (is_admin) {
+      return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+    }
+    return NextResponse.next();
+  }
 
-  if (!(await isAdmin(token))) {
+  // Allow super admin to access change-pass
+  if (pathname.startsWith("/admin/change-pass") && is_admin) {
+    return NextResponse.next();
+  }
+
+  // If the user is not an admin, redirect to login.
+  if (!is_admin) {
+    // Use the pre-calculated is_admin
     return NextResponse.redirect(new URL("/admin/login", request.url));
   }
 
@@ -36,5 +57,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin((?!/login|/verify|/change-pass|/forgot-pass).*)"],
+  matcher: ["/admin/:path*"],
 };

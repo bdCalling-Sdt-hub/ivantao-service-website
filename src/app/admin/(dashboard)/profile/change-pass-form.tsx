@@ -1,20 +1,65 @@
 "use client";
-import { Button, Form, FormProps } from "antd";
-
-import Input from "antd/es/input";
-import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
+import type { FormProps } from "antd";
+import { Button, Form, Input, message } from "antd";
+import { useCookies } from "react-cookie";
+import { postFetcher } from "@/lib/simplifier"; // Assuming you have a postFetcher utility
 
 type FieldType = {
-  email?: string;
-  password?: string;
+  currentPassword?: string;
+  newPassword?: string;
+  confirmPassword?: string;
 };
 
-export default function ChangePassForm() {
-  const navig = useRouter();
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
-    navig.push("/");
+export default function AdminChangePassForm() {
+  const [waiting, setWaiting] = useState<boolean>(false);
+  const [cookies] = useCookies(["raven"]);
+  const [form] = Form.useForm();
+
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    setWaiting(true);
+
+    if (values.newPassword !== values.confirmPassword) {
+      form.setFields([
+        {
+          name: "confirmPassword",
+          errors: ["New password and confirm password must match"],
+        },
+      ]);
+      setWaiting(false);
+      return;
+    }
+
+    const readyData = {
+      current_password: values.currentPassword,
+      new_password: values.newPassword,
+      new_password_confirmation: values.confirmPassword,
+    };
+
+    try {
+      const call = await postFetcher({
+        link: "/auth/change-password",
+        data: readyData,
+        meth: "POST",
+        token: cookies.raven,
+      });
+
+      console.log(call);
+
+      if (!call.status) {
+        message.error(call.message);
+        setWaiting(false);
+        return;
+      }
+
+      message.success(call.message);
+      form.resetFields();
+    } catch (error) {
+      console.error("Error changing admin password:", error);
+      message.error("An error occurred while changing the password.");
+    } finally {
+      setWaiting(false);
+    }
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -22,47 +67,56 @@ export default function ChangePassForm() {
   ) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <Form
-      name="login"
+      form={form}
+      name="adminChangePassword"
       layout="vertical"
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
       requiredMark={false}
+      className="w-full"
     >
       <Form.Item<FieldType>
-        label="Your current password:"
-        name="email"
-        rules={[{ required: true, message: "Please enter your email" }]}
+        label="Current Password"
+        name="currentPassword"
+        rules={[
+          { required: true, message: "Please input your current password!" },
+        ]}
       >
-        <Input size="large" placeholder="********" />
+        <Input.Password size="large" placeholder="********" />
       </Form.Item>
+
       <Form.Item<FieldType>
-        label="New password"
-        name="email"
-        rules={[{ required: true, message: "Please enter your email" }]}
+        label="New Password"
+        name="newPassword"
+        rules={[{ required: true, message: "Please input your new password!" }]}
       >
-        <Input size="large" placeholder="********" />
+        <Input.Password size="large" placeholder="********" />
       </Form.Item>
+
       <Form.Item<FieldType>
-        label="Confirm new password"
-        name="email"
-        rules={[{ required: true, message: "Please enter your email" }]}
+        label="Confirm New Password"
+        name="confirmPassword"
+        rules={[
+          { required: true, message: "Please confirm your new password!" },
+        ]}
       >
-        <Input size="large" placeholder="********" />
+        <Input.Password size="large" placeholder="********" />
       </Form.Item>
-      <div className="flex flex-row justify-center items-center">
-        <Form.Item label={null}>
+
+      <div className="flex flex-row justify-center items-center py-12">
+        <Form.Item<FieldType>>
           <Button
-            type="primary"
-            htmlType="submit"
+            loading={waiting}
+            className="bg-[#7849D4] font-bold px-12 py-6 hover:!bg-[#5a37a0] !text-background !border-none"
             size="large"
-            className="text-lg px-12 py-4 !text-background text-black font-bold bg-[#7849D4] hover:!bg-[#533392]"
-            variant="filled"
+            htmlType="submit"
           >
-            Save
+            Save changes
           </Button>
         </Form.Item>
       </div>

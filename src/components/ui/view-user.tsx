@@ -4,7 +4,22 @@ import { EyeFilled } from "@ant-design/icons";
 import { Avatar, Button, Modal } from "antd";
 import React, { useState } from "react";
 
-export default function ViewUser() {
+export default function ViewUser({
+  img,
+  name,
+  email,
+  id,
+  address,
+  contact,
+}: {
+  img?: string;
+  sr?: number;
+  name?: string;
+  email: string;
+  id?: string;
+  address?: string;
+  contact?: string;
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -19,14 +34,14 @@ export default function ViewUser() {
     setIsModalOpen(false);
   };
 
-  const userData = {
-    name: "Md. Abid Hasan",
-    email: "example@gmail.com",
-    contact: "+93215789654",
-    userId: "#5689758",
-    boughtProduct: "23",
-    address: "New work",
-  };
+  // const userData = {
+  //   name: "Md. Abid Hasan",
+  //   email: "example@gmail.com",
+  //   contact: "+93215789654",
+  //   userId: "#5689758",
+  //   boughtProduct: "23",
+  //   address: "New work",
+  // };
 
   return (
     <>
@@ -40,7 +55,7 @@ export default function ViewUser() {
         footer={[
           <div key={102} className="w-full">
             <Button
-              className="w-full bg-[#D5C19C] hover:!bg-[#928469] !text-background"
+              className="w-full bg-[#7849D4] hover:!bg-[#513191] !text-background"
               size="large"
               type="primary"
               onClick={handleCancel}
@@ -52,32 +67,32 @@ export default function ViewUser() {
       >
         <div className="py-4 flex flex-col justify-center items-strech w-full">
           <div className="flex justify-center items-center w-full">
-            <Avatar className="h-[100px] w-[100px] " shape="square" />
+            <Avatar className="h-[100px] w-[100px] " shape="square" src={img} />
           </div>
           <div className="user-info text-base space-y-4 pt-12">
             <div className="flex flex-row justify-between items-center">
               <p className="font-semibold">Name</p>
-              <p>{userData.name}</p>
+              <p>{name}</p>
             </div>
             <div className="flex flex-row justify-between items-center">
               <p className="font-semibold">Email</p>
-              <p>{userData.email}</p>
+              <p>{email}</p>
             </div>
             <div className="flex flex-row justify-between items-center">
               <p className="font-semibold">Contact</p>
-              <p>{userData.contact}</p>
+              <p>{contact}</p>
             </div>
             <div className="flex flex-row justify-between items-center">
               <p className="font-semibold">User ID</p>
-              <p>{userData.userId}</p>
+              <p>{id}</p>
             </div>
-            <div className="flex flex-row justify-between items-center">
+            {/* <div className="flex flex-row justify-between items-center">
               <p className="font-semibold">Bought Product</p>
-              <p>{userData.boughtProduct}</p>
-            </div>
+              <p>{boughtProduct}</p>
+            </div> */}
             <div className="flex flex-row justify-between items-center">
               <p className="font-semibold">Address</p>
-              <p>{userData.address}</p>
+              <p>{address}</p>
             </div>
           </div>
         </div>

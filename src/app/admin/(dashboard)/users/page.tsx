@@ -1,34 +1,43 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DashTitle from "@/components/ui/dash-title";
 import Title from "antd/es/typography/Title";
-import { Button, Input, Select } from "antd";
+import { Button, Input, Select, Spin, message } from "antd";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import UPTable from "@/components/ui/up-table";
+import { getFetcher } from "@/lib/simplifier";
+import { useCookies } from "react-cookie";
+import { UserType } from "@/types/userType";
 
 export default function Page() {
-  const data = [
-    {
-      sr: 1, // You can add sr if needed, but it's not in the image
-      name: "Md. Abid Hasan", // From "Name"
-      email: "example@gmail.com", // From "Email"
-      contact: "+93215789654", // From "Contact"
-      id: "#5689758", // From "User ID"
-      brought: "23", // From "Bought product" (assuming this means quantity)
-      address: "New work", // From "Address"
-    },
-    {
-      sr: 2, // You can add sr if needed, but it's not in the image
-      name: "Md. Abid Hasan", // From "Name"
-      email: "example@gmail.com", // From "Email"
-      contact: "+93215789654", // From "Contact"
-      id: "#5689758", // From "User ID"
-      brought: "23", // From "Bought product" (assuming this means quantity)
-      address: "New work", // From "Address"
-    },
-  ];
+  const [cookies] = useCookies(["raven"]);
+  const [userList, setUserList] = useState<UserType[]>([]);
+  const [filter, setFilter] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const fetchUserList = async (selectedFilter = "") => {
+    setLoading(true);
+    try {
+      const link = selectedFilter
+        ? `/user-list?filter=${selectedFilter}`
+        : "/user-list";
+      const call = await getFetcher({ link, token: cookies.raven });
+      setUserList(call.data);
+    } catch (error) {
+      message.error("Failed to fetch user list");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserList();
+  }, []);
+
   const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+    setFilter(value);
+    fetchUserList(value);
   };
 
   return (
@@ -53,23 +62,30 @@ export default function Page() {
         />
         <Select
           placeholder="Filter"
+          value={filter || undefined}
           style={{ width: 120 }}
           onChange={handleChange}
           options={[
-            { value: "newest", label: "Name" },
-            { value: "name", label: "Email" },
-            { value: "in_person", label: "User ID " },
+            { value: "name", label: "Name" },
+            { value: "email", label: "Email" },
+            { value: "id", label: "User ID" },
           ]}
           className="!bg-transparent !border-black"
         />
       </div>
       <div className="flex-grow w-full overflow-y-auto">
-        <UPTable data={data} provider={false} />
+        {loading ? (
+          <div className="flex justify-center items-center h-full">
+            <Spin size="large" />
+          </div>
+        ) : (
+          <UPTable data={userList} provider={false} />
+        )}
       </div>
       <div className="border-t border-black pt-4 flex flex-row justify-between items-center">
-        <div className="">Showing 10 user details</div>
+        <div className="">Showing {userList.length} user details</div>
         <div className="flex flex-row justify-center items-center gap-2">
-          <Button shape="circle">
+          <Button shape="circle" disabled>
             <ChevronLeft />
           </Button>
           <Button shape="circle">1</Button>

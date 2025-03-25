@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DashTitle from "@/components/ui/dash-title";
 import Title from "antd/es/typography/Title";
-import { Button, Input, Select, Table, TableProps } from "antd";
+import { Button, Input, Select, Table, TableProps, Spin, message } from "antd";
 import {
   CalendarRangeIcon,
   ChevronLeft,
@@ -11,23 +11,72 @@ import {
   Search,
   TrashIcon,
 } from "lucide-react";
-// import UPTable from "@/components/ui/up-table";
+import { getFetcher, deleteFetcher } from "@/lib/simplifier";
+import { useCookies } from "react-cookie";
+import { newsLetter } from "@/types/others";
 
 export default function Page() {
-  const cols: TableProps["columns"] = [
+  const [cookies] = useCookies(["raven"]);
+  const [newsletterList, setNewsletterList] = useState<newsLetter[]>([]);
+  const [filter, setFilter] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const fetchNewsletterList = async (selectedFilter = "") => {
+    setLoading(true);
+    try {
+      const link = selectedFilter
+        ? `/subscribe-list?filter=${selectedFilter}`
+        : "/subscribe-list";
+      const call = await getFetcher({ link, token: cookies.raven });
+      setNewsletterList(call.data.data);
+    } catch (error) {
+      message.error("Failed to fetch newsletter list");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    setLoading(true);
+    try {
+      await deleteFetcher({
+        link: `/subscribe-delete/${id}`,
+        token: cookies.raven,
+      });
+      message.success("Newsletter subscription deleted successfully");
+      fetchNewsletterList(filter); // Refresh the list
+    } catch (error) {
+      message.error("Failed to delete newsletter subscription");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchNewsletterList();
+  }, []);
+
+  const handleChange = (value: string) => {
+    setFilter(value);
+    fetchNewsletterList(value);
+  };
+
+  const cols: TableProps<newsLetter>["columns"] = [
     {
       title: "Date & Time",
       dataIndex: "date_time",
       key: "date_time",
-      render: (texts) => (
+      render: (_, record) => (
         <div className="flex flex-col gap-2">
           <div className="flex gap-2 items-center">
             <CalendarRangeIcon className="size-5" />
-            <span>{texts?.date ?? "N/A"}</span>
+            <span>{record.date ?? "N/A"}</span>
           </div>
           <div className="flex gap-2 items-center">
             <Clock className="size-5" />
-            <span>{texts?.time ?? "N/A"}</span>
+            <span>{record.time ?? "N/A"}</span>
           </div>
         </div>
       ),
@@ -44,14 +93,13 @@ export default function Page() {
     },
     {
       title: "Action",
-      // dataIndex: "email",
-      // key: "email",
-      render: () => (
+      render: (_, record) => (
         <div className="flex flex-col justify-center items-start">
           <Button
             className="size-10 !bg-red-50 !border-none !p-0"
             variant="filled"
             danger
+            onClick={() => handleDelete(record.id)}
           >
             <TrashIcon className="size-5" />
           </Button>
@@ -59,23 +107,6 @@ export default function Page() {
       ),
     },
   ];
-  const data = [
-    {
-      date_time: { date: "22-02-2025", time: "05:50 PM" },
-      email: "example@gmail.com",
-    },
-    {
-      date_time: { date: "22-02-2025", time: "05:50 PM" },
-      email: "example@gmail.com",
-    },
-    {
-      date_time: { date: "22-02-2025", time: "05:50 PM" },
-      email: "example@gmail.com",
-    },
-  ];
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
 
   return (
     <div className="flex flex-col h-screen w-full px-8 py-6">
@@ -84,8 +115,8 @@ export default function Page() {
           Newsletter
         </Title>
         <p className="text-gray-400">
-          Admin with access to this workspace can promote or demote user
-          maintain business insights
+          Admin with access to this workspace can manage newsletter
+          subscriptions.
         </p>
       </DashTitle>
       <div className="py-2 flex flex-row justify-between items-center">
@@ -95,27 +126,37 @@ export default function Page() {
           }
           className="w-1/3 !border-none"
           size="large"
-          placeholder="Search User"
+          placeholder="Search Email"
         />
         <Select
           placeholder="Filter"
+          value={filter || undefined}
           style={{ width: 120 }}
           onChange={handleChange}
           options={[
-            { value: "newest", label: "Name" },
-            { value: "name", label: "Email" },
-            { value: "in_person", label: "User ID " },
+            { value: "email", label: "Email" },
+            { value: "date", label: "Date" },
           ]}
           className="!bg-transparent !border-black"
         />
       </div>
       <div className="flex-grow w-full overflow-y-auto">
-        <Table columns={cols} dataSource={data} />
+        {loading ? (
+          <div className="flex justify-center items-center h-full">
+            <Spin size="large" />
+          </div>
+        ) : (
+          <Table columns={cols} dataSource={newsletterList} rowKey="id" />
+        )}
       </div>
       <div className="border-t border-black pt-4 flex flex-row justify-between items-center">
-        <div className="">Showing 10 user details</div>
+        {newsletterList ? (
+          <div className="">Showing {newsletterList.length} subscriptions</div>
+        ) : (
+          ""
+        )}
         <div className="flex flex-row justify-center items-center gap-2">
-          <Button shape="circle">
+          <Button shape="circle" disabled>
             <ChevronLeft />
           </Button>
           <Button shape="circle">1</Button>

@@ -5,7 +5,23 @@ import { Avatar, Button, Form, Input, Modal } from "antd";
 import Title from "antd/es/typography/Title";
 import React, { useState } from "react";
 
-export default function ViewModal() {
+export default function ViewModal({
+  image,
+  provider,
+  name,
+  category,
+  date,
+  reason,
+  description,
+}: {
+  image: string;
+  provider: string;
+  name: string;
+  category: string;
+  date: string;
+  reason: string;
+  description: string;
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -31,28 +47,31 @@ export default function ViewModal() {
         footer={null}
       >
         <div className="py-6 flex flex-col justify-start items-center ">
-          <Avatar className="w-[100px] h-[100px]" />
+          <Avatar className="w-[100px] h-[100px]" src={image} />
           <Title level={4} className="!m-0 pt-2">
-            Md. Abid
+            {provider}
           </Title>
 
           <Form layout="vertical" requiredMark={false} className="w-4/5">
             <Form.Item label="Service name">
-              <Input size="large" value="Cooking" readOnly />
+              <Input size="large" value={name} readOnly />
             </Form.Item>
 
             <Form.Item label="Category">
-              <Input size="large" value="In person" readOnly />
+              <Input size="large" value={category} readOnly />
             </Form.Item>
 
             <Form.Item label="Date">
-              <Input size="large" value="20-01-2025" readOnly />
+              <Input size="large" value={date} readOnly />
             </Form.Item>
-            <Form.Item label="Category">
+            <Form.Item label="Reason">
+              <Input size="large" value={reason} readOnly />
+            </Form.Item>
+            <Form.Item label="Description">
               <Input.TextArea
                 className="text-xs"
                 size="large"
-                value="Lorem ipsum dolor sit amet consectetur. Ultrices mi morbi pulvinar at in pretium orci ipsum id. Sed nunc varius lobortis morbi tortor egestas. A mauris in pellentesque commodo quis tincidunt aenean. Aliquet commodo amet morbi massa nullam sed non laoreet tempor. Sit sapien a risus laoreet blandit nullam lectus sem sem. Tortor ut quis in dui tempus diam eros at. Purus euismod pretium eu pharetra vitae tortor amet id mauris. Ut sit lectus in nullam non arcu velit lectus. Senectus amet dui aenean aliquam facilisis ut."
+                value={description}
                 rows={8}
                 readOnly
               />

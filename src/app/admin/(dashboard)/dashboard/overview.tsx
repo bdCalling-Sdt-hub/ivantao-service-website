@@ -1,7 +1,6 @@
 "use client";
-import { getFetcher } from "@/lib/simplifier";
 import DashboardDataType from "@/types/dashboard";
-import { message, Select } from "antd";
+import { Select } from "antd";
 import Title from "antd/es/typography/Title";
 import {
   BanknoteIcon,
@@ -10,35 +9,17 @@ import {
   TrendingUpIcon,
   Users,
 } from "lucide-react";
-import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 
-export default function Overview() {
-  const [data, setData] = useState<DashboardDataType | null>(null);
-  const [cookies] = useCookies(["raven"]);
+type OverviewProps = {
+  data: DashboardDataType;
+  refetcher: (arg1: string) => void;
+};
 
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const call = await getFetcher({
-          link: "/total-dashboard",
-          token: cookies.raven,
-        });
-        if (!call.status) {
-          message.error(call.message);
-        }
-        console.log(call.data);
-
-        setData(call.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getUserData();
-  }, []);
+export default function Overview({ data, refetcher }: OverviewProps) {
+  console.log("19", data);
 
   const provData = {
-    total: data?.providers.total,
+    total: String(data?.providers.total),
     growth: data?.providers.growth,
     status: data?.providers.status,
     icon: Users,
@@ -89,6 +70,9 @@ export default function Overview() {
           defaultValue="weekly"
           variant="borderless"
           className="!border-none w-min"
+          onChange={(val) => {
+            refetcher(val);
+          }}
           options={[
             { value: "weekly", label: "Weekly" },
             { value: "monthly", label: "Monthly" },
@@ -107,7 +91,7 @@ export default function Overview() {
             <div className="flex flex-row justify-between items-start w-full">
               <div className="flex flex-row items-center gap-3">
                 <Title className="!m-0" level={1}>
-                  {/* {formatNumber(item.total)} */}
+                  {item.total}
                 </Title>
                 {item.growth === "up"
                   ? trending(true).icon

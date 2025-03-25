@@ -1,11 +1,31 @@
 "use client";
 import { DeleteOutlined, InfoCircleFilled } from "@ant-design/icons";
 import React, { useState } from "react";
-import { Button, Popover } from "antd";
+import { Button, message, Popover } from "antd";
 import Title from "antd/es/typography/Title";
+import { deleteFetcher } from "@/lib/simplifier";
+import { useCookies } from "react-cookie";
 
-export default function DeletePopover({ message }: { message: string }) {
+export default function DeletePopover({
+  id,
+  messaged,
+  type,
+}: {
+  type: string;
+  id: string;
+  messaged: string;
+}) {
   const [open, setOpen] = useState(false);
+  const [cookies] = useCookies(["raven"]);
+
+  let url = "";
+  if (type === "reportListing") {
+    url = "/report-delete";
+  } else if (type === "user") {
+    url = "/user-delete";
+  } else if (type === "provider") {
+    url = "/provider-delete";
+  }
 
   const hide = () => {
     setOpen(false);
@@ -22,7 +42,22 @@ export default function DeletePopover({ message }: { message: string }) {
           <Button onClick={hide}>No</Button>
           <Button
             className="bg-red-500 hover:!bg-red-600 !border-none !text-background"
-            onClick={hide}
+            onClick={async () => {
+              try {
+                const call = await deleteFetcher({
+                  link: `${url}/${id}`,
+                  token: cookies.raven,
+                });
+                if (!call.status) {
+                  message.error(call.message);
+                }
+                message.success(call.message);
+              } catch (error) {
+                console.error(error);
+              }
+
+              hide();
+            }}
           >
             Yes
           </Button>
@@ -32,7 +67,7 @@ export default function DeletePopover({ message }: { message: string }) {
         <div className="w-[400px] p-2">
           <Title level={5} className="">
             <InfoCircleFilled className="text-orange-400 pr-2" />
-            {message}
+            {messaged}
           </Title>
         </div>
       }
