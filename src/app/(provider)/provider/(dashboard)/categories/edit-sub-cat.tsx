@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import React, { useState } from "react";
 import { PencilIcon } from "lucide-react";
 import EditSubCatForm from "./edit-sub-cat-form";
 import Title from "antd/es/typography/Title";
-export default function EditSubCat() {
+export default function EditSubCat({ item }: { item: any }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -37,21 +38,9 @@ export default function EditSubCat() {
             Edit Sub Category
           </Title>
         }
-        footer={[
-          <div
-            key={10}
-            className="w-full h-auto flex flex-row justify-center items-center px-[7%]"
-          >
-            <Button
-              size="large"
-              className="w-full bg-[#7849D4] hover:!bg-[#533392] !text-background border-none"
-            >
-              Update
-            </Button>
-          </div>,
-        ]}
+        footer={null}
       >
-        <EditSubCatForm />
+        <EditSubCatForm item={item} />
       </Modal>
     </>
   );

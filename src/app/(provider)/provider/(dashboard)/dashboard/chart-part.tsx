@@ -15,16 +15,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-
-const chartData = [
-  { day: "Mon", revenue: 1000 },
-  { day: "Tue", revenue: 3200 },
-  { day: "Wed", revenue: 1800 },
-  { day: "Thu", revenue: 4200 },
-  { day: "Fri", revenue: 3900 },
-  { day: "Sat", revenue: 4400 },
-  { day: "Sun", revenue: 2300 },
-];
+import { ProvDashboardType } from "@/types/dashboard";
 
 const chartConfig = {
   revenue: {
@@ -33,13 +24,13 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function ChartPart() {
+export function ChartPart({ data }: { data: ProvDashboardType }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <ChartContainer className="h-full w-full" config={chartConfig}>
         <AreaChart
           accessibilityLayer
-          data={chartData}
+          data={data.chartData}
           margin={{
             left: 12,
             right: 12,

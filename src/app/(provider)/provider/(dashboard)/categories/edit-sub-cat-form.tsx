@@ -1,74 +1,114 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+import { postFetcher } from "@/lib/simplifier";
 import { InboxOutlined } from "@ant-design/icons";
 import type { FormProps } from "antd";
-import { Form, Select } from "antd";
+import { Button, Form, message, UploadFile, Input } from "antd";
 import Dragger from "antd/es/upload/Dragger";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 type FieldType = {
-  company?: string;
-  role?: string;
-  join?: string;
-  resign?: string;
-};
-const handleChange = (value: string[]) => {
-  console.log(`selected ${value}`);
+  image?: string;
+  name?: string;
 };
 
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
+export default function EditSubCatForm({ item }: { item: any }) {
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [form] = Form.useForm();
+  const [cookies] = useCookies(["raven"]);
+  useEffect(() => {
+    form.setFields([{ name: "name", value: item.name }]);
+  }, [item]);
 
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+  const handleFileChange = ({ fileList }: { fileList: UploadFile[] }) => {
+    setFileList(fileList);
+  };
 
-export default function EditSubCatForm() {
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    const formData = new FormData();
+    if (fileList.length > 0 && fileList[0].originFileObj) {
+      formData.append("image", fileList[0].originFileObj);
+    }
+    formData.append("name", values.name || "");
+
+    console.log("Form Data:", Object.fromEntries(formData.entries()));
+
+    try {
+      const call = await postFetcher({
+        link: `/update-subcategory/${item.id}`,
+        token: cookies.raven,
+      });
+      console.log(call);
+      if (!call.status) {
+        message.error(call.message);
+        return;
+      }
+      message.success(call.message);
+    } catch (error) {
+      console.error(error);
+    }
+
+    // message.success("Form submitted successfully!");
+  };
+
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
-    <>
-      <div className="p-6 px-[7%]">
-        <div className="">
-          <Form
-            name="basic"
-            layout="vertical"
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-            requiredMark={false}
-            className="w-full"
+    <div className="p-6 px-[7%]">
+      <div>
+        <Form
+          form={form}
+          name="edit-sub"
+          layout="vertical"
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+          requiredMark={false}
+          className="w-full"
+        >
+          <Form.Item<FieldType>
+            name="image"
+            rules={[{ required: true, message: "Please upload an image!" }]}
           >
-            <Form.Item<FieldType>
-              name="company"
-              rules={[
-                { required: true, message: "Please input your username!" },
-              ]}
+            <Dragger
+              multiple={false}
+              fileList={fileList}
+              beforeUpload={() => false}
+              onChange={handleFileChange}
+              showUploadList={true}
             >
-              <Dragger>
-                <p className="ant-upload-drag-icon">
-                  <InboxOutlined />
-                </p>
-                <p className="ant-upload-hint">Click to upload</p>
-              </Dragger>
-            </Form.Item>
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined />
+              </p>
+              <p className="ant-upload-hint">Click to upload</p>
+            </Dragger>
+          </Form.Item>
 
-            <Form.Item<FieldType>
-              label="Sub Category"
-              name="role"
-              rules={[
-                { required: true, message: "Please input your password!" },
-              ]}
+          <Form.Item<FieldType>
+            label="Sub Category"
+            name="name"
+            rules={[{ required: true, message: "Please input a subcategory!" }]}
+          >
+            <Input className="w-full" placeholder="Type here.." />
+          </Form.Item>
+
+          <div className="w-full h-auto flex flex-row justify-center items-center px-[7%]">
+            <Button
+              size="large"
+              htmlType="submit"
+              className="w-full bg-[#7849D4] hover:!bg-[#533392] !text-background border-none"
             >
-              <Select
-                mode="tags"
-                style={{ width: "100%" }}
-                placeholder="Tags Mode"
-                onChange={handleChange}
-                size="large"
-              />
-            </Form.Item>
-          </Form>
-        </div>
+              Update
+            </Button>
+          </div>
+        </Form>
       </div>
-    </>
+    </div>
   );
 }

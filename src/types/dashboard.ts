@@ -27,4 +27,31 @@ interface DashboardDataType {
   };
 }
 
+export interface ProvDashboardType {
+  period: string;
+  consumers: MetricData;
+  transactions: MetricData;
+  earnings: MetricData;
+  chartData: ChartDataItem[];
+  totalRevenue: string;
+  revenueDifference: string;
+  tooltipData: TooltipData;
+}
+
+interface MetricData {
+  total: number;
+  growth: string;
+  status: string;
+}
+
+interface ChartDataItem {
+  date: string;
+  revenue: number;
+}
+
+interface TooltipData {
+  revenue: string;
+  date: string;
+}
+
 export default DashboardDataType;

@@ -1,57 +1,102 @@
 "use client";
+import { formPostFetcher, getFetcher } from "@/lib/simplifier";
+import { Category, Subcategory } from "@/types/Services";
 import { InboxOutlined } from "@ant-design/icons";
-import { Button, Form, FormProps, message, Select, UploadProps } from "antd";
-
+import { Button, Form, FormProps, message, Select, UploadFile } from "antd";
 import Input from "antd/es/input";
 import Dragger from "antd/es/upload/Dragger";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 type FieldType = {
   category?: string;
   subCategory?: string;
   img?: string;
   title?: string;
+  service_type?: string;
   description?: string;
   price?: string;
-  email?: string; // Added email field
-  password?: string; // Added password field
-};
-
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-const handleChangeA = (value: string) => {
-  console.log(`selected ${value}`);
 };
 
 export default function AddForm() {
-  const props: UploadProps = {
-    name: "file",
-    multiple: true,
-    action: "https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload",
-    onChange(info) {
-      const { status } = info.file;
-      if (status !== "uploading") {
-        console.log(info.file, info.fileList);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [subCategories, setSubCategories] = useState<Subcategory[]>([]);
+  // const [selectedSubCategory, setSelectedSubCategory] = useState<string>();
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [form] = Form.useForm();
+  const [cookies] = useCookies(["raven"]);
+  const navig = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleChange = ({ fileList }: { fileList: any }) =>
+    setFileList(fileList);
+  useEffect(() => {
+    async function getData() {
+      const call = await getFetcher({
+        link: "/get-all-category",
+        token: cookies.raven,
+      });
+      setCategories(call.data.data);
+    }
+    getData();
+  }, []);
+
+  const handleCategoryChange = (value: string) => {
+    const selectedCategory = categories.find(
+      (cat) => cat.id.toString() === value
+    );
+    setSubCategories(selectedCategory?.subcategories || []);
+  };
+  const handleSubCategoryChange = (value: string) => {
+    console.log("Selected subcategory:", value);
+  };
+
+  const onFinish: FormProps<FieldType>["onFinish"] = async () => {
+    const values = await form.validateFields();
+    const formData = new FormData();
+    formData.append("service_category_id", values.category);
+    formData.append("service_sub_categories_id", values.subCategory);
+    if (fileList.length > 0 && fileList[0].originFileObj) {
+      formData.append("image", fileList[0].originFileObj);
+    }
+    formData.append("service_type", values.service_type);
+    formData.append("title", values.title);
+    formData.append("description", values.description);
+    formData.append("price", values.price);
+
+    console.log("Form Data:", Object.fromEntries(formData.entries()));
+
+    // console.log("Success:", values);
+
+    try {
+      const call = await formPostFetcher({
+        link: "/create-service",
+        data: formData,
+        token: cookies.raven,
+        meth: "POST",
+      });
+      if (!call.status) {
+        message.error(call.message);
+        return;
       }
-      if (status === "done") {
-        message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-    onDrop(e) {
-      console.log("Dropped files", e.dataTransfer.files);
-    },
+      message.success(call.message);
+      form.resetFields();
+      navig.push("/provider/services");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
   };
 
   return (
     <Form
-      name="add-item" // Changed name for clarity
+      form={form}
+      name="add-item"
       layout="vertical"
       initialValues={{ remember: true }}
       onFinish={onFinish}
@@ -67,13 +112,11 @@ export default function AddForm() {
         <Select
           placeholder="Select your product category"
           size="large"
-          onChange={handleChangeA}
-          options={[
-            { value: "jack", label: "Jack" },
-            { value: "lucy", label: "Lucy" },
-            { value: "Yiminghe", label: "yiminghe" },
-            { value: "disabled", label: "Disabled", disabled: true },
-          ]}
+          onChange={handleCategoryChange}
+          options={categories.map((cat) => ({
+            value: cat.id.toString(),
+            label: cat.name,
+          }))}
         />
       </Form.Item>
 
@@ -84,23 +127,29 @@ export default function AddForm() {
       >
         <Select
           placeholder="Select your product sub category"
-          onChange={handleChangeA}
           size="large"
-          options={[
-            { value: "jack", label: "Jack" },
-            { value: "lucy", label: "Lucy" },
-            { value: "Yiminghe", label: "yiminghe" },
-            { value: "disabled", label: "Disabled", disabled: true },
-          ]}
+          onChange={handleSubCategoryChange}
+          options={subCategories.map((sub) => ({
+            value: sub.id.toString(),
+            label: sub.name,
+          }))}
         />
       </Form.Item>
+
       <div className="p-6 bg-background rounded-xl">
         <Form.Item<FieldType>
           label="Image URL"
           name="img"
           rules={[{ required: true, message: "Please enter the image URL" }]}
         >
-          <Dragger {...props} className="bg-transparent">
+          <Dragger
+            multiple={false}
+            fileList={fileList}
+            beforeUpload={() => false}
+            onChange={handleChange}
+            showUploadList={true}
+            className="bg-transparent"
+          >
             <p className="ant-upload-drag-icon !text-[#7849D4]">
               <InboxOutlined className="" />
             </p>
@@ -120,6 +169,30 @@ export default function AddForm() {
           rules={[{ required: true, message: "Please enter the title" }]}
         >
           <Input size="large" placeholder="Title" />
+        </Form.Item>
+        <Form.Item<FieldType>
+          label="Service Type"
+          name="service_type"
+          rules={[{ required: true, message: "Please enter the service type" }]}
+        >
+          <Select
+            placeholder="Select Service Type"
+            size="large"
+            options={[
+              {
+                value: "in-person",
+                label: "In person",
+              },
+              {
+                value: "virtual",
+                label: "Virtual",
+              },
+              {
+                value: "both",
+                label: "Both",
+              },
+            ]}
+          />
         </Form.Item>
 
         <Form.Item<FieldType>

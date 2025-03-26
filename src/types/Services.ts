@@ -29,9 +29,9 @@ interface User {
   image: string;
 }
 
-interface Subcategory {
+export interface Subcategory {
   id: string;
-  service_category_id: string;
+  service_sub_categories_id: string;
   name: string;
   image: string;
   created_at: string;

@@ -1,3 +1,4 @@
+"use client";
 import { defaultUserProfile } from "@/lib/config";
 import { getFetcher } from "@/lib/simplifier";
 import { ServiceType } from "@/types/Services";
@@ -19,7 +20,13 @@ import { useCookies } from "react-cookie";
 //   price: number;
 // }
 
-export default function ProductCard({ product }: { product: ServiceType }) {
+export default function ProductCard({
+  product,
+  checkProvider,
+}: {
+  product: ServiceType;
+  checkProvider: boolean;
+}) {
   const [provider, setProvider] = useState<ProviderType | null>(null);
 
   const [cookies] = useCookies(["raven"]);
@@ -37,7 +44,13 @@ export default function ProductCard({ product }: { product: ServiceType }) {
   }, []);
 
   return (
-    <Link href={`/service/categories/sub-categories/${product.id}`}>
+    <Link
+      href={
+        checkProvider
+          ? `/provider/services/${product.id}`
+          : `/service/categories/sub-categories/${product.id}`
+      }
+    >
       <div className="h-[300px] sm:h-[300px] sm:min-w-[180px] md:h-[500px] md:min-w-auto rounded-xl p-2 md:p-4 shadow-md bg-background relative cursor-pointer hover:shadow-lg transition-all">
         <Image
           src={product.image} // Changed to product

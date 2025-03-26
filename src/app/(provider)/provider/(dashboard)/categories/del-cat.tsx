@@ -1,18 +1,31 @@
 "use client";
-import { Button, Modal } from "antd";
+import { Button, message, Modal } from "antd";
 import React, { useState } from "react";
 import { Trash2Icon } from "lucide-react";
-import EditCatForm from "./edit-cat-form";
 import Title from "antd/es/typography/Title";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-export default function DelCat() {
+import { deleteFetcher } from "@/lib/simplifier";
+import { useCookies } from "react-cookie";
+export default function DelCat({ id }: { id: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [cookies] = useCookies(["raven"]);
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
+  const handleOk = async () => {
+    try {
+      const call = await deleteFetcher({
+        link: `/delete-category/${id}`,
+        token: cookies.raven,
+      });
+      if (!call.status) {
+        message.error(call.messsage);
+      }
+      message.success(call.message);
+    } catch (error) {
+      console.error(error);
+    }
     setIsModalOpen(false);
   };
 

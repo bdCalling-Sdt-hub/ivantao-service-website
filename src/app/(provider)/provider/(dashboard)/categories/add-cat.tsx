@@ -34,19 +34,7 @@ export default function AddCat() {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        footer={[
-          <div
-            key={10}
-            className="w-full h-auto flex flex-row justify-center items-center px-[7%]"
-          >
-            <Button
-              size="large"
-              className="w-full bg-[#7849D4] hover:!bg-[#533392] !text-background border-none"
-            >
-              Save
-            </Button>
-          </div>,
-        ]}
+        footer={null}
       >
         <AddCatForm />
       </Modal>
