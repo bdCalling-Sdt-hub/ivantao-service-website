@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
@@ -6,13 +7,15 @@ import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Search from "../ui/search";
 import Button from "antd/es/button";
-import { Avatar, Dropdown, MenuProps } from "antd";
+import { Avatar, Dropdown, Empty, MenuProps } from "antd";
 import Link from "next/link";
 import Language from "@/app/icons/Language";
 import Chat from "@/app/icons/chat";
 import { BellIcon } from "lucide-react";
 import Title from "antd/es/typography/Title";
 import { UserType } from "@/types/userType";
+import { getFetcher } from "@/lib/simplifier";
+import { useCookies } from "react-cookie";
 
 interface NavbarProps {
   user?: UserType;
@@ -23,6 +26,8 @@ export default function Navbar({ user }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [, setNotifs] = useState<any>([]);
+  const [cookies] = useCookies(["raven"]);
 
   const navLinks = [
     { title: "Home", key: "/" },
@@ -48,11 +53,7 @@ export default function Navbar({ user }: NavbarProps) {
     },
     {
       key: "3",
-      label: (
-        <div className="w-[200px] flex flex-row justify-between items-center gap-6">
-          lol
-        </div>
-      ),
+      label: <Empty description="No Notification" />,
       type: "group",
     },
   ];
@@ -64,6 +65,26 @@ export default function Navbar({ user }: NavbarProps) {
     handleResize();
     window.addEventListener("resize", handleResize);
     setIsLoading(false);
+
+    async function getNotifs() {
+      try {
+        const call = await getFetcher({
+          link: "/get-notification",
+          token: cookies.raven,
+        });
+        if (!call.status || call.error) {
+          if (call.message) {
+            console.error(call.message);
+          }
+        }
+        setNotifs(call.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    getNotifs();
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -72,12 +93,12 @@ export default function Navbar({ user }: NavbarProps) {
   };
   if (isLoading) {
     return (
-      <div className="sticky top-0 left-0 h-[94px] w-full lg:px-6 xl:px-[7%] flex flex-row justify-between items-center bg-[#7849D4] z-20"></div>
+      <div className="sticky top-0 left-0 h-[94px] w-full lg:px-6 xl:px-[7%] flex flex-row justify-between items-center bg-[#7849D4] z-50"></div>
     );
   }
 
   return (
-    <nav className="sticky top-0 left-0 h-[94px] w-full sm:px-4 lg:px-6 xl:px-[7%] flex flex-row justify-between items-center bg-[#7849D4] z-20">
+    <nav className="sticky top-0 left-0 h-[94px] w-full sm:px-4 lg:px-6 xl:px-[7%] flex flex-row justify-between items-center bg-[#7849D4] z-50">
       <div className="flex px-4 md:px-0 justify-between items-center w-full lg:w-auto py-4 lg:py-0">
         <Link href="/">
           <Image
@@ -150,7 +171,7 @@ export default function Navbar({ user }: NavbarProps) {
                   size="large"
                   href="/my-account"
                 >
-                  <Avatar /> {user.full_name}
+                  <Avatar src={user.image} /> {user.full_name}
                 </Button>
               </div>
             )}

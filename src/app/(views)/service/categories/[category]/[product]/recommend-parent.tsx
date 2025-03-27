@@ -4,8 +4,9 @@ import { Button, Switch } from "antd";
 import Title from "antd/es/typography/Title";
 import React, { useState } from "react";
 import Recommends from "./recommends";
+import { ServiceType } from "@/types/Services";
 
-export default function RecommendParent() {
+export default function RecommendParent({ data }: { data: ServiceType[] }) {
   const [rec, setRec] = useState<boolean>(true);
 
   return (
@@ -36,7 +37,7 @@ export default function RecommendParent() {
       {rec && (
         <div className="rounded-xl md:p-8 bg-background mt-6 w-full overflow-x-auto">
           <div className="flex flex-nowrap md:grid grid-cols-2 xl:grid-cols-2 gap-4 md:gap-6">
-            <Recommends />
+            <Recommends data={data} />
           </div>
         </div>
       )}

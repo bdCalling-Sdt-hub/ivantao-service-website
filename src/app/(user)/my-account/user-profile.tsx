@@ -1,17 +1,18 @@
 "use client";
 
 import { Button, Avatar, App } from "antd";
-import { LogoutOutlined, EditOutlined } from "@ant-design/icons";
+import { LogoutOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
 import { UserType } from "@/types/userType";
 import { defaultUserProfile } from "@/lib/config";
+import ProfPicUpdater from "@/components/ui/prof-pic-updater";
 type UserProfileProps = {
   user: UserType;
 };
 export default function UserProfile({ user }: UserProfileProps) {
   const navig = useRouter();
-  const [, , removeCookie] = useCookies(["raven"]);
+  const [cookies, , removeCookie] = useCookies(["raven"]);
   const { message } = App.useApp();
 
   return (
@@ -56,11 +57,7 @@ export default function UserProfile({ user }: UserProfileProps) {
             size={120}
             className="border-4 border-white shadow-lg"
           />
-          <Button
-            icon={<EditOutlined />}
-            onClick={() => {}}
-            className="absolute bottom-0 right-0 rounded-full w-8 h-8 p-0 flex items-center justify-center bg-white border border-gray-200 shadow-sm"
-          />
+          <ProfPicUpdater token={cookies.raven} />
         </div>
 
         <h1 className="text-lg md:text-xl lg:text-2xl font-bold mt-4 mb-2">

@@ -19,3 +19,14 @@ export interface Conversation {
   lastMessage: string;
   timestamp: string;
 }
+
+export interface MessageType {
+  id: number;
+  sender_id: number;
+  receiver_id: number;
+  message: string;
+  image: string;
+  is_read: number;
+  created_at: string;
+  updated_at: string;
+}

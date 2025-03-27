@@ -16,7 +16,7 @@ import { Button } from "antd";
 const stripePromise = loadStripe(
   "pk_test_51R7AneH4E1RWkNRn8fiH8Cu0OSkZVxscWBouwfJfn1rc3rOe5UTW0IZGaNoslfVYc2wSUVeiX8bEwlyl5uUW6j5X00m7ygYtta"
 );
-const CheckoutForm = ({ price }: { price: string }) => {
+const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -41,19 +41,13 @@ const CheckoutForm = ({ price }: { price: string }) => {
         className="!bg-[#7849D4] hover:!bg-[#7849D4] !text-background !border-none w-full mt-12"
         disabled={!stripe || !elements}
       >
-        Pay ${parseInt(price).toFixed(2)}
+        Withdraw
       </Button>
     </form>
   );
 };
 
-export default function PaymentForm({
-  id,
-  price,
-}: {
-  id: string;
-  price: string;
-}) {
+export default function WithdrawForm({ id }: { id: string }) {
   const [clientSecret, setClientSecret] = useState("");
   const [cookies] = useCookies(["raven"]);
 
@@ -90,13 +84,13 @@ export default function PaymentForm({
       <Elements
         stripe={stripePromise}
         options={{
-          // mode: "payment",
+          mode: "setup",
           // amount: 123,
-          // currency: "usd",
-          clientSecret,
+          currency: "usd",
+          // clientSecret,
         }}
       >
-        <CheckoutForm price={price} />
+        <CheckoutForm />
       </Elements>
     </>
   ) : (

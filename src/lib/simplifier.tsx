@@ -9,6 +9,12 @@ interface getFetcherType {
   link: string;
   token?: string;
 }
+interface getFetcherBType {
+  link: string;
+  token?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data?: any;
+}
 
 export async function postFetcher({
   link,
@@ -58,6 +64,23 @@ export async function getFetcher({ link, token }: getFetcherType) {
       "Content-Type": "application/json",
       ...(token && { Authorization: `Bearer ${token}` }),
     },
+  });
+  const response = await call.json();
+  return response;
+}
+
+export async function getFetcherwithBody({
+  link,
+  token,
+  data,
+}: getFetcherBType) {
+  const call = await fetch(`${base_url}${link}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token && { Authorization: `Bearer ${token}` }),
+    },
+    body: data,
   });
   const response = await call.json();
   return response;

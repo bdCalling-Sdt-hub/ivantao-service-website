@@ -66,6 +66,7 @@ export default async function Page({
       title: service.title,
     },
   ];
+  console.log(call);
 
   return (
     <main className="py-0 md:py-12 px-4 md:px-[7%]">
@@ -75,8 +76,8 @@ export default async function Page({
           <div className="order-2 lg:order-1 pb-12 w-full col-span-1 h-min">
             <ProductData data={service} token={getToken?.value} />
           </div>
-          <div className="order-1 lg:order-2 w-full pb-8 md:pb-0">
-            <RecommendParent />
+          <div className="order-1 lg:order-2 w-full pb-8 md:pb-0  whitespace-nowrap overflow-x-scroll">
+            <RecommendParent data={call.data.recommended} />
           </div>
         </div>
         <div className="md:col-span-4 w-full">

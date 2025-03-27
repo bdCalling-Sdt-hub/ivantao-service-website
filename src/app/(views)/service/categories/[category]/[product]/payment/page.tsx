@@ -104,7 +104,7 @@ export default function Page({
             <DatePicker />
           </div>
           <div className="p-6 bg-background shadow-md rounded-xl">
-            <PaymentForm />
+            <PaymentForm id={data.id} price={data.price} />
           </div>
         </div>
       </div>

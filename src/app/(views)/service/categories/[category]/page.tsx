@@ -6,7 +6,7 @@ import { Button, message } from "antd";
 import { useEffect, useState } from "react";
 import { getFetcher } from "@/lib/simplifier";
 import { Loader2Icon } from "lucide-react";
-import { CategoryApiResponseType, serviceApiCallType } from "@/types/Services";
+import { serviceApiCallType } from "@/types/Services";
 interface Categories {
   image: string;
   title: string;
@@ -14,7 +14,6 @@ interface Categories {
 }
 export default function Page() {
   const [err, setErr] = useState("");
-  const [res, setRes] = useState<CategoryApiResponseType | null>(null);
   const [servRes, setServRes] = useState<serviceApiCallType | null>(null);
   const [loading, setLoading] = useState(false);
   const findCategory = (): Categories => {
@@ -41,8 +40,6 @@ export default function Page() {
       } else if (!ServiceCall.status) {
         setErr(ServiceCall.message);
       }
-
-      setRes(call);
       console.log(ServiceCall);
       setServRes(ServiceCall);
 
@@ -72,7 +69,7 @@ export default function Page() {
 
   return (
     <main className="py-12">
-      <Window cat={category} catSel={res?.data.data} />
+      <Window cat={category} />
       {servRes ? (
         <>
           <Shop title="Just for you" data={servRes?.data.data} />

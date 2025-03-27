@@ -7,6 +7,7 @@ import { StarIcon } from "lucide-react";
 import { ServiceBrief } from "@/types/Services";
 import { getFetcher } from "@/lib/simplifier";
 import { ProviderType } from "@/types/userType";
+import ReportListModal from "./report-list-modal";
 export default async function ProductData({
   data,
   token,
@@ -55,10 +56,11 @@ export default async function ProductData({
           </div>
         </div>
         <div className="w-full md:w-auto flex flex-row gap-2 justify-end">
-          <Button className="font-bold !border-red-500 border !text-red-500 hover:!text-red-700">
-            Report Listing
-          </Button>
-          <Button className="bg-[#7849D4] hover:!bg-[#57369b] font-bold !text-background !border-none">
+          {token && <ReportListModal token={token} servId={data.id} />}
+          <Button
+            href="/chat"
+            className="bg-[#7849D4] hover:!bg-[#57369b] font-bold !text-background !border-none"
+          >
             Send message
           </Button>
         </div>

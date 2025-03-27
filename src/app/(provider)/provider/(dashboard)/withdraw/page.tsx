@@ -5,7 +5,7 @@ import Title from "antd/es/typography/Title";
 import { Button } from "antd";
 import { HistoryOutlined } from "@ant-design/icons";
 import { DollarSignIcon } from "lucide-react";
-import PaymentForm from "@/components/ui/payment-form";
+import WithdrawForm from "@/components/ui/withdraw-form";
 export default function Page() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Category {
@@ -75,7 +75,7 @@ export default function Page() {
               Withdraw your money with{" "}
               <span className="font-black">Stripe</span>
             </Title>
-            <PaymentForm />
+            <WithdrawForm id="2" />
             <div className="w-full py-4 flex justify-center items-center">
               <Button
                 type="primary"
