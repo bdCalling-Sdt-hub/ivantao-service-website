@@ -21,6 +21,12 @@ export default function ReportListModal({
 
   const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
     try {
+      console.log({
+        reason: values.reason,
+        description: values.description,
+        service_id: servId,
+      });
+
       const call = await postFetcher({
         link: "/report",
         meth: "POST",
@@ -34,6 +40,10 @@ export default function ReportListModal({
       console.log(call);
 
       if (!call.status) {
+        if (call.error) {
+          message.error(call.error);
+          return;
+        }
         message.error(call.message);
         return;
       }

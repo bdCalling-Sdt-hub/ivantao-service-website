@@ -1,21 +1,68 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Segmented, Calendar, theme, TimePicker, TimePickerProps } from "antd";
 import type { Dayjs } from "dayjs";
 import dayjs from "dayjs";
 import { CalendarIcon, Clock } from "lucide-react";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
-const DatePicker = () => {
+const DatePicker = ({
+  dataChanger,
+  data,
+}: {
+  dataChanger: Dispatch<
+    SetStateAction<{
+      user_id: string;
+      service_id: string;
+      start_date: string;
+      end_date: string;
+      start_time: string;
+      end_time: string;
+    }>
+  >;
+  data: {
+    user_id: string;
+    service_id: string;
+    start_date: string;
+    end_date: string;
+    start_time: string;
+    end_time: string;
+  };
+}) => {
   const [selectedDate, setSelectedDate] = useState<Dayjs | undefined>(dayjs());
   const [activeTab, setActiveTab] = useState("Date");
   const { useToken } = theme;
   const { token } = useToken();
-  const onChange: TimePickerProps["onChange"] = (time, timeString) => {
-    console.log(time, timeString);
-  };
+
+  function dateChanger(date: Dayjs) {
+    const formattedDate = date.format("YYYY-MM-DD");
+    dataChanger({
+      ...data,
+      start_date: formattedDate,
+      end_date: formattedDate,
+    });
+    setSelectedDate(date);
+  }
+
+  function handleStartTimeChange(time: Dayjs | null) {
+    if (time) {
+      dataChanger({
+        ...data,
+        start_time: time.format("HH:mm"),
+      });
+    }
+  }
+
+  function handleEndTimeChange(time: Dayjs | null) {
+    if (time) {
+      dataChanger({
+        ...data,
+        end_time: time.format("HH:mm"),
+      });
+    }
+  }
 
   return (
     <div className="w-full rounded-xl bg-white md:p-4 md:px-12">
@@ -42,8 +89,8 @@ const DatePicker = () => {
             },
           ]}
           value={activeTab}
-          onChange={(val) => setActiveTab(val)} // No need for "as string" with useState
-          className="w-full mb-4 bg-[#7849D4] p-1 payement-tabs" // Add flex for even distribution
+          onChange={(val) => setActiveTab(val)}
+          className="w-full mb-4 bg-[#7849D4] p-1 payement-tabs"
         />
       </div>
 
@@ -52,7 +99,9 @@ const DatePicker = () => {
           <Calendar
             fullscreen={false}
             value={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
+            onChange={(date) => {
+              dateChanger(date);
+            }}
             headerRender={({ value, onChange }) => {
               return (
                 <div className="flex items-center justify-between px-4 py-2">
@@ -87,7 +136,7 @@ const DatePicker = () => {
             placeholder="From"
             use12Hours
             format="h:mm A"
-            onChange={onChange}
+            onChange={handleStartTimeChange}
             size="large"
             className="w-full"
           />
@@ -95,7 +144,7 @@ const DatePicker = () => {
             placeholder="To"
             use12Hours
             format="h:mm A"
-            onChange={onChange}
+            onChange={handleEndTimeChange}
             size="large"
             className="w-full"
           />

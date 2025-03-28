@@ -13,6 +13,7 @@ export interface ServiceType {
   reviews_count: string;
   reviews_avg_rating: string | null;
   reviews: Review[];
+  price_with_fees: string;
 }
 
 interface Review {

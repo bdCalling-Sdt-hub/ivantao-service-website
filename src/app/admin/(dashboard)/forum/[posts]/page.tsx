@@ -16,9 +16,9 @@ export default async function Page({ params }: { params: { posts: string } }) {
     link: `/forum-list?categories_id=${params.posts}`,
     token: token,
   });
-  console.log(call.data.data);
+  console.log(call);
 
-  const posts: postType[] = call.data.data;
+  // const posts: postType[] = call.data;
   return (
     <>
       <main className="h-full w-full flex flex-col justify-start items-start p-4 overflow-y-auto">
@@ -34,9 +34,9 @@ export default async function Page({ params }: { params: { posts: string } }) {
         <div className="flex-grow w-full">
           <BackText text="Cleaning like a pro" />
           <div className="">
-            {posts.map((item) => (
+            {/* {posts.map((item) => (
               <ForumPostCard post={item} key={item.id} type="post" />
-            ))}
+            ))} */}
           </div>
         </div>
       </main>

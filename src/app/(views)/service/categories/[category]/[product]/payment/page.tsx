@@ -1,6 +1,6 @@
 "use client";
 import BackText from "@/components/ui/back-text";
-import { Avatar } from "antd";
+import { Avatar, Button } from "antd";
 import Title from "antd/es/typography/Title";
 import { Loader2Icon, StarIcon } from "lucide-react";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { getFetcher } from "@/lib/simplifier";
 import { useCookies } from "react-cookie";
 import { ServiceType } from "@/types/Services";
+import { getUserData } from "@/lib/api";
 
 export default function Page({
   params,
@@ -26,15 +27,37 @@ export default function Page({
     review_avg: 0,
     review_total: 0,
   });
+  const [proceed, setProceed] = useState<boolean>(false);
   // const [formData,setFormData] = useState({ })
-
+  const [orderForm, setOrderForm] = useState<{
+    user_id: string;
+    service_id: string;
+    start_date: string;
+    end_date: string;
+    start_time: string;
+    end_time: string;
+  }>({
+    user_id: "",
+    service_id: "",
+    start_date: "",
+    end_date: "",
+    start_time: "",
+    end_time: "",
+  });
   useEffect(() => {
     async function getData() {
       const call = await getFetcher({
         link: `/get-services-details/${params.product}`,
         token: cookies.raven,
       });
-      console.log(call);
+      const user = await getUserData(cookies.raven);
+
+      setOrderForm({
+        ...orderForm,
+        user_id: user.data.id,
+        service_id: call.data.service.id,
+      });
+
       if (!call.status) {
         return (
           <div className="px-[7%] h-[300px] flex justify-center items-center">
@@ -50,6 +73,19 @@ export default function Page({
     }
     getData();
   }, []);
+
+  useEffect(() => {
+    if (
+      orderForm.start_date &&
+      orderForm.end_date &&
+      orderForm.start_time &&
+      orderForm.end_time
+    ) {
+      setProceed(true);
+    } else {
+      setProceed(false);
+    }
+  }, [orderForm]);
 
   // useEffect(() => {
   //   console.log(data);
@@ -101,10 +137,27 @@ export default function Page({
         </div>
         <div className="space-y-6">
           <div className="p-6 bg-background shadow-md rounded-xl">
-            <DatePicker />
+            <DatePicker data={orderForm} dataChanger={setOrderForm} />
           </div>
+          <Button
+            onClick={() => {
+              console.log(orderForm);
+            }}
+          >
+            MAGIC BUTTON
+          </Button>
           <div className="p-6 bg-background shadow-md rounded-xl">
-            <PaymentForm id={data.id} price={data.price} />
+            {proceed ? (
+              <PaymentForm
+                id={data.id}
+                price={data.price_with_fees}
+                orderData={orderForm}
+              />
+            ) : (
+              <div className="h-[200px] w-full flex justify-center items-center font-semibold text-xl text-[#7849D4]">
+                Schedule your date and time before payment!
+              </div>
+            )}
           </div>
         </div>
       </div>

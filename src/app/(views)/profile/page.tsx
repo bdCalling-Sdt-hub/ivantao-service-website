@@ -1,45 +1,69 @@
-"use server";
-import React from "react";
-import { getUserData } from "@/lib/api";
-import { cookies } from "next/headers";
+"use client";
+import React, { useEffect, useState } from "react";
 import { UserType } from "@/types/userType";
 import UserProfile from "./user-profile";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCookies } from "react-cookie";
+import { getFetcher } from "@/lib/simplifier";
+import { message } from "antd";
 
-export default async function Page() {
-  const pookies = cookies();
-  const token = pookies.get("raven");
+export default function Page() {
+  const [data, setData] = useState<UserType | null>(null);
+  const id = useSearchParams().get("id");
+  const navig = useRouter();
+  const [cookies] = useCookies(["raven"]);
+  useEffect(() => {
+    async function getUdata() {
+      if (!id) {
+        navig.push("/my-account");
+      }
+      try {
+        const call = await getFetcher({
+          link: `/provider-details/${id}`,
+          token: cookies.raven,
+        });
+        console.log(call);
+
+        if (!call.status) {
+          message.error(call.message);
+          return;
+        }
+
+        setData(call.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        return (
+          <div className="text-center py-16">
+            Error fetching user data. Please try again later.
+          </div>
+        );
+      }
+    }
+
+    getUdata();
+  }, []);
 
   // If no token is found, show a message
-  if (!token) {
+  if (!cookies.raven) {
     return (
-      <div className="text-center py-16">No token found. Please log in.</div>
-    );
-  }
-
-  // Fetch user data using the token
-  let accData: { data: UserType } | null = null;
-
-  try {
-    accData = await getUserData(token.value);
-  } catch (error) {
-    console.error("Error fetching user data:", error);
-    return (
-      <div className="text-center py-16">
-        Error fetching user data. Please try again later.
+      <div className="text-center py-16" suppressHydrationWarning>
+        Please log in first
       </div>
     );
   }
 
   // Show loading state if data is not yet available
-  if (!accData) {
-    return <div className="text-center py-16">Loading user data...</div>;
+  if (!data) {
+    return (
+      <div className="text-center py-16" suppressHydrationWarning>
+        Loading user data...
+      </div>
+    );
   }
 
-  // Render the user profile and in-pages components
   return (
     <main className="px-[7%] py-16">
-      <UserProfile user={accData.data} />
-      {/* <InPages user={accData.data} /> */}
+      {data ? <UserProfile user={data} /> : "Something went wrong..."}
     </main>
   );
 }

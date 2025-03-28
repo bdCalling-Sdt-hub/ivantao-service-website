@@ -3,16 +3,17 @@ import { DataItem } from "./page";
 import Title from "antd/es/typography/Title";
 import { Button } from "antd";
 
-export const ProviderCard: React.FC<{ data: DataItem[] }> = ({ data }) => {
-  const dataWithoutLastItem = data.slice(0, data.length - 1); // Remove the last item
-
+export const ProviderCard: React.FC<{
+  data: DataItem[];
+  providerId: string;
+}> = ({ data, providerId }) => {
   return (
     <>
       <div className="p-6 bg-[#F0E8FF] rounded-lg">
         <Title level={4} className="text-center">
           Provider information
         </Title>
-        {dataWithoutLastItem.map((item, index) => (
+        {data.map((item, index) => (
           <React.Fragment key={index}>
             {item.label && item.value && (
               <p className="flex flex-row justify-between items-start gap-2 w-full text-lg">
@@ -30,6 +31,7 @@ export const ProviderCard: React.FC<{ data: DataItem[] }> = ({ data }) => {
             <Button
               size="large"
               type="primary"
+              href={`/profile?id=${providerId}`}
               className="px-6 bg-[#7849D4] hover:!bg-[#5a37a0]"
             >
               See Profile
