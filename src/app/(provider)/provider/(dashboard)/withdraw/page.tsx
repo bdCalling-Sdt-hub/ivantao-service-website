@@ -5,15 +5,25 @@ import Title from "antd/es/typography/Title";
 import { Button } from "antd";
 import { HistoryOutlined } from "@ant-design/icons";
 import { DollarSignIcon } from "lucide-react";
-import WithdrawForm from "@/components/ui/withdraw-form";
-export default function Page() {
+
+import { getFetcher } from "@/lib/simplifier";
+import { cookies } from "next/headers";
+import { UserType } from "@/types/userType";
+import AccConector from "./acc-connector";
+import WithdrawPayout from "@/components/ui/withdraw-form";
+export default async function Page() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Category {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Icon: React.ComponentType<any>;
     title: string;
   }
-
+  const token = cookies().get("raven")?.value;
+  const call = await getFetcher({ link: "/auth/own-profile", token });
+  if (!call.status) {
+    return <>SOMETHING WENT WRONG..</>;
+  }
+  const userData: UserType = call.data;
   return (
     <>
       <main className="flex flex-col min-h-screen w-full px-2 md:px-8 py-6 overflow-y-auto">
@@ -71,21 +81,18 @@ export default function Page() {
           </div>
 
           <div className="col-span-5 mt-8 md:mt-0">
-            <Title level={3} className="text-center">
-              Withdraw your money with{" "}
-              <span className="font-black">Stripe</span>
-            </Title>
-            <WithdrawForm id="2" />
-            <div className="w-full py-4 flex justify-center items-center">
-              <Button
-                type="primary"
-                htmlType="submit"
-                size="large"
-                className="mt-8 py-6 w-1/2 text-lg px-8 bg-[#7849D4] hover:!bg-[#533392] !text-background font-bold"
-              >
-                Withdraw
-              </Button>
-            </div>
+            {userData.stripe_connect_id ? (
+              <>
+                <Title level={3} className="text-center">
+                  Make an <span className="font-black">Withdraw</span> Request
+                </Title>
+                {token && <WithdrawPayout token={token} />}
+              </>
+            ) : (
+              <div className="h-[200px] w-full flex justify-center items-center border rounded-lg">
+                {token && <AccConector token={token} user={userData} />}
+              </div>
+            )}
           </div>
         </div>
       </main>

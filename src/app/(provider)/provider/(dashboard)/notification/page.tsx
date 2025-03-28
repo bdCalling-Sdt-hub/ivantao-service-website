@@ -2,8 +2,36 @@ import DashTitle from "@/components/ui/dash-title";
 import Title from "antd/es/typography/Title";
 import React from "react";
 import OrderNotification from "./order-notification";
+import { cookies } from "next/headers";
+import { getFetcher } from "@/lib/simplifier";
+interface NewOrderNotification {
+  id: string;
+  type: string;
+  notifiable_type: string;
+  notifiable_id: number;
+  data: {
+    message: string;
+    order_id: number;
+    time: string; // Keeping the invalid format for accuracy
+    service_title: string;
+    user_name: string;
+    address: string;
+  };
+  read_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
 
-export default function Page() {
+export default async function Page() {
+  const token = cookies().get("raven")?.value;
+  const call = await getFetcher({ link: "/get-notification", token });
+
+  if (!call.status) {
+    return <>{call.message}</>;
+  }
+
+  const data: NewOrderNotification[] = call.notifications.data;
+  console.log(data);
   return (
     <main className="flex flex-col min-h-screen w-full px-8 py-6">
       <DashTitle>
@@ -16,8 +44,8 @@ export default function Page() {
         </p>
       </DashTitle>
       <div className="flex-grow w-full space-y-2">
-        {Array.from({ length: 10 }).map((it, i) => (
-          <OrderNotification key={i} />
+        {data.map((it) => (
+          <OrderNotification data={it} key={it.id} />
         ))}
       </div>
     </main>

@@ -1,20 +1,57 @@
 "use client";
-import { Button, Form, FormProps } from "antd";
-
+import { postFetcher } from "@/lib/simplifier";
+import { UserType } from "@/types/userType";
+import { Button, Form, FormProps, message } from "antd";
 import Input from "antd/es/input";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 type FieldType = {
+  full_name?: string;
   email?: string;
-  password?: string;
+  contact?: string;
+  address?: string;
 };
 
-export default function ProfileForm() {
+export default function ProfileForm({ data }: { data?: UserType }) {
   const navig = useRouter();
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+  const [form] = Form.useForm();
+  const [waiting, setWaiting] = useState<boolean>(false);
+  const [cookies] = useCookies(["raven"]);
+  useEffect(() => {
+    if (data) {
+      form.setFieldsValue({
+        full_name: data.full_name,
+        email: data.email,
+        contact: data.contact,
+        address: data.address,
+      });
+    }
+  }, [data, form]);
+
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
     console.log("Success:", values);
-    navig.push("/");
+    setWaiting(true);
+
+    try {
+      const call = await postFetcher({
+        link: "/auth/profile-update",
+        meth: "POST",
+        data: values,
+        token: cookies.raven,
+      });
+      console.log(call);
+      if (call.status) {
+        message.success(call.message);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setWaiting(false);
+    }
+
+    navig.refresh();
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -22,9 +59,11 @@ export default function ProfileForm() {
   ) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <Form
-      name="login"
+      form={form}
+      name="profile_form"
       layout="vertical"
       initialValues={{ remember: true }}
       onFinish={onFinish}
@@ -34,11 +73,12 @@ export default function ProfileForm() {
     >
       <Form.Item<FieldType>
         label="Name"
-        name="email"
-        rules={[{ required: true, message: "Please enter your email" }]}
+        name="full_name"
+        rules={[{ required: true, message: "Please enter your name" }]}
       >
-        <Input size="large" placeholder="Jhon Doe" />
+        <Input size="large" placeholder="John Doe" />
       </Form.Item>
+
       <Form.Item<FieldType>
         label="Email"
         name="email"
@@ -46,28 +86,31 @@ export default function ProfileForm() {
       >
         <Input size="large" placeholder="example@gmail.com" />
       </Form.Item>
+
       <Form.Item<FieldType>
         label="Contact info"
-        name="email"
-        rules={[{ required: true, message: "Please enter your email" }]}
+        name="contact"
+        rules={[{ required: true, message: "Please enter your contact info" }]}
       >
         <Input size="large" placeholder="+96589632147" />
       </Form.Item>
+
       <Form.Item<FieldType>
         label="Address"
-        name="email"
-        rules={[{ required: true, message: "Please enter your email" }]}
+        name="address"
+        rules={[{ required: true, message: "Please enter your address" }]}
       >
-        <Input size="large" placeholder="lorem ipsum dolor sit" />
+        <Input size="large" placeholder="Lorem ipsum dolor sit" />
       </Form.Item>
+
       <div className="flex flex-row justify-center items-center">
         <Form.Item label={null}>
           <Button
+            loading={waiting}
             type="primary"
             htmlType="submit"
             size="large"
-            className="bg-[#B7A481] text-lg px-12 py-4 !text-background text-black font-bold 
-             hover:!bg-[#C4A77D]"
+            className="bg-[#7849D4] hover:!bg-[#533392] !text-background text-lg px-12 py-4 font-bold"
             variant="filled"
           >
             Save

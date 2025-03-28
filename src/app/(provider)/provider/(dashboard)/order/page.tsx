@@ -1,12 +1,29 @@
 "use client";
 import DashTitle from "@/components/ui/dash-title";
+// import { getFetcher } from "@/lib/simplifier";
 import { Avatar, Button, Modal, Radio, Table, TableProps } from "antd";
 import Title from "antd/es/typography/Title";
 import { PencilLineIcon } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+// import { useCookies } from "react-cookie";
 
 export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // const [data, setData] = useState<any>([]);
+  // const [cookies] = useCookies(["raven"]);
+  useEffect(() => {
+    async function getData() {
+      try {
+        // const call = getFetcher({ link: "/order-list", token: cookies.raven });
+        // const;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    getData();
+  }, []);
 
   const showModal = () => {
     setIsModalOpen(true);

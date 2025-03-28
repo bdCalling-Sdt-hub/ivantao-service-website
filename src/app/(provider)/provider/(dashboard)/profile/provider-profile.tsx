@@ -5,10 +5,10 @@ import { EditOutlined } from "@ant-design/icons";
 import { LogOutIcon } from "lucide-react";
 
 interface UserProfileProps {
-  name: string;
-  email: string;
-  balance: number;
-  avatarUrl: string;
+  name?: string;
+  email?: string;
+  balance?: number;
+  avatarUrl?: string;
   onLogout?: () => void;
   onEditProfile?: () => void;
 }

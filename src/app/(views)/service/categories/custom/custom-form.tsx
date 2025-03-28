@@ -9,6 +9,11 @@ type FieldType = {
 };
 const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
   console.log("Success:", values);
+
+  try {
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
@@ -49,7 +54,7 @@ export default function CustomForm() {
           type="primary"
           htmlType="submit"
           size="large"
-          className="mt-8 bg-[#88744F] text-black font-bold px-10 hover:!bg-[#C4A77D] !text-background"
+          className="mt-8 text-black font-bold px-10 bg-[#7849D4] !text-background hover:!bg-[#603baa]"
           variant="filled"
         >
           Send

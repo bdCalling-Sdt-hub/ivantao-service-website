@@ -81,7 +81,7 @@ export default function SideMenu() {
       children: [
         {
           label: "Change Password",
-          key: "change-pass",
+          key: "profile?nav=cp",
           icon: <KeyRoundIcon />,
         },
       ],

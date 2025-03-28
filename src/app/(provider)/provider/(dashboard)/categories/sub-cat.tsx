@@ -12,7 +12,10 @@ export default function SubCat({ data }: { data: Subcategory[] }) {
           <div key={item.id}>
             <div className="h-[200px] w-full rounded-xl shadow-md bg-background relative p-3">
               <ProviderEditDD item={item} sub />
-              <div className="h-[120px] w-full bg-gray-300 rounded-xl"></div>
+              <div
+                className="h-[120px] w-full bg-gray-300 rounded-xl bg-center bg-cover"
+                style={{ backgroundImage: `url('${item.image}')` }}
+              ></div>
               <div className="h-[80px] w-full flex justify-center items-center text-lg font-semibold text-gray-500">
                 {item.name}
               </div>

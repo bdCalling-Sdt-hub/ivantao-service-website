@@ -46,7 +46,7 @@ export default function Page() {
 
       setCookies("raven", call.access_token);
       message.success(call.message);
-      navig.push("/admin/dashboard");
+      navig.push("/provider/dashboard");
     } catch (error) {
       console.error(error);
     }

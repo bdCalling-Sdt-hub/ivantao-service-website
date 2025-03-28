@@ -1,99 +1,75 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-
-import { useState, useEffect } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import {
-  Elements,
-  PaymentElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+import React from "react";
+import type { FormProps } from "antd";
+import { Button, Form, InputNumber, message } from "antd";
 import { postFetcher } from "@/lib/simplifier";
-import { useCookies } from "react-cookie";
-import { Button } from "antd";
 
-const stripePromise = loadStripe(
-  "pk_test_51R7AneH4E1RWkNRn8fiH8Cu0OSkZVxscWBouwfJfn1rc3rOe5UTW0IZGaNoslfVYc2wSUVeiX8bEwlyl5uUW6j5X00m7ygYtta"
-);
-const CheckoutForm = () => {
-  const stripe = useStripe();
-  const elements = useElements();
+type FieldType = {
+  amount?: string;
+};
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    if (!stripe || !elements) return;
+export default function WithdrawPayout({ token }: { token: string }) {
+  const [form] = Form.useForm();
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: { return_url: window.location.origin },
-    });
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    try {
+      const call = await postFetcher({
+        link: "/request-withdraw",
+        meth: "POST",
+        data: values,
+        token,
+      });
+      if (!call.status) {
+        message.error(call.message);
+        return;
+      }
+      message.success(call.message);
+      form.resetFields();
+    } catch (error) {
+      console.error(error);
+    }
 
-    if (error) alert(error.message);
+    console.log("Success:", values);
+  };
+
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <PaymentElement />
-      <Button
-        size="large"
-        htmlType="submit"
-        className="!bg-[#7849D4] hover:!bg-[#7849D4] !text-background !border-none w-full mt-12"
-        disabled={!stripe || !elements}
-      >
-        Withdraw
-      </Button>
-    </form>
-  );
-};
-
-export default function WithdrawForm({ id }: { id: string }) {
-  const [clientSecret, setClientSecret] = useState("");
-  const [cookies] = useCookies(["raven"]);
-
-  useEffect(() => {
-    console.log("Service ID:", id);
-    console.log("Fetching Payment Intent...");
-
-    async function getData() {
-      try {
-        const call = await postFetcher({
-          link: "/order-payment",
-          token: cookies.raven,
-          data: { service_id: id, payment_method: "pm_card_visa" },
-        });
-
-        console.log("API Response:", call);
-
-        if (call?.data?.client_secret) {
-          setClientSecret(call.data.client_secret);
-        } else {
-          console.error("client_secret is missing from API response!");
-        }
-      } catch (error) {
-        console.error("Payment Intent Fetch Error:", error);
-      }
-    }
-
-    getData();
-  }, []);
-
-  return clientSecret ? (
     <>
-      <br />
-      <Elements
-        stripe={stripePromise}
-        options={{
-          mode: "setup",
-          // amount: 123,
-          currency: "usd",
-          // clientSecret,
-        }}
-      >
-        <CheckoutForm />
-      </Elements>
+      <div className="flex flex-col justify-center items-center w-full">
+        <Form
+          form={form}
+          name="withdraw"
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+          layout="vertical"
+          className="w-full flex flex-col justify-center items-center"
+        >
+          <Form.Item label={"Withdraw amount"} name="amount" className="w-full">
+            <InputNumber
+              placeholder="Withdraw amount"
+              className="w-full bg-[#F0E8FF]"
+              size="large"
+            />
+          </Form.Item>
+          <Form.Item label={null}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="bg-[#7849D4] !text-background hover:!bg-[#603baa]"
+              size="large"
+            >
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     </>
-  ) : (
-    <p>Loading...</p>
   );
 }

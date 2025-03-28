@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { postFetcher } from "@/lib/simplifier";
+import { formPostFetcher } from "@/lib/simplifier";
 import { InboxOutlined } from "@ant-design/icons";
 import type { FormProps } from "antd";
 import { Button, Form, message, UploadFile, Input } from "antd";
@@ -26,18 +26,20 @@ export default function EditSubCatForm({ item }: { item: any }) {
   };
 
   const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
-    const formData = new FormData();
-    if (fileList.length > 0 && fileList[0].originFileObj) {
-      formData.append("image", fileList[0].originFileObj);
-    }
-    formData.append("name", values.name || "");
-
-    console.log("Form Data:", Object.fromEntries(formData.entries()));
-
     try {
-      const call = await postFetcher({
+      const formData = new FormData();
+      if (fileList.length > 0 && fileList[0].originFileObj) {
+        formData.append("image", fileList[0].originFileObj);
+      }
+      formData.append("name", values.name || "");
+
+      console.log("Form Data:", Object.fromEntries(formData.entries()));
+
+      const call = await formPostFetcher({
         link: `/update-subcategory/${item.id}`,
         token: cookies.raven,
+        data: formData,
+        meth: "POST",
       });
       console.log(call);
       if (!call.status) {
