@@ -9,8 +9,8 @@ export default function ForumPostCard({
   post,
   type,
 }: {
-  post: postType;
-  type: string;
+  post?: postType;
+  type?: string;
 }) {
   return (
     <div
@@ -29,14 +29,14 @@ export default function ForumPostCard({
           <Avatar size="large" />
           <div className="">
             <Title className="!m-0" level={5}>
-              {post.title}
+              {post?.title}
             </Title>
-            <p>{post.time_ago}</p> {/* Display time */}
+            <p>{post?.time_ago}</p> {/* Display time */}
           </div>
         </div>
         <div className="py-4">
-          <Title level={5}>{post.title}</Title>
-          <p className="text-sm md:text-lg font-light">{post.comment}</p>
+          <Title level={5}>{post?.title}</Title>
+          <p className="text-sm md:text-lg font-light">{post?.comment}</p>
         </div>
       </div>
       <div className="h-full flex flex-col justify-between items-end">

@@ -4,14 +4,14 @@ import type { DatePickerProps, FormProps } from "antd";
 import { Button, DatePicker, Form, Input, message } from "antd";
 import Title from "antd/es/typography/Title";
 import React, { useEffect } from "react";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 type FieldType = {
   company_name?: string;
   job_role?: string;
   description?: string;
-  join_date?: string;
-  resign_date?: string;
+  join_date?: Dayjs;
+  resign_date?: Dayjs;
 };
 
 export default function EditExp({

@@ -93,7 +93,7 @@ export default function Shop({
       </div>
       <div className="px-[7%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-12 gap-6">
         {data.map((item, i) => (
-          <ProductCard key={i} product={item} />
+          <ProductCard key={i} product={item} checkProvider />
         ))}
       </div>
     </section>

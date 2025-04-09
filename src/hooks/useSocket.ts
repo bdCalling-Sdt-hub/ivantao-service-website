@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
-import io from "socket.io-client";
+import { io, Socket } from "socket.io-client";
+import { DefaultEventsMap } from "@socket.io/component-emitter";
 
 const useSocket = () => {
-  const [socket, setSocket] = useState(null);
+  const [socket, setSocket] = useState<Socket<
+    DefaultEventsMap,
+    DefaultEventsMap
+  > | null>(null);
 
   useEffect(() => {
     // Make sure to only initialize the socket once
-    const socketInstance = io("http://182.252.68.227:3006");
+    const socketInstance: Socket<DefaultEventsMap, DefaultEventsMap> = io(
+      "http://182.252.68.227:3006"
+    );
 
     // Set the socket instance to state
     setSocket(socketInstance);
