@@ -6,7 +6,6 @@ import { SearchOutlined } from "@ant-design/icons";
 import { message } from "antd";
 import Paragraph from "antd/es/typography/Paragraph";
 import Title from "antd/es/typography/Title";
-import { cookies } from "next/headers";
 import React from "react";
 
 export default async function Opportunities() {
@@ -16,19 +15,10 @@ export default async function Opportunities() {
   //   return <>server</>;
   // }
 
-  const cookieStore = await cookies();
-  const token = cookieStore.get("raven")?.value;
-  if (!token) {
-    return (
-      <div className="h-[300px] w-full flex justify-center items-center text-lg font-semibold">
-        Please login to see the available job posts
-      </div>
-    );
-  }
   let call;
 
   try {
-    call = await getFetcher({ link: "/list-job", token: token });
+    call = await getFetcher({ link: "/list-job" });
   } catch (error) {
     console.error(error);
   }

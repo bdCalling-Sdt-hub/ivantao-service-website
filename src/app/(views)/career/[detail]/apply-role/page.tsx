@@ -8,7 +8,6 @@ import { useState } from "react";
 import BackText from "@/components/ui/back-text";
 import type { UploadFile } from "antd/es/upload/interface";
 import { formPostFetcher } from "@/lib/simplifier";
-import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
 
 interface FormValues {
@@ -20,7 +19,6 @@ interface FormValues {
 
 export default function Page({ params }: { params: { detail: string } }) {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
-  const [cookies] = useCookies(["raven"]);
   const navig = useRouter();
   const [waiting, setWaiting] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -68,7 +66,6 @@ export default function Page({ params }: { params: { detail: string } }) {
       const call = await formPostFetcher({
         link: "/apply-form",
         meth: "POST",
-        token: cookies.raven,
         data: formData,
       });
 

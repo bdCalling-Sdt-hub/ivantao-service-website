@@ -15,11 +15,27 @@ export default async function ProductData({
   data: ServiceBrief;
   token: string | undefined;
 }) {
+  if (!token) {
+    return (
+      <>
+        <Image
+          src={data.image ? data.image : "https://placehold.co/1000x600"}
+          width={699}
+          height={416}
+          className="w-full rounded-2xl"
+          alt="thumbnail"
+        />
+        <div className="p-4 w-full text-center text-muted-foreground">
+          Login to see more data
+        </div>
+      </>
+    );
+  }
+
   const call = await getFetcher({
     link: `/provider-profile/${data.provider_id}`,
     token: token,
   });
-  // console.log(call);
 
   if (!call.status) {
     return <>Something is wrong..</>;
@@ -56,7 +72,7 @@ export default async function ProductData({
           </div>
         </div>
         <div className="w-full md:w-auto flex flex-row gap-2 justify-end">
-          {token && <ReportListModal token={token} servId={data.id} />}
+          <ReportListModal token={token} servId={data.id} />
           <Button
             href="/chat"
             className="bg-[#7849D4] hover:!bg-[#57369b] font-bold !text-background !border-none"

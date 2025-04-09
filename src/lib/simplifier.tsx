@@ -65,6 +65,7 @@ export async function getFetcher({ link, token }: getFetcherType) {
       ...(token && { Authorization: `Bearer ${token}` }),
     },
   });
+
   const response = await call.json();
   return response;
 }

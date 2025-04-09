@@ -15,6 +15,7 @@ import type { UserType } from "@/types/userType";
 import { getFetcher, postFetcher } from "@/lib/simplifier";
 import { useCookies } from "react-cookie";
 import type { MessageType } from "@/types/chat";
+import Link from "next/link";
 type FieldType = {
   message?: string;
 };
@@ -32,6 +33,12 @@ export default function Page() {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [myId, setMyId] = useState<number>(0);
   const [form] = Form.useForm();
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    // Ensures component only renders after mount (client-side)
+    setHasMounted(true);
+  }, []);
+
   useEffect(() => {
     async function getUserData() {
       try {
@@ -125,13 +132,29 @@ export default function Page() {
       recall(String(selectedReciever));
     }
   }, [selectedReciever, recall]);
+  if (!hasMounted) return null; // skip render on server
 
+  if (!cookies.raven) {
+    return (
+      <div className="h-[80dvh] w-full flex justify-center items-center space-x-1">
+        {" "}
+        <span>Please</span>{" "}
+        <span className="hover:underline">
+          <Link href="/login?type=user" className="!text-black">
+            {" "}
+            log in{" "}
+          </Link>
+        </span>{" "}
+        <span>first</span>
+      </div>
+    );
+  }
   return (
-    <main className="md:h-[calc(100dvh-94px)] w-full p-3 md:p-6 grid grid-cols-1 md:grid-cols-9 gap-8 md:px-[7%]">
+    <main className="md:h-[calc(100dvh-94px)] h-[calc(100dvh-70px)] w-full p-3 md:p-6 grid grid-cols-1 md:grid-cols-9 gap-8 md:px-[7%]">
       <div
         className={`${
           people ? "hidden" : "fixed"
-        } top-1/2 -translate-y-1/2 right-4 -z-20`}
+        } bottom-16 md:top-1/2 md:-translate-y-1/2 right-4 z-30`}
       >
         <Draggable>
           <Button
@@ -148,10 +171,19 @@ export default function Page() {
       <div
         className={`${
           people ? "block" : "hidden"
-        } col-span-1 md:col-span-3 h-full bg-background rounded-xl !overflow-y-auto z-20 top-0 left-0 fixed md:relative`}
+        } col-span-1 md:col-span-3 h-[100dvh] pt-[100px] bg-background rounded-xl !overflow-y-auto z-20 top-0 left-0 fixed md:relative w-full md:w-auto`}
       >
-        <div className={`p-6 sticky top-0 left-0 bg-background w-full z-30`}>
+        <div
+          className={`p-6 sticky top-0 left-0 bg-background w-full z-30 flex justify-between items-center`}
+        >
           <Search func={setPeople} />
+          {/* <Button
+            className="md:hidden"
+            onClick={() => setPeople(false)}
+            type="text"
+          >
+            Close
+          </Button> */}
         </div>
         <div className="py-4 divide-y">
           {users.map((item) => (
@@ -159,7 +191,7 @@ export default function Page() {
           ))}
         </div>
       </div>
-      <div className="col-span-6 h-full bg-background rounded-xl flex flex-col justify-between items-start">
+      <div className="col-span-6 h-full bg-background rounded-xl flex flex-col justify-between items-start w-full">
         <div className="w-full">
           <div className="w-full flex flex-row justify-start items-start gap-2 p-4">
             <div className="">
@@ -176,7 +208,7 @@ export default function Page() {
         {/*  */}
         {/* MEssage section starts */}
         <div
-          className="flex-grow h-[68dvh] flex flex-col-reverse justify-end items-stretch overflow-y-auto w-full"
+          className="flex-grow h-[60dvh] md:h-[68dvh] flex flex-col-reverse justify-end items-stretch overflow-y-auto w-full"
           id="messages"
         >
           {messages.map((item) =>
@@ -201,7 +233,7 @@ export default function Page() {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <div className="w-full p-4 flex flex-row justify-between gap-4">
+          <div className="w-full p-2 md:p-4 flex flex-row justify-between gap-2 md:gap-4">
             <Button
               size="large"
               shape="circle"

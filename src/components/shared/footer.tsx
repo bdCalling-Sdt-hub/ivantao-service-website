@@ -15,22 +15,22 @@ type iconLink = {
 const categories: LinkItem[] = [
   { name: "Everyday essentials", href: "/service/categories/everyday" },
   { name: "Household", href: "/service/categories/household" },
-  { name: "Professional", href: "/service/categories" },
+  { name: "Professional", href: "/service/categories/professional" },
   { name: "Education", href: "/service/categories/education" },
-  { name: "Creative", href: "/service/categoriesy/creative" },
+  { name: "Creative", href: "/service/categories/creative" },
   {
     name: "Information technology",
-    href: "service/categories/information-technology",
+    href: "/service/categories/information-technology",
   },
-  { name: "Specialized", href: "service/categories/specialized" },
-  { name: "Commercial", href: "service/categories/commercial" },
-  { name: "Tailored Service", href: "service/categories/custom" },
+  { name: "Specialized", href: "/service/categories/specialized" },
+  { name: "Commercial", href: "/service/categories/commercial" },
+  { name: "Tailored Service", href: "/service/categories/custom" },
 ];
 
 const companyLinks: LinkItem[] = [
   { name: "About Tawun", href: "/about" },
   { name: "How it works", href: "/how-it-works" },
-  { name: "Help & support", href: "/help-support" },
+  { name: "Help & support", href: "/contact" },
   { name: "Terms of service", href: "/tnc" },
   { name: "Privacy policy", href: "/privacy-policy" },
   { name: "Careers", href: "/career" },
@@ -88,9 +88,9 @@ export default function Footer() {
               <Image
                 src="/logo.png"
                 alt="Tawun Logo"
-                width={120}
-                height={120}
-                className="w-auto h-auto"
+                width={240}
+                height={240}
+                className="w-auto h-16"
               />
             </Link>
             <address className="not-italic !text-background">
@@ -116,7 +116,7 @@ export default function Footer() {
                 <li key={name}>
                   <Link
                     href={href}
-                    className="!text-background hover:underline"
+                    className="!text-background hover:!text-black"
                   >
                     {name}
                   </Link>
@@ -132,7 +132,7 @@ export default function Footer() {
                 <li key={name}>
                   <Link
                     href={href}
-                    className="!text-background hover:underline"
+                    className="!text-background hover:!text-black"
                   >
                     {name}
                   </Link>

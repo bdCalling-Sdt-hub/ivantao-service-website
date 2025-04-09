@@ -2,6 +2,7 @@
 import { getFetcher, postFetcher } from "@/lib/simplifier";
 import { UserType } from "@/types/userType";
 import { Button, Form, Input, message } from "antd";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
@@ -66,6 +67,20 @@ export default function ContactForm() {
     }
     setWaiting(false);
   };
+  if (!cookies.raven) {
+    return (
+      <div className="h-[300px] w-full flex justify-center items-center !space-x-1">
+        <span>Please</span>{" "}
+        <span className="hover:underline">
+          <Link href="/login?type=user" className="!text-black">
+            {" "}
+            log in{" "}
+          </Link>
+        </span>{" "}
+        <span>first</span>
+      </div>
+    );
+  }
 
   return (
     <Form

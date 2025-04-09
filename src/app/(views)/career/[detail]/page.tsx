@@ -12,7 +12,6 @@ import {
   Hourglass,
   MapPin,
 } from "lucide-react";
-import { cookies } from "next/headers";
 import React, { JSX } from "react";
 interface JobOpportunity {
   title: string;
@@ -98,21 +97,11 @@ const job_opp: JobOpportunity = {
 export default async function Page({ params }: { params: { detail: string } }) {
   console.log(params.detail);
 
-  const cookieStore = cookies();
-  const token = cookieStore.get("raven")?.value;
-  if (!token) {
-    return (
-      <div className="h-[300px] w-full flex justify-center items-center text-lg font-semibold">
-        Please login to see this content
-      </div>
-    );
-  }
   let call;
 
   try {
     call = await getFetcher({
       link: `/job-details/${params.detail}`,
-      token: token,
     });
   } catch (error) {
     console.error(error);

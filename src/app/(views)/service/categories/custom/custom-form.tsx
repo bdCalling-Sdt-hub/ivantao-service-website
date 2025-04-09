@@ -35,7 +35,11 @@ export default function CustomForm() {
         name="info"
         rules={[{ required: true, message: "Please enter your contact info" }]}
       >
-        <Input size="large" placeholder="Type here..." />
+        <Input
+          size="large"
+          placeholder="Type here..."
+          className="bg-[#F0E8FF]"
+        />
       </Form.Item>
       <Form.Item<FieldType>
         label={<p className="text-lg font-semibold">Your Wish</p>}
@@ -44,7 +48,7 @@ export default function CustomForm() {
       >
         <Input.TextArea
           placeholder="type here...."
-          className="resize-none"
+          className="resize-none bg-[#F0E8FF]"
           rows={8}
           size="large"
         />

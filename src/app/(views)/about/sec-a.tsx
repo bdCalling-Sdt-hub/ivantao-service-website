@@ -27,8 +27,10 @@ export default function SectionA() {
       </div>
       <div className="space-y-8 flex flex-col justify-center items-start bg-[#7849D4] !text-white p-4 md:p-8 py-12 md:py-[100px] h-full rounded-xl">
         {/* Adjusted padding and py */}
-        <Title level={5}>About Tawun</Title>
-        <Title level={2} className="!mt-2 !text-2xl md:!text-3xl">
+        <Title level={5} className="!text-white">
+          About Tawun
+        </Title>
+        <Title level={2} className="!mt-2 !text-2xl md:!text-3xl !text-white">
           The best e-commerce platform in town since 2022
         </Title>
         <p className="text-sm sm:text-base md:text-lg text-background">

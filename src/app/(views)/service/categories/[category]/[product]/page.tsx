@@ -26,13 +26,13 @@ export default async function Page({
   const cookieStore = cookies();
   const getToken = cookieStore.get("raven");
 
-  if (!getToken?.value) {
-    return (
-      <div className="h-[200px] w-full flex justify-center items-center">
-        You must be logged in to see this content
-      </div>
-    );
-  }
+  // if (!getToken?.value) {
+  //   return (
+  //     <div className="h-[200px] w-full flex justify-center items-center">
+  //       You must be logged in to see this content
+  //     </div>
+  //   );
+  // }
 
   const call = await getFetcher({
     link: `/get-services-details/${(await params).product}`,
@@ -88,22 +88,28 @@ export default async function Page({
             <p className="text-cl font-bold">
               ${parseInt(service.price).toFixed(2)}
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
-              <Button
-                href={`/service/categories/sub-categories/${service.id}/payment`}
-                className="w-full bg-[#7849D4] hover:bg-[#5f3aaa] text-sm md:text-xs xl:text-base text-background font-bold"
-                size="large"
-              >
-                Purchase in person
-              </Button>
-              <Button
-                className="w-full bg-[#7849D4] hover:bg-[#58359e] text-sm md:text-xs xl:text-base text-background font-bold"
-                size="large"
-              >
-                Purchase virtual
-              </Button>
-              {/* <BuyModal /> */}
-            </div>
+            {getToken ? (
+              <div className={"grid grid-cols-1 md:grid-cols-2 gap-6 pt-8"}>
+                <Button
+                  href={`/service/categories/sub-categories/${service.id}/payment`}
+                  className="w-full bg-[#7849D4] hover:bg-[#5f3aaa] text-sm md:text-xs xl:text-base text-background font-bold"
+                  size="large"
+                >
+                  Purchase in person
+                </Button>
+                <Button
+                  className="w-full bg-[#7849D4] hover:bg-[#58359e] text-sm md:text-xs xl:text-base text-background font-bold"
+                  size="large"
+                >
+                  Purchase virtual
+                </Button>
+                {/* <BuyModal /> */}
+              </div>
+            ) : (
+              <div className="h-[300px] w-full flex justify-center items-center text-muted-foreground">
+                Login to purchase this service
+              </div>
+            )}
           </div>
           <div className="w-full flex flex-row justify-between items-center py-6">
             <Title className="!m-0" level={4}>

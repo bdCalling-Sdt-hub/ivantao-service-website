@@ -143,7 +143,7 @@ export default function Categories() {
 
   return (
     <>
-      <div className="">
+      <div className="bg-[#7849D4]">
         <section className="px-4 sm:px-6 lg:px-[7%] py-8 sm:py-12">
           <div id="categories">
             <Title level={2} className="mb-6 text-center md:text-left">
@@ -171,11 +171,11 @@ export default function Categories() {
               Top services
             </Title>
             <div className="overflow-x-auto w-full py-4 sm:py-8">
-              <div className="flex space-x-4 pb-4">
+              <div className="flex space-x-4 pb-4 whitespace-nowrap overflow-x-auto">
                 {serv?.slice(0, 12).map((item, index) => (
                   <Link key={index} href={"/"} className="hover:text-black">
                     <div
-                      className="p-4 shadow-sm flex flex-col justify-between items-center font-semibold gap-4 rounded-lg w-[120px] sm:w-[240px] md:w-[280px] h-[180px] sm:h-[280px] hover:shadow-lg transition-shadow cursor-pointer flex-shrink-0"
+                      className="p-4 bg-background shadow-sm flex flex-col justify-between items-center font-semibold gap-4 rounded-lg w-[120px] sm:w-[240px] md:w-[280px] h-[180px] sm:h-[280px] hover:shadow-lg transition-shadow cursor-pointer flex-shrink-0"
                       // style={{ backgroundColor: item.color }}
                     >
                       <div className="w-full text-sm !text-center sm:text-left sm:text-xl">

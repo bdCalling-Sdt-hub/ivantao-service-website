@@ -31,6 +31,7 @@ export default function Page() {
   useEffect(() => {
     async function getCats() {
       setLoading(true);
+
       const call = await getFetcher({ link: "/get-all-category" });
       const ServiceCall = await getFetcher({
         link: "/get-all-services",

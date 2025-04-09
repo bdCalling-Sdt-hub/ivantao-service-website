@@ -70,6 +70,7 @@ export default function Overview() {
         <Button
           className="px-8 py-6 bg-[#F0E8FF] hover:bg-[#c6b4e9] !font-semibold"
           size="large"
+          href="/how-it-works"
         >
           Learn More <ArrowRightOutlined />
         </Button>

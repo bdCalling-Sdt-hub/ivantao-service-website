@@ -60,7 +60,7 @@ export default function SecB() {
         </div>
         <Input size="large" placeholder="Email" />
         <Button
-          className="bg-[#7849D4] hover:bg-[#5a389e] !text-background !rounded-none !border-none px-8 py-6 mt-8"
+          className="bg-[#7849D4] hover:!bg-[#5a389e] !text-background !rounded-lg !border-none px-8 py-6 mt-8"
           size="large"
         >
           Subscribe

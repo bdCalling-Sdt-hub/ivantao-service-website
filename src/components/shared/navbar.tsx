@@ -131,7 +131,7 @@ export default function Navbar({ user }: NavbarProps) {
                 href={item.key}
                 className={`${
                   item.key === path ? "font-bold" : ""
-                } block py-2 lg:py-0`}
+                } block py-2 lg:py-0 hover:!text-black`}
                 onClick={() => isMobile && setIsMenuOpen(false)}
               >
                 {item.title}

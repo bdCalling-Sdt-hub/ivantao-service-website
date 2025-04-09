@@ -7,12 +7,10 @@ export default function SectionB() {
     <section className="py-20 px-4 md:px-0 grid grid-cols-1 md:grid-cols-2 gap-8">
       <div className="grid grid-rows-2 gap-8">
         <div className="p-6 bg-[#7849D4] rounded-2xl flex flex-col justify-start items-start gap-8">
-          <Button
-            className="text-black bg-background font-bold py-6 px-8 !border-none w-full md:w-auto"
-            size="large"
-          >
+          <Title className="!text-background" level={3}>
             Our Vision
-          </Button>
+          </Title>
+
           <p className="text-background text-sm md:text-base">
             {" "}
             {/* Added text size responsiveness */}
@@ -28,13 +26,10 @@ export default function SectionB() {
             quis tellus leo augue donec in quam sem.
           </p>
         </div>
-        <div className="p-6 bg-[#7849D4] rounded-2xl flex flex-col justify-start items-start gap-8">
-          <Button
-            className="text-black bg-background font-bold py-6 px-8 !border-none w-full md:w-auto"
-            size="large"
-          >
+        <div className="p-6 bg-[#7849D4] rounded-2xl flex flex-col justify-start items-start gap-4">
+          <Title className="!text-background" level={3}>
             Our Mission
-          </Button>
+          </Title>
           <p className="text-background text-sm md:text-base">
             {" "}
             {/* Added text size responsiveness */}
@@ -79,7 +74,7 @@ export default function SectionB() {
             {" "}
             {/* Center the button */}
             <Button
-              className="bg-[#7849D4] !border-none text-background hover:!bg-[#6640b1] text-base md:text-lg py-4 md:py-6 px-8 md:px-16"
+              className="bg-[#7849D4] !border-none !text-background hover:!bg-[#6640b1] text-base md:text-lg py-4 md:py-6 px-8 md:px-16"
               size="large"
               href="/service/categories"
             >
