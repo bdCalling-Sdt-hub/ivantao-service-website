@@ -25,6 +25,8 @@ export default function DeletePopover({
     url = "/user-delete";
   } else if (type === "provider") {
     url = "/provider-delete";
+  } else if (type == "custom-order") {
+    url = "/delete-offer-price";
   }
 
   const hide = () => {

@@ -60,7 +60,7 @@ export default function Page() {
       title: "Action",
       dataIndex: "action",
       key: "action",
-      render: (text) => (
+      render: (text, record) => (
         <>
           <div className="flex flex-row justify-start items-center gap-3">
             <Button
@@ -70,7 +70,11 @@ export default function Page() {
             >
               {text}
             </Button>
-            <DeletePopover message="Are you sure delete this offer ?" />
+            <DeletePopover
+              messaged="Are you sure delete this offer ?"
+              type={"custom-order"}
+              id={record.id} // 🟢 here you use the row's ID
+            />
           </div>
           <Modal
             title={null}
@@ -110,7 +114,7 @@ export default function Page() {
       action: <Check key={23} size={16} />,
     },
     {
-      key: 1,
+      key: 2,
       uname: "Seikh Alib",
       sname: "Cleaning like a pro.",
       price: "$454.00",
@@ -119,7 +123,7 @@ export default function Page() {
       action: <Check key={23} size={16} />,
     },
     {
-      key: 1,
+      key: 3,
       uname: "Seikh Alib",
       sname: "Cleaning like a pro.",
       price: "$454.00",
@@ -128,7 +132,7 @@ export default function Page() {
       action: <Check key={23} size={16} />,
     },
     {
-      key: 1,
+      key: 4,
       uname: "Seikh Alib",
       sname: "Cleaning like a pro.",
       price: "$454.00",
@@ -137,7 +141,7 @@ export default function Page() {
       action: <Check key={23} size={16} />,
     },
     {
-      key: 1,
+      key: 5,
       uname: "Seikh Alib",
       sname: "Cleaning like a pro.",
       price: "$454.00",
