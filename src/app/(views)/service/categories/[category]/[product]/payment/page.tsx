@@ -1,6 +1,6 @@
 "use client";
 import BackText from "@/components/ui/back-text";
-import { Avatar, Button } from "antd";
+import { Avatar } from "antd";
 import Title from "antd/es/typography/Title";
 import { Loader2Icon, StarIcon } from "lucide-react";
 import Image from "next/image";
@@ -139,13 +139,13 @@ export default function Page({
           <div className="p-6 bg-background shadow-md rounded-xl">
             <DatePicker data={orderForm} dataChanger={setOrderForm} />
           </div>
-          <Button
+          {/* <Button
             onClick={() => {
               console.log(orderForm);
             }}
           >
             MAGIC BUTTON
-          </Button>
+          </Button> */}
           <div className="p-6 bg-background shadow-md rounded-xl">
             {proceed ? (
               <PaymentForm

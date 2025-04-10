@@ -18,6 +18,7 @@ import { getFetcher } from "@/lib/simplifier";
 import { cookies } from "next/headers";
 import { Category, Subcategory } from "@/types/Services";
 import ProviderEditDD from "@/components/ui/sub-ui/provider-edit-dd";
+import Image from "next/image";
 
 export default async function Page() {
   const token = cookies().get("raven")?.value;
@@ -49,10 +50,7 @@ export default async function Page() {
               className="p-4 relative shadow-sm flex flex-col justify-center items-center text-center font-semibold gap-4 rounded-lg bg-background w-full h-[140px] sm:h-[160px] hover:shadow-lg transition-shadow cursor-pointer"
             >
               <ProviderEditDD item={item} />
-              <div
-                className="size-16"
-                style={{ backgroundImage: `url('${item.icon}')` }}
-              ></div>
+              <Image src={item.icon} height={64} width={64} alt="thumbnail" />
               <div className="text-sm sm:text-base">{item.name}</div>
             </div>
           ))}

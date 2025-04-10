@@ -3,10 +3,11 @@ import React from "react";
 import DashTitle from "@/components/ui/dash-title";
 import Title from "antd/es/typography/Title";
 import BackText from "@/components/ui/back-text";
-import { Button, Image } from "antd";
+import { Image } from "antd";
 import { getFetcher } from "@/lib/simplifier";
 import { cookies } from "next/headers";
 import { ServiceType } from "@/types/Services";
+import ServiceControl from "./service-control";
 
 export default async function Page({
   params,
@@ -54,23 +55,7 @@ export default async function Page({
               </Title>
             </div>
             <div className="">
-              <Button
-                type="primary"
-                htmlType="submit"
-                size="large"
-                className="w-full mt-8 bg-[#7849D4] text-background font-bold hover:!bg-[#653eb3]"
-                variant="filled"
-              >
-                Edit
-              </Button>
-              <Button
-                type="primary"
-                htmlType="submit"
-                size="large"
-                className="w-full mt-8 border-red-500 text-black font-bold hover:!text-black !bg-transparent hover:!bg-red-500"
-              >
-                Delete
-              </Button>
+              <ServiceControl service={service} token={token} />
             </div>
           </div>
         </div>

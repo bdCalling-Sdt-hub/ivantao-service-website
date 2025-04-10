@@ -1,29 +1,12 @@
 "use client";
 import Title from "antd/es/typography/Title";
 import type React from "react";
-// import {
-//   BulbOutlined,
-//   HomeOutlined,
-//   RocketOutlined,
-//   BookOutlined,
-//   ShopOutlined,
-//   LaptopOutlined,
-//   ToolOutlined,
-//   SmileOutlined,
-// } from "@ant-design/icons";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Category, ServiceType } from "@/types/Services";
 import { getFetcher } from "@/lib/simplifier";
-
-// interface Service {
-//   image: string;
-//   title: string;
-//   color: string;
-//   link: string;
-// }
-
-// const iconStyle = { fontSize: "36px" };
+import Image from "next/image";
 
 export default function Categories() {
   const [categories, setCategories] = useState<Category[] | null>([]);
@@ -47,100 +30,6 @@ export default function Categories() {
     getData();
   }, []);
 
-  // const categories: Category[] = [
-  //   {
-  //     Icon: SmileOutlined,
-  //     title: "Everyday essentials",
-  //     link: "/service/categories",
-  //   },
-  //   {
-  //     Icon: HomeOutlined,
-  //     title: "Household",
-  //     link: "/service/categories",
-  //   },
-  //   {
-  //     Icon: BulbOutlined,
-  //     title: "Creative",
-  //     link: "/service/categories",
-  //   },
-  //   {
-  //     Icon: LaptopOutlined,
-  //     title: "Information technology",
-  //     link: "/service/categories",
-  //   },
-  //   {
-  //     Icon: RocketOutlined,
-  //     title: "Specialized",
-  //     link: "/service/categories",
-  //   },
-  //   {
-  //     Icon: ShopOutlined,
-  //     title: "Commercial",
-  //     link: "/service/categories",
-  //   },
-  //   {
-  //     Icon: ToolOutlined,
-  //     title: "Professional",
-  //     link: "/service/categories",
-  //   },
-  //   {
-  //     Icon: BookOutlined,
-  //     title: "Education",
-  //     link: "/service/categories",
-  //   },
-  // ];
-
-  // const services: Service[] = [
-  //   {
-  //     image: "/images/service-images/0.png",
-  //     title: "Personal Shopping",
-  //     color: "#4E8681",
-  //     link: "/service/categories/shopping",
-  //   },
-  //   {
-  //     image: "/images/service-images/1.png",
-  //     title: "Laundry",
-  //     color: "#864E4E",
-  //     link: "/service/categories/laundry",
-  //   },
-  //   {
-  //     image: "/images/service-images/2.png",
-  //     title: "Custom Tailored",
-  //     color: "#4E866A",
-  //     link: "/service/categories/custom",
-  //   },
-  //   {
-  //     image: "/images/service-images/3.png",
-  //     title: "Sports",
-  //     color: "#524E86",
-  //     link: "/service/categories/sports",
-  //   },
-  //   {
-  //     image: "/images/service-images/4.png",
-  //     title: "Photography",
-  //     color: "#7C864E",
-  //     link: "/service/categories/photography",
-  //   },
-  //   {
-  //     image: "/images/service-images/5.png",
-  //     title: "IT Support",
-  //     color: "#4E8681",
-  //     link: "/service/categories/it-support",
-  //   },
-  //   {
-  //     image: "/images/service-images/6.png",
-  //     title: "Landscaping",
-  //     color: "#4E8681",
-  //     link: "/service/categories/landscaping",
-  //   },
-  //   {
-  //     image: "/images/service-images/7.png",
-  //     title: "Music Lessons",
-  //     color: "#403097",
-  //     link: "/service/categories/music-lessons",
-  //   },
-  // ];
-
   return (
     <>
       <div className="bg-[#7849D4]">
@@ -154,11 +43,15 @@ export default function Categories() {
                 <Link href={`service/categories/${item.id}`} key={i}>
                   <div className="p-4 shadow-sm flex flex-col justify-center items-center text-center font-semibold gap-4 rounded-lg bg-background w-full h-[140px] sm:h-[160px] hover:shadow-lg transition-shadow cursor-pointer">
                     {/* <item.Icon style={iconStyle} /> */}
-                    <div
-                      className="size-16 bg-center border"
-                      style={{ backgroundImage: `url'${item.icon}'` }}
-                    ></div>
-                    <div className="text-sm sm:text-base">{item.name}</div>
+                    <Image
+                      src={item.icon}
+                      height={64}
+                      width={64}
+                      alt="thumbnail"
+                    />
+                    <div className="text-sm sm:text-base !text-black">
+                      {item.name}
+                    </div>
                   </div>
                 </Link>
               ))}
@@ -181,9 +74,9 @@ export default function Categories() {
                       <div className="w-full text-sm !text-center sm:text-left sm:text-xl">
                         {item.title}
                       </div>
-                      <div className="bg-[#CADBD9] w-full h-[70px] sm:h-[200px] flex flex-col justify-center items-center rounded-xl">
+                      <div className="bg-[#CADBD9] w-full h-[70px] sm:h-[200px] flex flex-col justify-center items-center rounded-xl overflow-hidden">
                         <div
-                          className="bg-cover bg-left-top w-[50px] h-[50px] sm:w-[160px] sm:h-[160px]"
+                          className="bg-cover bg-center w-full h-full"
                           style={{ backgroundImage: `url('${item.image}')` }}
                         ></div>
                       </div>

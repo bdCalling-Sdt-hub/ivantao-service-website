@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import type { FormProps } from "antd";
+import type { FormProps, UploadFile } from "antd";
 import { Button, Form, Input, Select, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { postFetcher } from "@/lib/simplifier";
+import { formPostFetcher } from "@/lib/simplifier";
+import Dragger from "antd/es/upload/Dragger";
+import { InboxOutlined } from "@ant-design/icons";
 
 type FieldType = {
+  icon?: string;
   category_name?: string;
   sub_categories: string[];
 };
@@ -16,15 +20,16 @@ export default function EditCatForm({ item }: { item: any }) {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [subCats, setSubCats] = useState<
-    { name: string; icon: string | null }[]
+    { name: string; image: string | null }[]
   >(item.sub_categories || []);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   useEffect(() => {
     if (item.subcategories && item.subcategories.length > 0) {
       form.setFieldsValue({
         category_name: item.name,
         sub_categories: item.subcategories.map(
-          (sub: { name: string; icon: string | null }) => sub.name
+          (sub: { name: string; image: string | null }) => sub.name
         ),
       });
     } else {
@@ -35,22 +40,45 @@ export default function EditCatForm({ item }: { item: any }) {
   }, [item, form]);
 
   const handleChange = (value: string[]) => {
-    setSubCats(value.map((v) => ({ name: v, icon: null })));
+    setSubCats(value.map((v) => ({ name: v, image: null })));
+  };
+  const handleImgChange = ({ fileList }: { fileList: any }) => {
+    setFileList(fileList);
   };
 
-  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+  const onFinish: FormProps<FieldType>["onFinish"] = async () => {
+    const values = await form.validateFields();
+    const formData = new FormData();
     console.log("Success:", values);
     setLoading(true);
-    const readyData = {
-      category_name: values.category_name,
-      sub_categories: subCats,
-    };
+
+    // const readyData = {
+    //   category_name: values.category_name,
+    //   sub_categories: subCats,
+    // };
+    if (fileList.length > 0 && fileList[0].originFileObj) {
+      formData.append("icon", fileList[0].originFileObj);
+    }
+    if (!subCats) {
+      message.error("At least one sub category is required");
+      return;
+    }
+    formData.append("category_name", values.category_name);
+    subCats.forEach((subed, index) => {
+      formData.append(`sub_categories[${index}][name]`, subed.name);
+      formData.append(
+        `sub_categories[${index}][image]`,
+        subed.image ? subed.image : ""
+      );
+    });
+
+    // formData.append("sub_categories", subCats);
 
     try {
-      const call = await postFetcher({
+      const call = await formPostFetcher({
         link: `/update-with-subcategory/${item.id}`,
         token: cookies.raven,
-        data: readyData,
+        data: formData,
         meth: "POST",
       });
       if (!call.status) {
@@ -87,6 +115,33 @@ export default function EditCatForm({ item }: { item: any }) {
             requiredMark={false}
             className="w-full"
           >
+            <Form.Item<FieldType>
+              label="Icon URL"
+              name="icon"
+              rules={[
+                { required: true, message: "Please enter the image URL" },
+              ]}
+            >
+              <Dragger
+                multiple={false}
+                fileList={fileList}
+                beforeUpload={() => false}
+                onChange={handleImgChange}
+                showUploadList={true}
+                className="bg-transparent"
+              >
+                <p className="ant-upload-drag-icon !text-[#7849D4]">
+                  <InboxOutlined className="" />
+                </p>
+                <p className="ant-upload-text">
+                  Click or drag file to this area to upload
+                </p>
+                <p className="ant-upload-hint">
+                  Support for a single or bulk upload. Strictly prohibited from
+                  uploading company data or other banned files.
+                </p>
+              </Dragger>
+            </Form.Item>
             <Form.Item<FieldType>
               label="Category Name"
               name="category_name"
