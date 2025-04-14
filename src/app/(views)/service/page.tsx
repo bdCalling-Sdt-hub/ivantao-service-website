@@ -25,7 +25,7 @@ export default async function Page() {
         {services.map((item, index) => (
           <Link
             key={index}
-            href={`/service/categories/sub-categories/${item.id}`}
+            href={`/service/categories/${item.service_sub_categories_id}`}
           >
             <div className="bg-background h-auto w-full p-6 rounded-xl hover:shadow-lg cursor-pointer transition-shadow">
               <div>

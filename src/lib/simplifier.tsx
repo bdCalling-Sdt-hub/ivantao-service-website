@@ -33,7 +33,6 @@ export async function postFetcher({
   const response = await call.json();
   return response;
 }
-
 export async function formPostFetcher({
   link,
   meth,
