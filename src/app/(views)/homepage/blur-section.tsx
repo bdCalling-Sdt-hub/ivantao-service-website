@@ -19,7 +19,7 @@ export default function BlurSection() {
           TAWUN
         </Title>
         <Button
-          href="/service/categories"
+          href="/service"
           className="text-lg px-12 !py-6 bg-[#7849D4] hover:!bg-[#57349c] !text-[#ffffff] !border-none"
           size="large"
         >

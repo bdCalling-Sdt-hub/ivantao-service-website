@@ -25,7 +25,7 @@ export default function ProductCard({
   checkProvider,
 }: {
   product: ServiceType;
-  checkProvider: boolean;
+  checkProvider?: boolean;
 }) {
   const [provider, setProvider] = useState<ProviderType | null>(null);
 

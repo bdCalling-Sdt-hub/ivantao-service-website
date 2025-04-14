@@ -164,7 +164,7 @@ export default function Navbar({ user }: NavbarProps) {
                 </Button>
               </Dropdown>
             </div>
-            {user && (
+            {user ? (
               <div className="order-1 lg:order-2">
                 <Button
                   className="font-semibold bg-[#FFFFFF] hover:!bg-[#e9d7e4] border-none !text-[#7849D4]"
@@ -172,6 +172,16 @@ export default function Navbar({ user }: NavbarProps) {
                   href="/my-account"
                 >
                   <Avatar src={user.image} /> {user.full_name}
+                </Button>
+              </div>
+            ) : (
+              <div className="order-1 lg:order-2">
+                <Button
+                  className="font-semibold bg-[#FFFFFF] hover:!bg-[#e9d7e4] border-none !text-[#7849D4] px-6"
+                  size="large"
+                  href="/login?type=user"
+                >
+                  Log in
                 </Button>
               </div>
             )}

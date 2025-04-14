@@ -45,9 +45,7 @@ export default function HeaderClient() {
         <Title level={4}>2K+ professional registered </Title>
         <Avatar.Group size="large">
           <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
-          <a href="https://ant.design">
-            <Avatar style={{ backgroundColor: "#f56a00" }}>K</Avatar>
-          </a>
+          <Avatar style={{ backgroundColor: "#f56a00" }}>K</Avatar>
           <Tooltip title="Ant User" placement="top">
             <Avatar
               style={{ backgroundColor: "#87d068" }}
