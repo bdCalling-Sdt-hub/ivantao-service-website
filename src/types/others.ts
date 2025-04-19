@@ -22,7 +22,7 @@ export interface experienceType {
 }
 
 export interface Job {
-  id: number;
+  id: string;
   job_role: string;
   job_category: string;
   description: string;
@@ -33,7 +33,7 @@ export interface Job {
   updated_at: string;
 }
 export interface AdminJob {
-  id: number;
+  id: string;
   job_role: string;
   job_category: string;
   description: string;

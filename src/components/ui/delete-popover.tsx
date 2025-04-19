@@ -27,8 +27,9 @@ export default function DeletePopover({
     url = "/provider-delete";
   } else if (type == "custom-order") {
     url = "/delete-offer-price";
+  } else if (type == "delete-career") {
+    url = `/delete-career`;
   }
-
   const hide = () => {
     setOpen(false);
   };

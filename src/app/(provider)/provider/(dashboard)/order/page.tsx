@@ -1,22 +1,81 @@
 "use client";
 import DashTitle from "@/components/ui/dash-title";
-// import { getFetcher } from "@/lib/simplifier";
-import { Avatar, Button, Modal, Radio, Table, TableProps } from "antd";
+import { getFetcher } from "@/lib/simplifier";
+import { Avatar, Button, message, Modal, Radio, Table, TableProps } from "antd";
 import Title from "antd/es/typography/Title";
-import { PencilLineIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
-// import { useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
+
+interface Transaction {
+  id: number;
+  user_id: number;
+  provider_id: number;
+  service_id: number;
+  transaction_id: string;
+  amount: string;
+  platform_fee: string;
+  date: string | null;
+  start_time: string;
+  end_time: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+  user: {
+    id: number;
+    full_name: string;
+    image: string;
+  };
+  service: {
+    id: number;
+    title: string;
+  };
+  provider: {
+    id: number;
+    full_name: string;
+  };
+}
+
+// 👇 New interface for table data
+interface TableData {
+  key: number;
+  uname: string;
+  sname: string;
+  price: string;
+  status: string;
+  action: string;
+}
 
 export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const [data, setData] = useState<any>([]);
-  // const [cookies] = useCookies(["raven"]);
+  const [data, setData] = useState<TableData[]>([]);
+  const [cookies] = useCookies(["raven"]);
+
   useEffect(() => {
     async function getData() {
       try {
-        // const call = getFetcher({ link: "/order-list", token: cookies.raven });
-        // const;
+        const call = await getFetcher({
+          link: "/order-list",
+          token: cookies.raven,
+        });
+
+        if (!call.status) {
+          message.error(call.message);
+          return;
+        }
+
+        const orderdata: Transaction[] = call.data.data;
+
+        const tableFormatted: TableData[] = orderdata.map((item) => ({
+          key: item.id,
+          uname: item.user.full_name,
+          sname: item.service.title,
+          price: item.amount,
+          status: item.status,
+          action: "Change",
+        }));
+
+        setData(tableFormatted);
+        console.log(tableFormatted);
       } catch (error) {
         console.error(error);
       }
@@ -43,7 +102,7 @@ export default function Page() {
     gap: 8,
   };
 
-  const columns: TableProps["columns"] = [
+  const columns: TableProps<TableData>["columns"] = [
     {
       title: "User name",
       dataIndex: "uname",
@@ -64,11 +123,6 @@ export default function Page() {
       dataIndex: "price",
       key: "price",
     },
-    // {
-    //   title: "Provider",
-    //   dataIndex: "provider",
-    //   key: "provider",
-    // },
     {
       title: "Status",
       dataIndex: "status",
@@ -121,17 +175,7 @@ export default function Page() {
       ),
     },
   ];
-  const data = [
-    {
-      key: 1,
-      uname: "Seikh Alib",
-      sname: "Cleaning like a pro.",
-      price: "$454.00",
-      status: "Canceled",
-      // provider: "lol",
-      action: <PencilLineIcon size={16} />,
-    },
-  ];
+
   return (
     <main className="flex flex-col md:h-screen w-full px-4 md:px-8 py-6 overflow-y-auto">
       <DashTitle>

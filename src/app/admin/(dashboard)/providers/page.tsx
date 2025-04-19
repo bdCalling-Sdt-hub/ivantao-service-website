@@ -79,7 +79,11 @@ export default function Page() {
             <Spin size="large" />
           </div>
         ) : (
-          <UPTable data={providerList} provider={true} />
+          <UPTable
+            data={providerList}
+            provider={true}
+            messageTo="/admin/chat"
+          />
         )}
       </div>
       <div className="border-t border-black pt-4 flex flex-row justify-between items-center">

@@ -11,7 +11,7 @@ import {
   TransitionIcon,
   UsersIcon,
 } from "@/app/icons/localIcons";
-import { KeyOutlined, ArrowLeftOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import { useRouter, usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
@@ -85,11 +85,11 @@ export default function SideMenu() {
       key: "settings",
       icon: <SettingIcon />,
       children: [
-        {
-          label: "Change password",
-          key: "profile?nav=cp",
-          icon: <KeyOutlined />,
-        },
+        // {
+        //   label: "Change password",
+        //   key: "profile?nav=cp",
+        //   icon: <KeyOutlined />,
+        // },
         {
           label: "Newsletter",
           key: "newsletter",

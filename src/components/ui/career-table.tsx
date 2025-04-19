@@ -30,6 +30,7 @@ function Col() {
 }
 
 function Data({
+  id,
   job_role,
   job_category,
   created_at,
@@ -58,11 +59,11 @@ function Data({
         </Link>
       </div>
       <div className="w-2/12 flex justify-center items-center gap-1 text-sm">
-        <EditCareer />
+        <EditCareer id={id} />
         <DeletePopover
           messaged={`Are you sure delete this circular?`}
-          type={""}
-          id={""}
+          type={"delete-career"}
+          id={id}
         />
       </div>
     </div>

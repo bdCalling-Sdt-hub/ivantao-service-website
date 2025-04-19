@@ -23,33 +23,6 @@ export default async function Page() {
   }
   const data = call.data.data;
 
-  // const data = [
-  //   {
-  //     title: "UI-UX Design",
-  //     category: "Design",
-  //     start: "15-01-2025",
-  //     end: "31-01-2025",
-  //     applicants: 553,
-  //     link: "/admin/careers/applicants",
-  //   },
-  //   {
-  //     title: "Graphic Design",
-  //     category: "Design",
-  //     start: "15-01-2025",
-  //     end: "31-01-2025",
-  //     applicants: 553,
-  //     link: "/admin/careers/applicants",
-  //   },
-  //   {
-  //     title: "React Native",
-  //     category: "Development",
-  //     start: "15-01-2025",
-  //     end: "31-01-2025",
-  //     applicants: 553,
-  //     link: "/admin/careers/applicants",
-  //   },
-  // ];
-
   return (
     <div className="flex flex-col h-screen w-full px-8 py-6">
       <DashTitle admin>

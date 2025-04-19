@@ -51,6 +51,7 @@ export default function Page({
         token: cookies.raven,
       });
       const user = await getUserData(cookies.raven);
+      console.log(call);
 
       setOrderForm({
         ...orderForm,
@@ -150,7 +151,7 @@ export default function Page({
             {proceed ? (
               <PaymentForm
                 id={data.id}
-                price={data.price_with_fees}
+                price={data.price_with_fees ? data.price_with_fees : data.price}
                 orderData={orderForm}
               />
             ) : (

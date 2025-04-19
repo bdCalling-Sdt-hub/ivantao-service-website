@@ -2,7 +2,7 @@ import { Avatar, Button } from "antd";
 import Title from "antd/es/typography/Title";
 
 import React from "react";
-import MoreButt from "./more-butt";
+import MoreButt from "../more-butt";
 import { postType } from "@/types/forums";
 
 export default function ForumPostCard({
@@ -14,14 +14,7 @@ export default function ForumPostCard({
 }) {
   return (
     <div
-      className={
-        `h-[200px] p-6 mb-4 rounded-lg bg-background shadow-sm flex flex-row justify-between items-start`
-        //   ${
-        //   post.reports !== undefined && post.reports > 0
-        //     ? "border border-red-500"
-        //     : ""
-        // }`
-      }
+      className={`h-[200px] p-6 mb-4 rounded-lg bg-background shadow-sm flex flex-row justify-between items-start`}
     >
       {/* Added mb-4 for spacing */}
       <div className="h-full flex flex-col justify-start items-start">
@@ -29,14 +22,13 @@ export default function ForumPostCard({
           <Avatar size="large" />
           <div className="">
             <Title className="!m-0" level={5}>
-              {post?.title} LOL
+              {post?.reason}
             </Title>
             <p>{post?.time_ago}</p>
           </div>
         </div>
         <div className="py-4">
-          <Title level={5}>{post?.title}</Title>
-          <p className="text-sm md:text-lg font-light">{post?.comment}</p>
+          <p className="text-sm md:text-lg font-light">{post?.description}</p>
         </div>
       </div>
       <div className="h-full flex flex-col justify-between items-end">

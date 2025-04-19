@@ -2,14 +2,17 @@
 import { UserType } from "@/types/userType";
 import DeletePopover from "./delete-popover";
 import ViewUser from "./view-user";
+import Link from "next/link";
 
 export default function UPTable({
   data,
   provider,
+  messageTo,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: UserType[];
   provider?: boolean;
+  messageTo?: string;
 }) {
   return (
     <div className="w-full overflow-x-auto">
@@ -26,6 +29,7 @@ export default function UPTable({
             address={item.address}
             contact={item.contact ? item.contact : ""}
             provider={provider}
+            messageTo={messageTo}
           />
         ))}
       </div>
@@ -54,6 +58,7 @@ function Data({
   address,
   contact,
   provider,
+  messageTo,
 }: {
   sr?: number;
   name?: string;
@@ -63,6 +68,7 @@ function Data({
   address?: string;
   contact?: string;
   provider?: boolean;
+  messageTo?: string;
 }) {
   return (
     <div className="flex items-center py-3 text-xs sm:text-sm md:text-base gap-4 rounded-lg divide-x divide-gray-300 bg-[#F0E8FF]">
@@ -82,7 +88,7 @@ function Data({
       <div className="w-3/12 flex justify-center items-center font-semibold">
         {provider ? (
           <div className="text-sm py-1 px-4 text-background hover:bg-blue-300 bg-blue-500 rounded-full cursor-pointer transition-colors">
-            Message
+            {messageTo ? <Link href={messageTo}> Message</Link> : "Message"}
           </div>
         ) : (
           id

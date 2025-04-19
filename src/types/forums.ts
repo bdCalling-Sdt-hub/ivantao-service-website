@@ -1,8 +1,10 @@
 export interface postType {
-  id: number;
+  id: string;
   user_id: number;
   categories_id: number;
+  description?: string;
   title: string;
+  reason?: string;
   comment: string;
   image: string;
   created_at: string;

@@ -4,6 +4,9 @@ import type React from "react";
 import { useState } from "react";
 import { Modal, Button, Form, DatePicker, Select, Input, message } from "antd";
 import type { FormProps } from "antd";
+import { postFetcher } from "@/lib/simplifier";
+import { useCookies } from "react-cookie";
+import { Dayjs } from "dayjs";
 
 interface FieldType {
   job_category: string;
@@ -11,13 +14,13 @@ interface FieldType {
   address: string;
   description: string;
   job_type: string;
-  deadline: string;
+  deadline: Dayjs;
 }
 
 const AddJob: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm<FieldType>();
-
+  const [cookies] = useCookies(["raven"]);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -26,11 +29,33 @@ const AddJob: React.FC = () => {
     form.resetFields();
   };
 
-  const handleSubmit: FormProps<FieldType>["onFinish"] = (
+  const handleSubmit: FormProps<FieldType>["onFinish"] = async (
     values: FieldType
   ) => {
-    console.log("Form Values:", values);
-    message.success("Job added successfully!");
+    try {
+      console.log("Form Values:", values);
+      const finalData = {
+        ...values,
+        deadline: values.deadline.format("YYYY-M-D"),
+      };
+
+      const call = await postFetcher({
+        link: "/create-career",
+        token: cookies.raven,
+        data: finalData,
+      });
+
+      if (!call.status) {
+        message.error(call.message);
+        return;
+      }
+
+      message.success(call.message);
+
+      message.success("Job added successfully!");
+    } catch (error) {
+      message.error(String(error));
+    }
     setIsModalOpen(false);
     form.resetFields();
   };

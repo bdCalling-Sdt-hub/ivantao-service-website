@@ -21,8 +21,9 @@ export default function ProfPicUpdater({ token }: { token: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
-  const handleChange = ({ fileList }: { fileList: any }) =>
-    setFileList(fileList);
+  const handleChange = ({ fileList }: { fileList: UploadFile[] }) => {
+    setFileList(fileList.slice(-1)); // Always keep only the latest file
+  };
 
   const handleOk = () => {
     setIsModalOpen(false);

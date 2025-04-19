@@ -16,6 +16,7 @@ export default function ServiceControl({
   return (
     <>
       <Button
+        href={`${service.id}/edit`}
         type="primary"
         htmlType="submit"
         size="large"
