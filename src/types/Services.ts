@@ -6,7 +6,7 @@ export interface ServiceType {
   title: string;
   description: string;
   price: string;
-  image: string;
+  image?: string;
   service_type: string;
   created_at: string;
   updated_at: string;

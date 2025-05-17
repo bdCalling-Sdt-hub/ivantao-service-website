@@ -1,8 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use server";
 import Title from "antd/es/typography/Title";
 import React from "react";
 // import { services } from "./serviceData";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { getFetcher } from "@/lib/simplifier";
 import { ServiceType } from "@/types/Services";
@@ -18,6 +19,8 @@ export default async function Page() {
   }
   const services: ServiceType[] = call.data.data;
 
+  console.log(services);
+
   return (
     <main className="py-16 px-[7%] mx-auto">
       <Title className="text-center">Services We Provide</Title>
@@ -29,7 +32,7 @@ export default async function Page() {
           >
             <div className="bg-background h-auto w-full p-6 rounded-xl hover:shadow-lg cursor-pointer transition-shadow">
               <div>
-                <Image
+                <img
                   src={item.image}
                   alt="thumbnail"
                   width={400}
