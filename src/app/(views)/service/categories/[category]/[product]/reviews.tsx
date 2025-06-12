@@ -6,8 +6,6 @@ import { Button } from "antd";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Reviews({ data }: { data: ReviewType[] }) {
-  console.log("reviews");
-
   if (!data) {
     return <>Data not found on this</>;
   }

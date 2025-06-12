@@ -6,6 +6,7 @@ import { ArrowUpDown } from "lucide-react";
 // import { products } from "../serviceData";
 import ProductCard from "@/components/ui/product-card";
 import { ServiceType } from "@/types/Services";
+import Link from "next/link";
 
 export default function Shop({
   data,
@@ -18,22 +19,14 @@ export default function Shop({
 }) {
   const items: MenuProps["items"] = [
     {
-      label: (
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          Price
-        </a>
-      ),
+      label: <Link href="#">Price</Link>,
       key: "0",
     },
     {
       type: "divider",
     },
     {
-      label: (
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          Date Posted
-        </a>
-      ),
+      label: <Link href="#">Date Posted</Link>,
       key: "1",
     },
     {
@@ -41,12 +34,30 @@ export default function Shop({
     },
 
     {
-      label: (
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          Newest
-        </a>
-      ),
+      label: <Link href="#">Newest</Link>,
       key: "2",
+    },
+  ];
+
+  const bothItems: MenuProps["items"] = [
+    {
+      label: <Link href="#">Physical</Link>,
+      key: "6",
+    },
+    {
+      type: "divider",
+    },
+    {
+      label: <Link href="#">Virtual</Link>,
+      key: "7",
+    },
+    {
+      type: "divider",
+    },
+
+    {
+      label: <Link href="#">Both</Link>,
+      key: "8",
     },
   ];
 
@@ -62,13 +73,17 @@ export default function Shop({
           <div>
             {sorter ? (
               <>
-                <Dropdown menu={{ items }} trigger={["click"]}>
+                <Dropdown menu={{ items: bothItems }} trigger={["click"]}>
                   <Button
                     size="large"
                     className="text-xs sm:text-sm md:text-lg !outline-2 outline-black font-bold"
                   >
-                    Both
-                    <ArrowUpDown className="h-3 w-3 sm:h-4 sm:w-4 md:w-6 md:h-6" />
+                    <span className="flex items-center gap-1">
+                      {" "}
+                      {/* Added flex classes here */}
+                      Both{" "}
+                      <ArrowUpDown className="h-3 w-3 sm:h-4 sm:w-4 md:w-6 md:h-6" />
+                    </span>
                   </Button>
                 </Dropdown>
                 <Dropdown
@@ -80,8 +95,12 @@ export default function Shop({
                     size="large"
                     className="text-xs sm:text-sm md:text-lg !bg-[#7849D4] !text-background !outline-2 outline-black font-bold"
                   >
-                    Sort by{" "}
-                    <ArrowUpDown className="h-3 w-3 sm:h-4 sm:w-4 md:w-6 md:h-6" />
+                    <span className="flex items-center gap-1">
+                      {" "}
+                      {/* Added flex classes here */}
+                      Sort by{" "}
+                      <ArrowUpDown className="h-3 w-3 sm:h-4 sm:w-4 md:w-6 md:h-6" />
+                    </span>
                   </Button>
                 </Dropdown>
               </>

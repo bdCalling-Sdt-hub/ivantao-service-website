@@ -43,7 +43,7 @@ export default async function Page({
     return (
       <>
         <main className="!p-8 h-[300px] w-full flex justify-center items-center">
-          <Title level={3}>{call.message}</Title>
+          <Title level={3}>{call?.message}</Title>
         </main>
       </>
     );

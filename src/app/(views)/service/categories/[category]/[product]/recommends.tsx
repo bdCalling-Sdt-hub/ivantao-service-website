@@ -7,8 +7,6 @@ import Link from "next/link";
 import { ServiceType } from "@/types/Services";
 
 export default function Recommends({ data }: { data: ServiceType[] }) {
-  console.log(data);
-
   // const recommends = [
   //   {
   //     imageSrc: "/images/service/1.webp",

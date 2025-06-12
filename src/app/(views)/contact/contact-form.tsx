@@ -2,7 +2,7 @@
 import { getFetcher, postFetcher } from "@/lib/simplifier";
 import { UserType } from "@/types/userType";
 import { Button, Form, Input, message } from "antd";
-import Link from "next/link";
+// import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
@@ -15,26 +15,28 @@ export default function ContactForm() {
 
   useEffect(() => {
     async function getData() {
-      setWaiting(true);
       if (cookies.raven) {
-        const call = await getFetcher({
-          link: "/auth/own-profile",
-          token: cookies.raven,
-        });
-        console.log(call.data);
+        setWaiting(true);
+        if (cookies.raven) {
+          const call = await getFetcher({
+            link: "/auth/own-profile",
+            token: cookies.raven,
+          });
+          console.log(call.data);
 
-        if (!call.status) {
-          console.log("server couldnt retrive user data");
+          if (!call.status) {
+            console.log("server couldnt retrive user data");
+          }
+          const user: UserType = call.data;
+          form.setFields([
+            { name: "name", value: user.full_name },
+            { name: "email", value: user.email },
+            { name: "phone", value: user.contact },
+          ]);
+          setWaiting(false);
         }
-        const user: UserType = call.data;
-        form.setFields([
-          { name: "name", value: user.full_name },
-          { name: "email", value: user.email },
-          { name: "phone", value: user.contact },
-        ]);
         setWaiting(false);
       }
-      setWaiting(false);
     }
     getData();
   }, []);
@@ -64,23 +66,24 @@ export default function ContactForm() {
       setWaiting(false);
     } catch (error) {
       console.error(error);
+      message.error("Form was not submitted");
     }
     setWaiting(false);
   };
-  if (!cookies.raven) {
-    return (
-      <div className="h-[300px] w-full flex justify-center items-center !space-x-1">
-        <span>Please</span>{" "}
-        <span className="hover:underline">
-          <Link href="/login?type=user" className="!text-black">
-            {" "}
-            log in{" "}
-          </Link>
-        </span>{" "}
-        <span>first</span>
-      </div>
-    );
-  }
+  // if (!cookies.raven) {
+  //   return (
+  //     <div className="h-[300px] w-full flex justify-center items-center !space-x-1">
+  //       <span>Please</span>{" "}
+  //       <span className="hover:underline">
+  //         <Link href="/login?type=user" className="!text-black">
+  //           {" "}
+  //           log in{" "}
+  //         </Link>
+  //       </span>{" "}
+  //       <span>first</span>
+  //     </div>
+  //   );
+  // }
 
   return (
     <Form
