@@ -15,23 +15,6 @@ export default async function ProductData({
   data: ServiceBrief;
   token: string | undefined;
 }) {
-  if (!token) {
-    return (
-      <>
-        <Image
-          src={data.image ? data.image : "https://placehold.co/1000x600"}
-          width={699}
-          height={416}
-          className="w-full rounded-2xl"
-          alt="thumbnail"
-        />
-        <div className="p-4 w-full text-center text-muted-foreground">
-          Login to see more data
-        </div>
-      </>
-    );
-  }
-
   const call = await getFetcher({
     link: `/provider-profile/${data.provider_id}`,
     token: token,
@@ -57,7 +40,7 @@ export default async function ProductData({
           <Avatar size="large" className="h-16 w-16 mr-4" />
           <div className="flex flex-col">
             <Title level={5} className="!mb-0">
-              {providerdata.full_name}
+              {providerdata?.full_name}
             </Title>
             {/* Added margin to Title */}
             <div className="flex flex-row items-center gap-3">
@@ -71,15 +54,17 @@ export default async function ProductData({
             </div>
           </div>
         </div>
-        <div className="w-full md:w-auto flex flex-row gap-2 justify-end">
-          <ReportListModal token={token} servId={data.id} />
-          <Button
-            href="/chat"
-            className="bg-[#7849D4] hover:!bg-[#57369b] font-bold !text-background !border-none"
-          >
-            Send message
-          </Button>
-        </div>
+        {token && (
+          <div className="w-full md:w-auto flex flex-row gap-2 justify-end">
+            <ReportListModal token={token} servId={data.id} />
+            <Button
+              href="/chat"
+              className="bg-[#7849D4] hover:!bg-[#57369b] font-bold !text-background !border-none"
+            >
+              Send message
+            </Button>
+          </div>
+        )}
       </div>
     </>
   );

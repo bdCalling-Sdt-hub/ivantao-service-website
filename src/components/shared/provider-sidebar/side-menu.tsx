@@ -1,6 +1,6 @@
 "use client";
 import {
-  CategoriesIcon,
+  // CategoriesIcon,
   ChatsIcon,
   CustomOrdersIcon,
   DashboardIcon,
@@ -49,11 +49,11 @@ export default function SideMenu() {
       key: "withdraw",
       icon: <WithdrawIcon />,
     },
-    {
-      label: "Categories",
-      key: "categories",
-      icon: <CategoriesIcon />,
-    },
+    // {
+    //   label: "Categories",
+    //   key: "categories",
+    //   icon: <CategoriesIcon />,
+    // },
     {
       label: "Your Order",
       key: "order",

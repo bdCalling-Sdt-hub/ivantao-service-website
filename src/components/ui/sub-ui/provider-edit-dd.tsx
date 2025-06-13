@@ -1,6 +1,6 @@
-import DelCat from "@/app/(provider)/provider/(dashboard)/categories/del-cat";
-import EditCat from "@/app/(provider)/provider/(dashboard)/categories/edit-cat";
-import EditSubCat from "@/app/(provider)/provider/(dashboard)/categories/edit-sub-cat";
+import DelCat from "@/app/(provider)/provider/(dashboard)/_categories/del-cat";
+import EditCat from "@/app/(provider)/provider/(dashboard)/_categories/edit-cat";
+import EditSubCat from "@/app/(provider)/provider/(dashboard)/_categories/edit-sub-cat";
 import { Button, Dropdown } from "antd";
 import { EllipsisVertical } from "lucide-react";
 import React from "react";
