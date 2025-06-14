@@ -21,7 +21,6 @@ export default function SideMenu() {
   const [current, setCurrent] = useState("dashboard"); // Default selection
 
   useEffect(() => {
-    // Extract the key from the pathname (e.g., /provider/dashboard -> dashboard)
     const pathParts = pathname.split("/");
     const extractedKey = pathParts[pathParts.length - 1] || "dashboard"; // Default to dashboard if no key
 
