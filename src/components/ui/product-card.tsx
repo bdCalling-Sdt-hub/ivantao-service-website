@@ -53,7 +53,7 @@ export default function ProductCard({
     >
       <div className="h-[300px] sm:h-[300px] sm:min-w-[180px] md:h-[500px] md:min-w-auto rounded-xl p-2 md:p-4 shadow-md bg-background relative cursor-pointer hover:shadow-lg transition-all">
         <Image
-          src={product.image} // Changed to product
+          src={product.image ? product.image : ""} // Changed to product
           height={1000}
           width={600}
           className="group w-full h-1/3 md:h-1/2 rounded-xl"

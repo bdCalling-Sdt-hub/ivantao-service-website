@@ -38,7 +38,7 @@ export default function Recommends({ data }: { data: ServiceType[] }) {
         >
           <div className="h-[300px] bg-none min-w-[180px] md:h-[400px] lg:h-[400px] md:min-w-auto rounded-xl p-4 shadow-md bg-background relative cursor-pointer hover:shadow-lg hover:bg-gray-100 transition-all">
             <Image
-              src={product.image}
+              src={product.image ? product.image : ""}
               height={1000}
               width={600}
               className="w-full h-1/3 md:h-1/2 rounded-xl"

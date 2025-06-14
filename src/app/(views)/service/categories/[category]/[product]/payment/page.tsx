@@ -113,7 +113,7 @@ export default function Page({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="h-min rounded-xl bg-background p-4 shadow-md">
           <Image
-            src={data?.image}
+            src={data.image ? data.image : ""}
             height={1600}
             width={800}
             alt="thumbnail"
