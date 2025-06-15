@@ -2,14 +2,14 @@
 import {
   // CategoriesIcon,
   ChatsIcon,
-  CustomOrdersIcon,
+  // CustomOrdersIcon,
   DashboardIcon,
   OrdersIcon,
   ServicesIcon,
-  SettingIcon,
-  WithdrawIcon,
+  // SettingIcon,
+  // WithdrawIcon,
 } from "@/app/icons/localIcons";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+// import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import { KeyRoundIcon } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
@@ -43,11 +43,11 @@ export default function SideMenu() {
       key: "services",
       icon: <ServicesIcon />,
     },
-    {
-      label: "Withdraw",
-      key: "withdraw",
-      icon: <WithdrawIcon />,
-    },
+    // {
+    //   label: "Withdraw",
+    //   key: "withdraw",
+    //   icon: <WithdrawIcon />,
+    // },
     // {
     //   label: "Categories",
     //   key: "categories",
@@ -58,33 +58,34 @@ export default function SideMenu() {
       key: "order",
       icon: <OrdersIcon />,
     },
-    {
-      label: "Custom Order",
-      key: "custom-order",
-      icon: <CustomOrdersIcon />,
-    },
+    // {
+    //   label: "Custom Order",
+    //   key: "custom-order",
+    //   icon: <CustomOrdersIcon />,
+    // },
     {
       label: "Chat",
       key: "chat",
       icon: <ChatsIcon />,
     },
+    // {
+    //   label: "Go back to your website",
+    //   key: "",
+    //   icon: <ArrowLeftOutlined />,
+    // },
     {
-      label: "Go back to your website",
-      key: "",
-      icon: <ArrowLeftOutlined />,
+      label: "Change Password",
+      key: "profile?nav=cp",
+      icon: <KeyRoundIcon />,
     },
-    {
-      label: "Settings",
-      key: "settings",
-      icon: <SettingIcon />,
-      children: [
-        {
-          label: "Change Password",
-          key: "profile?nav=cp",
-          icon: <KeyRoundIcon />,
-        },
-      ],
-    },
+    // {
+    //   label: "Settings",
+    //   key: "settings",
+    //   icon: <SettingIcon />,
+    //   children: [
+
+    //   ],
+    // },
   ];
 
   return (
