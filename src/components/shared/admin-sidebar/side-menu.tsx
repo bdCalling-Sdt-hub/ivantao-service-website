@@ -1,17 +1,18 @@
 "use client";
 import {
   CareersIcon,
+  CategoriesIcon,
   ChatsIcon,
   CommunityIcons,
   DashboardIcon,
   ListingReportingIcon,
   NewsletterIcon,
   ProvidersIcon,
-  SettingIcon,
-  TransitionIcon,
+  // SettingIcon,
   UsersIcon,
+  WithdrawIcon,
 } from "@/app/icons/localIcons";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+// import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import { useRouter, usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
@@ -51,6 +52,11 @@ export default function SideMenu() {
       icon: <UsersIcon />, // You might want a more specific icon
     },
     {
+      label: "Categories",
+      key: "categories",
+      icon: <CategoriesIcon />,
+    },
+    {
       label: "Providers", // Changed to match the image
       key: "providers",
       icon: <ProvidersIcon />, // You might want a more specific icon
@@ -58,7 +64,7 @@ export default function SideMenu() {
     {
       label: "Transactions", // Changed to match the image
       key: "transactions",
-      icon: <TransitionIcon />, // You might want a more specific icon
+      icon: <WithdrawIcon />, // You might want a more specific icon
     },
     {
       label: "Careers", // Changed to match the image
@@ -76,42 +82,47 @@ export default function SideMenu() {
       icon: <ChatsIcon />,
     },
     {
-      label: "Go back to your website",
-      key: "/home",
-      icon: <ArrowLeftOutlined />,
+      label: "Newsletter",
+      key: "newsletter",
+      icon: <NewsletterIcon />,
     },
-    {
-      label: "Settings", // Moved up to be a top-level item
-      key: "settings",
-      icon: <SettingIcon />,
-      children: [
-        // {
-        //   label: "Change password",
-        //   key: "profile?nav=cp",
-        //   icon: <KeyOutlined />,
-        // },
-        {
-          label: "Newsletter",
-          key: "newsletter",
-          icon: <NewsletterIcon />,
-        },
-        // {
-        //   label: "About us",
-        //   key: "about",
-        //   icon: <InfoCircleOutlined />,
-        // },
-        // {
-        //   label: "How it works",
-        //   key: "howitworks",
-        //   icon: <QuestionCircleOutlined />,
-        // },
-        // {
-        //   label: "Contact us",
-        //   key: "contact-us",
-        //   icon: <PhoneOutlined />,
-        // },
-      ],
-    },
+    // {
+    //   label: "Go back to your website",
+    //   key: "/home",
+    //   icon: <ArrowLeftOutlined />,
+    // },
+    // {
+    //   label: "Settings", // Moved up to be a top-level item
+    //   key: "settings",
+    //   icon: <SettingIcon />,
+    //   children: [
+    //     // {
+    //     //   label: "Change password",
+    //     //   key: "profile?nav=cp",
+    //     //   icon: <KeyOutlined />,
+    //     // },
+    //     {
+    //       label: "Newsletter",
+    //       key: "newsletter",
+    //       icon: <NewsletterIcon />,
+    //     },
+    //     // {
+    //     //   label: "About us",
+    //     //   key: "about",
+    //     //   icon: <InfoCircleOutlined />,
+    //     // },
+    //     // {
+    //     //   label: "How it works",
+    //     //   key: "howitworks",
+    //     //   icon: <QuestionCircleOutlined />,
+    //     // },
+    //     // {
+    //     //   label: "Contact us",
+    //     //   key: "contact-us",
+    //     //   icon: <PhoneOutlined />,
+    //     // },
+    //   ],
+    // },
   ];
 
   return (

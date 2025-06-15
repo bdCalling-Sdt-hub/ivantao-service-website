@@ -5,6 +5,7 @@ import InPages from "./inPages";
 import { getUserData } from "@/lib/api";
 import { cookies } from "next/headers";
 import { UserType } from "@/types/userType";
+import { Button } from "antd";
 
 export default async function Page() {
   const pookies = cookies();
@@ -38,9 +39,15 @@ export default async function Page() {
 
   // Render the user profile and in-pages components
   return (
-    <main className="px-[7%] py-16">
+    <main className="px-[7%] py-12">
       <UserProfile user={accData.data} />
-      <InPages user={accData.data} />
+      {accData.data.role === "super_admin" ? (
+        <div className="my-12 flex flex-row justify-center items-center">
+          <Button href="/admin/dashboard">Go to Admin Dashboard</Button>
+        </div>
+      ) : (
+        <InPages user={accData.data} />
+      )}
     </main>
   );
 }

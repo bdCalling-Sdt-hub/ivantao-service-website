@@ -8,7 +8,7 @@ import DelExp from "./del-exp";
 import { experienceType } from "@/types/others";
 import { getFetcher } from "@/lib/simplifier";
 import { useCookies } from "react-cookie";
-import { message } from "antd";
+import { Button, message } from "antd";
 
 export default function Exp() {
   const [experiences, setExperiences] = useState<experienceType[]>([]);
@@ -84,9 +84,18 @@ export default function Exp() {
           </div>
         ))}
       </div>
-      <div className="flex justify-center md:justify-start">
+      <div className="flex justify-center md:justify-start ">
         <AddExpMod />
       </div>
+      <hr className="mt-6" />
+      <Button
+        variant="solid"
+        type="primary"
+        className="bg-[#7849D4] text-sm md:text-lg font-bold px-6 md:px-12 py-3 md:py-6 hover:!bg-[#523391] !text-background !border-none mt-6"
+        href="/provider/dashboard"
+      >
+        Go to Dashboard
+      </Button>
     </div>
   );
 }

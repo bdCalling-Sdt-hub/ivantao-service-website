@@ -6,10 +6,10 @@ import React from "react";
 // import Image from "next/image";
 import Link from "next/link";
 import { getFetcher } from "@/lib/simplifier";
-import { ServiceType } from "@/types/Services";
+import { Category } from "@/types/Services";
 export default async function Page() {
   const call = await getFetcher({
-    link: "/get-all-services",
+    link: "/get-all-category",
     // token: token?.value,
   });
   console.log(call.data);
@@ -17,7 +17,7 @@ export default async function Page() {
   console.log(call);
   if (!call.status) {
   }
-  const services: ServiceType[] = call.data.data;
+  const services: Category[] = call.data.data;
 
   console.log(services);
 
@@ -26,23 +26,20 @@ export default async function Page() {
       <Title className="text-center">Services We Provide</Title>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {services.map((item, index) => (
-          <Link
-            key={index}
-            href={`/service/categories/${item.service_sub_categories_id}`}
-          >
+          <Link key={index} href={`/service/categories/${item.id}`}>
             <div className="bg-background h-auto w-full p-6 rounded-xl hover:shadow-lg cursor-pointer transition-shadow">
               <div>
                 <img
-                  src={item.image}
+                  src={item?.icon}
                   alt="thumbnail"
                   width={400}
                   height={200}
-                  className="h-[200px] w-full object-cover rounded-lg"
+                  className="h-[200px] w-full object-contain rounded-lg"
                 />
               </div>
               <div className="pt-6 text-center">
                 <Title level={4} className="pb-2">
-                  {item.title}
+                  {item?.name}
                 </Title>
                 {/* <p className="text-sm">{item.description}</p> */}
               </div>

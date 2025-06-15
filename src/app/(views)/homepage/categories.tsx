@@ -32,10 +32,13 @@ export default function Categories() {
 
   return (
     <>
-      <div className="">
+      <div className="bg-[#7849D4]">
         <section className="px-4 sm:px-6 lg:px-[7%] py-8 sm:py-12">
           <div id="categories">
-            <Title level={2} className="mb-6 text-center md:text-left">
+            <Title
+              level={2}
+              className="mb-6 text-center md:text-left !text-background"
+            >
               Categories
             </Title>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
@@ -60,7 +63,10 @@ export default function Categories() {
         </section>
         <section className="px-[20px] sm:px-6 lg:px-[7%] py-8 sm:py-12">
           <div id="services">
-            <Title level={2} className="mb-6 text-center md:text-left">
+            <Title
+              level={2}
+              className="mb-6 text-center md:text-left !text-background"
+            >
               Top services
             </Title>
             <div className="overflow-x-auto w-full py-4 sm:py-8">

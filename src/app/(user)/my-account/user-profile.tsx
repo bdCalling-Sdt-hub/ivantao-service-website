@@ -35,14 +35,6 @@ export default function UserProfile({ user }: UserProfileProps) {
         Logout
       </Button>
 
-      {/* Balance Display */}
-      <div className="absolute right-0 top-0 text-right  p-2 md:p-8 flex flex-col justify-center items-center md:px-[74px] bg-[#fff] rounded-bl-xl">
-        <div className="text-sm md:text-lg font-medium mb-1">Balance</div>
-        <div className="text-base md:text-xl font-bold border md:border-2 border-black rounded-lg px-2 md:px-6 py-1 md:py-2">
-          ${"0.00"}
-        </div>
-      </div>
-
       {/* Profile Section */}
       <div className="flex flex-col items-center justify-center mt-12">
         <div className="relative">

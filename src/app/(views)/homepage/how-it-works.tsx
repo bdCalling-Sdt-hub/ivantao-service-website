@@ -6,9 +6,9 @@ import React from "react";
 export default function HowItWorks() {
   return (
     <>
-      <div className="py-8 pt-[100px] px-4 sm:px-8 md:px-[7%] grid grid-cols-1 xl:grid-cols-2 gap-8 ">
+      <div className="py-8 pt-[100px] px-4 sm:px-8 md:px-[7%] grid grid-cols-1 xl:grid-cols-2 gap-8 bg-[#7849D4] !text-background">
         <div className="space-y-8">
-          <Title>How it works?</Title>
+          <Title className="!text-background">How it works?</Title>
           <p className="text-lg pb-8">
             Lorem ipsum dolor sit amet consectetur. Potenti sit porttitor nam in
             lacus tempor cras. Nunc elementum turpis commodo odio massa aliquet
