@@ -19,7 +19,7 @@ export default function SideMenu() {
   const router = useRouter();
   const pathname = usePathname();
   const [current, setCurrent] = useState("dashboard"); // Default selection
-
+//lallalala
   useEffect(() => {
     const pathParts = pathname.split("/");
     const extractedKey = pathParts[pathParts.length - 1] || "dashboard"; // Default to dashboard if no key
